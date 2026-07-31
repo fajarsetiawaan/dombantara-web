@@ -1,0 +1,19 @@
+[
+  {
+    "id": "o1",
+    "buyerName": "Sate Tegal Bang Ali",
+    "buyerContact": "62833333333",
+    "buyerAddress": "Jl. Sudirman, Jakarta",
+    "items": [
+      {
+        "productId": "p1",
+        "quantity": 2
+      }
+    ],
+    "totalAmount": 5000000,
+    "status": "dipesan",
+    "orderDate": "2024-03-01T10:00:00Z",
+    "deliveryDate": "2024-03-03T08:00:00Z",
+    "assignedMitraId": "m1"
+  }
+]

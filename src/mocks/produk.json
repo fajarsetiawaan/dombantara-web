@@ -1,0 +1,32 @@
+[
+  {
+    "id": "p1",
+    "name": "Domba Jantan Super (Hidup)",
+    "category": "live_animal",
+    "description": "Domba jantan kualitas super, bobot 30-35kg. Cocok untuk warung sate dan gulai.",
+    "priceIndicative": 2500000,
+    "unit": "ekor",
+    "available": true,
+    "features": ["Sehat & bersertifikat", "Gratis potong (opsional)"]
+  },
+  {
+    "id": "p2",
+    "name": "Karkas Kambing Premium",
+    "category": "karkas",
+    "description": "Karkas kambing muda tanpa kepala & jeroan. Bersih, siap potong.",
+    "priceIndicative": 115000,
+    "unit": "kg",
+    "available": true,
+    "features": ["Potongan rapi", "Higienis", "Siap antar"]
+  },
+  {
+    "id": "p3",
+    "name": "Daging Paha Belakang (Sate)",
+    "category": "daging_cut",
+    "description": "Daging paha belakang murni tanpa tulang. Kualitas premium untuk sate maranggi/khas.",
+    "priceIndicative": 140000,
+    "unit": "kg",
+    "available": true,
+    "features": ["Tanpa tulang", "Tekstur empuk"]
+  }
+]
