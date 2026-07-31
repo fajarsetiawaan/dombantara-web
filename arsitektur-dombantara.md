@@ -91,10 +91,10 @@ Aturan: `produk.service.ts` selalu punya signature fungsi yang sama (`getProdukL
 
 ## 5. Design System
 
-Konsisten dengan brand yang sudah dibangun (dark luxury aesthetic):
+Konsisten dengan brand yang sudah dibangun (light corporate aesthetic ala nusaqu.id):
 
-- **Tipografi**: Bebas Neue untuk heading/display, sans-serif netral untuk body.
-- **Warna**: palet dark base + aksen (didefinisikan di `styles/tokens.ts`, bukan hardcode di komponen).
+- **Tipografi**: Sans-serif bold/semibold untuk heading/display, sans-serif reguler untuk body. (Bebas Neue telah dihapus).
+- **Warna**: palet dasar putih/terang + aksen hijau (didefinisikan di `styles/tokens.ts`, bukan hardcode di komponen).
 - **Motion**: scroll animation untuk section reveal, dipakai konsisten lewat satu util/hook bersama, bukan diulang per halaman.
 - **Grafis**: SVG geometric art sebagai elemen dekoratif, disimpan di `public/graphics/` dan dipakai sebagai komponen React, bukan gambar statis besar.
 

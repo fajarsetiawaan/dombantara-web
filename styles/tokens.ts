@@ -1,20 +1,20 @@
 export const tokens = {
   colors: {
-    base: '#111111', // Darkest background
-    surface: '#1A1A1A', // Slightly lighter for cards/sections
+    base: '#FFFFFF', // Putih bersih
+    surface: '#F8FAFC', // Abu sangat muda
     accent: {
-      primary: '#D4AF37', // Gold/premium accent
-      secondary: '#A68A2C',
-      hover: '#E3C158',
+      primary: '#10B981', // Hijau
+      secondary: '#059669', // Hijau lebih gelap (accent-primary-dark)
+      hover: '#059669',
     },
     text: {
-      primary: '#F5F5F5',
-      muted: '#A3A3A3',
-      inverse: '#111111',
+      primary: '#0F172A', // Hitam/abu sangat gelap
+      muted: '#64748B', // Abu sedang
+      inverse: '#FFFFFF', // Teks di atas tombol hijau
     },
     border: {
-      subtle: '#2A2A2A',
-      strong: '#404040',
+      subtle: '#E2E8F0', // Abu muda tipis
+      strong: '#CBD5E1',
     },
     status: {
       success: '#10B981',
@@ -25,7 +25,7 @@ export const tokens = {
   },
   typography: {
     fontFamily: {
-      display: ['var(--font-bebas-neue)', 'sans-serif'],
+      display: ['var(--font-inter)', 'sans-serif'],
       body: ['var(--font-inter)', 'sans-serif'],
     },
   },

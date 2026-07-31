@@ -28,7 +28,7 @@ export function WhatsAppCTA({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          "inline-flex items-center justify-center rounded-full bg-accent-primary text-base hover:bg-accent-hover transition-colors shadow-lg p-3",
+          "inline-flex items-center justify-center rounded-full bg-accent-primary text-text-inverse hover:bg-accent-hover transition-colors shadow-lg p-3",
           className
         )}
         aria-label="Hubungi via WhatsApp"

@@ -6,9 +6,9 @@ Memperluas bagian Design System di `arsitektur-dombantara.md` menjadi spesifikas
 
 ## 1. Arah Visual
 
-**Dark luxury aesthetic** — kesan premium, terpercaya, dan "serius secara bisnis", bukan tampilan peternakan tradisional/kampungan. Ini penting karena target awal adalah pembeli B2B (resto, horeca) yang menilai kredibilitas dari kesan pertama sebelum bicara harga.
+**Light corporate aesthetic** — kesan profesional, bersih, dan institusional (mengikuti gaya nusaqu.id). Ini penting karena target awal adalah pembeli B2B (resto, horeca) yang menilai kredibilitas dari kesan pertama yang rapi, bersih, dan mudah dipindai.
 
-Mood: tegas, minim ornamen berlebihan, kontras tinggi, aksen tipografi besar (Bebas Neue) sebagai elemen dominan — bukan foto ternak close-up yang generik.
+Mood: lugas, minim ornamen berlebihan, background putih/terang dengan aksen hijau zamrud yang segar.
 
 ---
 
@@ -16,8 +16,8 @@ Mood: tegas, minim ornamen berlebihan, kontras tinggi, aksen tipografi besar (Be
 
 | Peran | Font | Catatan |
 |---|---|---|
-| Display/Heading | Bebas Neue | Dipakai besar & tegas untuk judul section, angka statistik |
-| Body/UI | Sans-serif netral (misal Inter/General Sans) | Keterbacaan tinggi di ukuran kecil, kontras dengan heading yang tebal |
+| Display/Heading | Sans-serif bold (misal Inter) | Dipakai tegas untuk judul section, angka statistik |
+| Body/UI | Sans-serif netral (misal Inter) | Keterbacaan tinggi di ukuran kecil, kontras dengan heading lewat bobot (weight) |
 
 Skala ukuran didefinisikan sebagai token (`text-display`, `text-h1`...`h3`, `text-body`, `text-caption`) — bukan ukuran bebas per komponen, supaya konsisten dan mudah di-audit.
 
@@ -27,20 +27,20 @@ Skala ukuran didefinisikan sebagai token (`text-display`, `text-h1`...`h3`, `tex
 
 Struktur token warna (nilai final ditentukan saat implementasi, prinsip strukturnya):
 
-- `bg-base` — dasar gelap (dominan)
-- `bg-surface` — sedikit lebih terang dari base, untuk card/section pembeda
-- `accent-primary` — warna aksen brand Dombantara (dipakai terbatas: CTA, highlight angka, garis dekoratif)
-- `text-primary` / `text-muted` — untuk hierarki teks di atas background gelap
-- `border-subtle` — garis pembatas halus, tidak solid putih
+- `bg-base` — dasar terang/putih (dominan)
+- `bg-surface` — abu sangat muda, untuk card/section pembeda
+- `accent-primary` — warna aksen hijau brand Dombantara (CTA, badge, ikon)
+- `text-primary` / `text-muted` — hitam/slate gelap untuk teks di atas background terang
+- `border-subtle` — garis pembatas abu muda tipis
 
-Aturan: aksen warna dipakai **sedikit dan konsisten** — untuk CTA WhatsApp, angka statistik, dan elemen SVG geometris saja. Jangan biarkan aksen jadi warna dominan section.
+Aturan: hijau dipakai konsisten di titik-titik krusial (CTA WhatsApp, angka statistik). Jangan biarkan aksen jadi warna dominan section.
 
 ---
 
 ## 4. Grafis & Ikonografi
 
 - **SVG geometric art** sebagai elemen dekoratif (garis, bentuk abstrak terinspirasi motif ternak/pertanian yang disederhanakan) — disimpan sebagai komponen React di `components/shared/graphics/`, bukan file gambar statis, supaya bisa diwarnai ulang via token dan ringan.
-- **Fotografi**: bila memakai foto (ternak, kandang, produk), gunakan grading gelap/kontras tinggi yang selaras palet, bukan foto terang natural — supaya konsisten dengan mood dark luxury.
+- **Fotografi**: gunakan foto terang natural dengan background putih/bersih, selaras dengan clean corporate look.
 - **Ikon UI** (bukan dekoratif): set ikon garis tipis (line icon), konsisten stroke-width, dipakai untuk representasi kategori produk, status order, dll.
 
 ---

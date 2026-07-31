@@ -23,11 +23,26 @@ const config: Config = {
       },
       animation: {
         reveal: 'reveal 0.7s ease-out forwards',
+        orbit: 'orbit 30s linear infinite',
+        'reverse-orbit': 'reverse-orbit 30s linear infinite',
+        float: 'float 3s ease-in-out infinite',
       },
       keyframes: {
         reveal: {
           '0%': { opacity: '0', transform: 'translateY(2rem)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        orbit: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'reverse-orbit': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(-360deg)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
         },
       },
     },

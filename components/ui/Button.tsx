@@ -10,7 +10,7 @@ export function buttonVariants({ variant = "primary", size = "md", className }: 
   return cn(
     "inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary disabled:pointer-events-none disabled:opacity-50",
     {
-      "bg-accent-primary text-base hover:bg-accent-hover": variant === "primary",
+      "bg-accent-primary text-text-inverse hover:bg-accent-hover": variant === "primary",
       "bg-surface text-text-primary hover:bg-border-subtle": variant === "secondary",
       "bg-transparent text-text-primary hover:bg-surface": variant === "ghost",
       "h-9 px-4 text-sm": size === "sm",
