@@ -3,7 +3,7 @@
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { useScrollReveal } from "@/lib/utils/useScrollReveal";
 import { HeroCarousel } from "@/components/marketing/HeroCarousel";
-import { ArrowUpRight, Leaf, Bone, CheckSquare, Layers, Wheat, Microscope, Recycle, GraduationCap } from "lucide-react";
+import { ArrowUpRight, Leaf, Bone, CheckSquare, Layers, Wheat, Microscope, Recycle, GraduationCap, MessageCircle } from "lucide-react";
 
 export default function LandingPage() {
   const solutionRef = useScrollReveal();
@@ -212,6 +212,33 @@ export default function LandingPage() {
             <div className="font-display text-3xl">RPA HALAL</div>
             <div className="font-display text-3xl">HIGIENIS</div>
             <div className="font-display text-3xl">TEPAT WAKTU</div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative py-32 overflow-hidden bg-slate-900 border-t border-slate-800">
+        {/* Abstract Background Elements */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-accent-primary/10 blur-[120px] rounded-full pointer-events-none" />
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-slate-800/50 rounded-2xl mb-8 border border-slate-700/50 backdrop-blur-sm shadow-xl">
+            <MessageCircle className="w-8 h-8 text-accent-primary" />
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 tracking-tight">Butuh Bantuan?</h2>
+          <p className="text-slate-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+            Tim kami siap membantu Anda memulai perjalanan digitalisasi peternakan dengan teknologi dan ekosistem terbaik.
+          </p>
+          
+          <div className="flex justify-center">
+            <button className="group relative px-8 py-4 bg-white text-slate-900 rounded-full font-bold overflow-hidden transition-transform hover:scale-105 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.3)]">
+              <div className="absolute inset-0 bg-accent-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+              <div className="relative flex items-center gap-3 group-hover:text-white transition-colors duration-300">
+                <span>Hubungi Kami Sekarang</span>
+                <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+              </div>
+            </button>
           </div>
         </div>
       </section>
