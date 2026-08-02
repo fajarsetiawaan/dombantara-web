@@ -45,7 +45,7 @@ export default function EkosistemPage() {
       desc: "Produk segar dan olahan berkualitas premium",
       icon: Store,
       details: "Penyediaan daging domba segar dan produk olahan premium yang dijamin higienis, halal, dan penuh nutrisi untuk konsumen.",
-      url: "/produk",
+      url: "/ekosistem/fresh",
       color: "#397A35"
     },
     { 
@@ -54,7 +54,7 @@ export default function EkosistemPage() {
       desc: "Sistem supply chain dan distribusi terpercaya",
       icon: Truck,
       details: "Infrastruktur logistik terdepan yang memastikan setiap produk dan kebutuhan peternakan terdistribusi dengan aman dan tepat waktu.",
-      url: "/produk",
+      url: "/ekosistem/supply",
       color: "#E06B0F"
     },
     { 
@@ -80,9 +80,9 @@ export default function EkosistemPage() {
       title: "Dombantara Tech", 
       desc: "Teknologi digital untuk efisiensi dan inovasi",
       icon: Laptop,
-      details: "Digitalisasi peternakan melalui IoT dan sistem informasi terpadu untuk monitoring, analitik data, dan efisiensi operasional.",
-      url: "/produk",
-      color: "#6B448C"
+      details: "Inovasi digital untuk peternakan modern. Dilengkapi dengan perangkat IoT, aplikasi manajemen, dan sistem analisis data yang cerdas.",
+      url: "/ekosistem/tech",
+      color: "#6D28D9"
     },
   ];
 
@@ -301,11 +301,11 @@ export default function EkosistemPage() {
                 features: ["Domba", "Kambing", "Breeding", "Penggemukan", "Qurban", "Aqiqah", "RPH", "Jasa Jagal"]
               },
               {
-                id: "fresh", title: "Dombantara Fresh", icon: Store, img: "1603048297172-c92544798d5e", url: "/produk", color: "#397A35",
+                id: "fresh", title: "Dombantara Fresh", icon: Store, img: "1603048297172-c92544798d5e", url: "/ekosistem/fresh", color: "#397A35",
                 features: ["Daging Segar", "Susu Domba", "Frozen Food", "Ready to Cook", "Olahan Premium"]
               },
               {
-                id: "supply", title: "Dombantara Supply", icon: Truck, img: "1519003722824-194d4455a60c", url: "/produk", color: "#E06B0F",
+                id: "supply", title: "Dombantara Supply", icon: Truck, img: "1519003722824-194d4455a60c", url: "/ekosistem/supply", color: "#E06B0F",
                 features: ["Livestock Supply", "Corporate Supply", "Distribusi Nasional", "Cold Chain", "Procurement"]
               },
               {
@@ -313,8 +313,8 @@ export default function EkosistemPage() {
                 features: ["Pelatihan & Workshop", "Sertifikasi", "Webinar", "Artikel & Panduan", "Edukasi Peternak"]
               },
               {
-                id: "tech", title: "Dombantara Tech", icon: Laptop, img: "1460925895917-afdab827c52f", url: "/produk", color: "#6B448C",
-                features: ["Farm Management System", "IoT & Monitoring", "AI & Analytics", "Dashboard Real-time", "Data Integration"]
+                id: "tech", title: "Dombantara Tech", icon: Laptop, img: "1451187580459-43490279c0fa", url: "/ekosistem/tech", color: "#6D28D9",
+                features: ["Farm Management", "IoT Sensors", "Data Analytics", "Mobile App", "Traceability"]
               },
               {
                 id: "partner", title: "Dombantara Partner", icon: Link2, img: "1556761175-5973dc0f32e7", url: "/produk", color: "#BA8B2D",
