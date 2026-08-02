@@ -236,7 +236,7 @@ export default function MarketingPage() {
             { icon: Tractor, title: "Dombantara Farm", desc: "Peternakan domba terpadu dengan standar kualitas tinggi.", url: "/ekosistem/farm" },
             { icon: Store, title: "Dombantara Fresh", desc: "Penyediaan daging domba segar berkualitas premium untuk kebutuhan Anda.", url: "/ekosistem/fresh" },
             { icon: Truck, title: "Dombantara Supply", desc: "Sistem logistik dan rantai pasok terpercaya untuk seluruh kebutuhan peternakan.", url: "/ekosistem/supply" },
-            { icon: GraduationCap, title: "Dombantara Academy", desc: "Pusat edukasi dan pelatihan modern bagi para peternak mitra.", url: "/produk" },
+            { icon: GraduationCap, title: "Dombantara Academy", desc: "Pusat edukasi dan pelatihan modern bagi para peternak mitra.", url: "/ekosistem/academy" },
             { icon: Laptop, title: "Dombantara Tech", desc: "Solusi sistem dan aplikasi cerdas untuk manajemen peternakan.", url: "/ekosistem/tech" },
             { icon: Link2, title: "Dombantara Partner", desc: "Jaringan kemitraan strategis yang menghubungkan seluruh ekosistem.", url: "/produk" }
           ].map((prod, idx) => (

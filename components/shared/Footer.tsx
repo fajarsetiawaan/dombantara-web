@@ -57,7 +57,7 @@ export default function Footer() {
               <li><Link href="/ekosistem/farm" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Farm</Link></li>
               <li><Link href="/ekosistem/fresh" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Fresh</Link></li>
               <li><Link href="/ekosistem/supply" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Supply</Link></li>
-              <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Academy</Link></li>
+              <li><Link href="/ekosistem/academy" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Academy</Link></li>
               <li><Link href="/ekosistem/tech" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Tech</Link></li>
               <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Partner</Link></li>
             </ul>

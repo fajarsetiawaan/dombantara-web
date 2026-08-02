@@ -71,9 +71,9 @@ export default function EkosistemPage() {
       title: "Dombantara Academy", 
       desc: "Edukasi dan pelatihan untuk peternak dan mitra",
       icon: GraduationCap,
-      details: "Pusat inkubasi pengetahuan yang membekali peternak dengan keterampilan modern, manajemen bisnis, dan teknologi agrikultur.",
-      url: "/produk",
-      color: "#2B5FA6"
+      details: "Pusat edukasi dan pengembangan kapasitas peternak melalui pelatihan, workshop, sertifikasi kompetensi, serta literasi digital untuk memajukan peternakan nasional.",
+      url: "/ekosistem/academy",
+      color: "#0284C7"
     },
     { 
       id: "tech",
@@ -309,7 +309,7 @@ export default function EkosistemPage() {
                 features: ["Livestock Supply", "Corporate Supply", "Distribusi Nasional", "Cold Chain", "Procurement"]
               },
               {
-                id: "academy", title: "Dombantara Academy", icon: GraduationCap, img: "1524178232363-1dc2bf40e365", url: "/produk", color: "#2B5FA6",
+                id: "academy", title: "Dombantara Academy", icon: GraduationCap, img: "1517048676732-5ac56ef09624", url: "/ekosistem/academy", color: "#0284C7",
                 features: ["Pelatihan & Workshop", "Sertifikasi", "Webinar", "Artikel & Panduan", "Edukasi Peternak"]
               },
               {
