@@ -39,6 +39,7 @@ const config: Config = {
         orbit: 'orbit 30s linear infinite',
         'reverse-orbit': 'reverse-orbit 30s linear infinite',
         float: 'float 3s ease-in-out infinite',
+        marquee: 'marquee 30s linear infinite',
       },
       keyframes: {
         reveal: {
@@ -56,6 +57,10 @@ const config: Config = {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
       },
     },

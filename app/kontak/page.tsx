@@ -117,7 +117,7 @@ export default async function KontakPage() {
               <ArrowRight size={18} className="text-text-muted group-hover:text-primary transition-colors" />
             </a>
 
-            <a href="mailto:info@dombantara.com" className="flex items-center justify-between bg-white p-5 rounded-2xl border border-border-subtle hover:border-primary/20 shadow-sm hover:shadow-md transition-all group">
+            <a href="mailto:info@dombantara.id" className="flex items-center justify-between bg-white p-5 rounded-2xl border border-border-subtle hover:border-primary/20 shadow-sm hover:shadow-md transition-all group">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-surface text-text-primary flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/10 group-hover:text-primary transition-all">
                   <Mail size={22} />
@@ -125,7 +125,7 @@ export default async function KontakPage() {
                 <div>
                   <div className="font-bold text-text-primary text-sm">Email</div>
                   <div className="text-xs text-text-muted">Kirim pertanyaan Anda</div>
-                  <div className="font-bold text-text-primary text-sm mt-0.5">info@dombantara.com</div>
+                  <div className="font-bold text-text-primary text-sm mt-0.5">info@dombantara.id</div>
                 </div>
               </div>
               <ArrowRight size={18} className="text-text-muted group-hover:text-primary transition-colors" />

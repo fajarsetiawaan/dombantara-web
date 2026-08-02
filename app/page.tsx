@@ -24,7 +24,10 @@ import {
   Settings,
   GraduationCap,
   Laptop,
-  Link2
+  Link2,
+  Building,
+  Zap,
+  Anchor,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import Header from "@/components/shared/Header";
@@ -144,44 +147,6 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* MITRA KOLABORASI */}
-      <section className="pt-32 pb-12 bg-white overflow-hidden relative border-none">
-        <div className="container mx-auto px-6 lg:px-10 text-center mb-10">
-          <p className="text-text-secondary text-sm font-semibold">Dipercaya oleh berbagai perusahaan dan institusi</p>
-        </div>
-        
-        <div className="container mx-auto px-6 lg:px-10">
-          <div className="relative w-full flex overflow-hidden">
-            {/* Gradient masking for smooth fade on edges */}
-            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
-            
-            <div className="flex w-max animate-scroll items-center gap-20 pr-20 py-4">
-              {[...Array(2)].map((_, setIdx) => (
-                <div key={setIdx} className="flex gap-20 items-center">
-                  {[
-                    "https://upload.wikimedia.org/wikipedia/en/e/e0/IPB_logo_with_namestyle.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/8/8a/Logo_Kementerian_Pertanian_Republik_Indonesia.svg",
-                    "https://upload.wikimedia.org/wikipedia/commons/b/b4/Indofood_logo-en.svg",
-                    "https://upload.wikimedia.org/wikipedia/commons/1/17/Logo_Telkom_Indonesia_2013.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg",
-                    "https://upload.wikimedia.org/wikipedia/commons/2/20/Logo_PLN.svg"
-                  ].map((logoUrl, idx) => (
-                    <div key={idx} className="flex items-center justify-center opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer h-12 w-32">
-                      <img 
-                        src={logoUrl} 
-                        alt="Partner Logo" 
-                        className="max-h-full max-w-full object-contain"
-                      />
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 2. TENTANG KAMI */}
       <section className="pt-32 pb-20 container mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -265,18 +230,16 @@ export default function MarketingPage() {
           </h2>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-left relative z-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-left relative z-10">
           {[
+            { icon: Tractor, title: "Dombantara Farm", desc: "Peternakan domba terpadu dengan standar kualitas tinggi." },
             { icon: Store, title: "Dombantara Fresh", desc: "Penyediaan daging domba segar berkualitas premium untuk kebutuhan Anda." },
-            { icon: HeartHandshake, title: "Dombantara Care", desc: "Layanan pelaksanaan Qurban dan Aqiqah profesional sesuai syariat Islam." },
-            { icon: Factory, title: "Dombantara Process", desc: "Rumah Potong Hewan (RPH) bersertifikat halal dan higienis." },
-            { icon: Sprout, title: "Dombantara Agri", desc: "Produksi pakan bernutrisi, pupuk organik, dan plastik silase bermutu." },
-            { icon: Settings, title: "Dombantara Works", desc: "Rancang bangun mesin dan peralatan peternakan berteknologi tinggi." },
+            { icon: Truck, title: "Dombantara Supply", desc: "Sistem logistik dan rantai pasok terpercaya untuk seluruh kebutuhan peternakan." },
             { icon: GraduationCap, title: "Dombantara Academy", desc: "Pusat edukasi dan pelatihan modern bagi para peternak mitra." },
-            { icon: Laptop, title: "Dombantara Digital", desc: "Solusi sistem dan aplikasi cerdas untuk manajemen peternakan." },
-            { icon: Link2, title: "Dombantara Connect", desc: "Jaringan kemitraan strategis yang menghubungkan seluruh ekosistem." }
+            { icon: Laptop, title: "Dombantara Tech", desc: "Solusi sistem dan aplikasi cerdas untuk manajemen peternakan." },
+            { icon: Link2, title: "Dombantara Partner", desc: "Jaringan kemitraan strategis yang menghubungkan seluruh ekosistem." }
           ].map((prod, idx) => (
-            <Reveal index={idx % 4} key={idx}>
+            <Reveal index={idx % 3} key={idx}>
               <motion.div 
                 whileHover={{ y: -5 }}
                 className="group cursor-pointer bg-white/40 backdrop-blur-md p-8 rounded-3xl border border-primary/20 hover:border-primary/40 shadow-[0_8px_32px_rgba(11,48,26,0.03)] hover:shadow-[0_8px_32px_rgba(11,48,26,0.08)] transition-all h-full flex flex-col relative overflow-hidden"
@@ -301,6 +264,54 @@ export default function MarketingPage() {
 
 
 
+
+      {/* MITRA KOLABORASI */}
+      <section className="pt-16 md:pt-24 pb-24 bg-white overflow-hidden relative border-none">
+        <div className="container mx-auto px-6 lg:px-10 mb-12 text-center">
+          <Reveal index={0}>
+            <div className="text-primary font-bold tracking-widest text-sm uppercase mb-4 flex justify-center items-center gap-2">
+              <span className="w-8 h-px bg-primary"></span> Mitra Kolaborasi <span className="w-8 h-px bg-primary"></span>
+            </div>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-text-primary">
+              Dipercaya oleh berbagai <br className="hidden md:block" /> perusahaan dan institusi
+            </h2>
+          </Reveal>
+        </div>
+        
+        <div className="container mx-auto px-6 lg:px-10">
+          <div className="relative w-full flex overflow-hidden">
+            {/* Gradient masking for smooth fade on edges */}
+            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+            
+            <div className="flex w-max animate-scroll items-center gap-20 pr-20 py-4">
+              {[...Array(2)].map((_, setIdx) => (
+                <div key={setIdx} className="flex gap-20 items-center">
+                  {[
+                    "https://upload.wikimedia.org/wikipedia/en/e/e0/IPB_logo_with_namestyle.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/8/8a/Logo_Kementerian_Pertanian_Republik_Indonesia.svg",
+                    "https://upload.wikimedia.org/wikipedia/commons/b/b4/Indofood_logo-en.svg",
+                    "https://upload.wikimedia.org/wikipedia/commons/1/17/Logo_Telkom_Indonesia_2013.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg",
+                    "https://upload.wikimedia.org/wikipedia/commons/2/20/Logo_PLN.svg",
+                    "https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg",
+                    "https://upload.wikimedia.org/wikipedia/commons/6/69/Logo_Baru_Pelindo_%282021%29.png"
+                  ].map((logoUrl, idx) => (
+                    <div key={idx} className="flex items-center justify-center opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer h-12 w-32">
+                      <img 
+                        src={logoUrl} 
+                        alt="Partner Logo" 
+                        className="max-h-full max-w-full object-contain"
+                      />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 8. ARTIKEL & EDUKASI */}
       <section className="py-24 bg-surface">
         <div className="container mx-auto px-6 lg:px-10">
@@ -309,7 +320,7 @@ export default function MarketingPage() {
               <div className="text-primary font-bold tracking-widest text-sm uppercase mb-4 flex items-center gap-2">
                 <span className="w-8 h-px bg-primary"></span> Artikel & Edukasi
               </div>
-              <h2 className="font-display text-4xl font-bold text-text-primary">
+              <h2 className="font-display text-4xl md:text-5xl font-bold text-text-primary">
                 Belajar, Berbagi, Menginspirasi
               </h2>
             </Reveal>
@@ -323,34 +334,85 @@ export default function MarketingPage() {
             </Reveal>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { img: "1543877087-ebf71fde2be1", tag: "Edukasi", date: "25 Mei 2024", title: "Tips Memilih Domba Qurban yang Berkualitas" },
-              { img: "1563636619-e9143da7973b", tag: "Edukasi", date: "18 Mei 2024", title: "Manfaat Susu Domba untuk Kesehatan Keluarga" },
-              { img: "1511117833895-4b473c0b85d6", tag: "Berita", date: "10 Mei 2024", title: "Mengenal Peternakan Modern Dombantara" },
-              { img: "1484557985045-edf25e08da73", tag: "Edukasi", date: "5 Mei 2024", title: "Panduan Aqiqah Praktis Sesuai Syariat Islam" }
-            ].map((post, idx) => (
-              <Reveal index={2 + idx} key={idx}>
-                <motion.div 
-                  whileHover={{ y: -10 }}
-                  className="bg-white rounded-3xl overflow-hidden border border-border-subtle hover:border-primary/20 hover:shadow-xl transition-all group cursor-pointer flex flex-col h-full"
-                >
-                  <div className="aspect-video overflow-hidden p-2 pb-0">
-                    <img src={`https://images.unsplash.com/photo-${post.img}?auto=format&fit=crop&q=80&w=400`} className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700" />
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-10">
+            {/* Featured Article (Left) */}
+            <Reveal index={2}>
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="bg-white rounded-[2rem] overflow-hidden border border-border-subtle hover:border-primary/20 hover:shadow-2xl transition-all duration-300 group cursor-pointer flex flex-col h-full"
+              >
+                <div className="relative h-64 md:h-80 overflow-hidden p-2 pb-0">
+                  <img 
+                    src="https://images.unsplash.com/photo-1543877087-ebf71fde2be1?auto=format&fit=crop&q=80&w=800" 
+                    className="w-full h-full object-cover rounded-3xl group-hover:scale-105 transition-transform duration-700" 
+                    alt="Tips Memilih Domba"
+                  />
+                  <div className="absolute top-8 left-8 bg-primary/90 backdrop-blur-md text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-lg">
+                    Edukasi
                   </div>
-                  <div className="p-6 flex flex-col flex-1">
-                    <div className="flex justify-between items-center text-xs mb-4 font-medium">
-                      <span className="text-primary bg-primary/10 px-3 py-1 rounded-full">{post.tag}</span>
-                      <span className="text-text-muted">{post.date}</span>
-                    </div>
-                    <h3 className="font-bold text-lg mb-4 line-clamp-2 leading-snug">{post.title}</h3>
-                    <div className="mt-auto pt-4 border-t border-border-subtle text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                      Baca Selengkapnya <ArrowRight size={16} />
-                    </div>
+                </div>
+                <div className="p-8 md:p-10 flex flex-col flex-1">
+                  <div className="text-text-muted text-sm font-medium mb-4 flex items-center gap-2">
+                    <span className="w-4 h-px bg-border-strong"></span> 25 Mei 2024
                   </div>
-                </motion.div>
-              </Reveal>
-            ))}
+                  <h3 className="font-display font-bold text-2xl md:text-3xl mb-4 group-hover:text-primary transition-colors leading-tight">
+                    Tips Memilih Domba Qurban yang Berkualitas Sesuai Syariat
+                  </h3>
+                  <p className="text-text-secondary leading-relaxed mb-8 flex-1">
+                    Memilih hewan qurban tidak boleh sembarangan. Pelajari ciri-ciri domba yang sehat, cukup umur, dan memenuhi kriteria syariat Islam agar ibadah qurban Anda lebih sempurna.
+                  </p>
+                  <div className="pt-6 border-t border-border-subtle text-primary font-bold text-sm flex items-center gap-2 group-hover:gap-4 transition-all uppercase tracking-wider">
+                    Baca Selengkapnya <ArrowRight size={18} />
+                  </div>
+                </div>
+              </motion.div>
+            </Reveal>
+
+            {/* Smaller Articles (Right) */}
+            <div className="flex flex-col gap-6">
+              {[
+                { img: "1563636619-e9143da7973b", tag: "Edukasi", date: "18 Mei 2024", title: "Manfaat Susu Domba untuk Kesehatan Keluarga Anda" },
+                { img: "1511117833895-4b473c0b85d6", tag: "Video", date: "10 Mei 2024", title: "Mengenal Peternakan Modern Berbasis IoT di Dombantara", isVideo: true },
+                { img: "1484557985045-edf25e08da73", tag: "Edukasi", date: "5 Mei 2024", title: "Panduan Aqiqah Praktis: Syarat, Waktu, dan Ketentuannya" }
+              ].map((post, idx) => (
+                <Reveal index={3 + idx} key={idx}>
+                  <motion.div 
+                    whileHover={{ x: 10 }}
+                    className="bg-white rounded-3xl overflow-hidden border border-border-subtle hover:border-primary/20 hover:shadow-xl transition-all duration-300 group cursor-pointer flex flex-col sm:flex-row"
+                  >
+                    <div className="sm:w-2/5 md:w-1/3 lg:w-2/5 aspect-[4/3] sm:aspect-auto sm:h-auto overflow-hidden relative p-2 pr-0">
+                      <img 
+                        src={`https://images.unsplash.com/photo-${post.img}?auto=format&fit=crop&q=80&w=400`} 
+                        className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700" 
+                        alt={post.title}
+                      />
+                      {post.isVideo && (
+                        <div className="absolute inset-0 m-2 mr-0 bg-black/20 rounded-2xl flex items-center justify-center group-hover:bg-black/40 transition-colors">
+                          <div className="w-10 h-10 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white border border-white/50 shadow-lg">
+                            <Play size={16} className="ml-1 fill-white" />
+                          </div>
+                        </div>
+                      )}
+                      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase shadow-sm flex items-center gap-1">
+                        {post.isVideo && <Play size={10} className="fill-primary" />}
+                        {post.tag}
+                      </div>
+                    </div>
+                    <div className="p-6 sm:w-3/5 md:w-2/3 lg:w-3/5 flex flex-col justify-center">
+                      <div className="text-text-muted text-xs font-medium mb-3">
+                        {post.date}
+                      </div>
+                      <h3 className="font-bold text-lg mb-4 line-clamp-2 leading-snug group-hover:text-primary transition-colors">
+                        {post.title}
+                      </h3>
+                      <div className="mt-auto text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Selengkapnya <ArrowRight size={16} />
+                      </div>
+                    </div>
+                  </motion.div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>

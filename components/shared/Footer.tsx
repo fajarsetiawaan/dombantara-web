@@ -1,12 +1,14 @@
+"use client";
+
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Send } from "lucide-react";
 import { FaInstagram, FaFacebookF, FaYoutube, FaTiktok } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-white pt-20 pb-10">
+    <footer className="bg-[#0E4225] text-white pt-20 pb-10">
       <div className="container mx-auto px-6 lg:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-8 mb-16">
           {/* Logo Column */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-6 group">
@@ -52,24 +54,26 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <h3 className="font-display font-bold text-lg mb-6">Ekosistem</h3>
             <ul className="space-y-4 text-white/80 text-sm">
-              <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Works</Link></li>
+              <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Farm</Link></li>
               <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Fresh</Link></li>
+              <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Supply</Link></li>
               <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Academy</Link></li>
-              <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Care</Link></li>
-              <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Digital</Link></li>
-              <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Process</Link></li>
-              <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Connect</Link></li>
-              <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Agri</Link></li>
+              <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Tech</Link></li>
+              <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Partner</Link></li>
             </ul>
           </div>
 
           {/* Kontak Column */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-1">
             <h3 className="font-display font-bold text-lg mb-6">Kontak</h3>
             <ul className="space-y-4 text-white/80 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="shrink-0 mt-0.5" />
-                <span className="leading-relaxed">Jl. Raya Ciomas No.88, Bogor, Jawa Barat 16610, Indonesia</span>
+                <span className="leading-relaxed block">
+                  Jl. Raya Ciomas No.88,<br />
+                  Bogor, Jawa Barat 16610,<br />
+                  Indonesia
+                </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} className="shrink-0" />
@@ -77,9 +81,42 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="shrink-0" />
-                <span>info@dombantara.com</span>
+                <span>info@dombantara.id</span>
               </li>
             </ul>
+          </div>
+
+          {/* Jam Operasional Column */}
+          <div className="lg:col-span-1">
+            <h3 className="font-display font-bold text-lg mb-6">Jam Operasional</h3>
+            <div className="space-y-4 text-white/80 text-sm mb-8">
+              <div>
+                <p className="font-semibold text-white">Senin - Jumat</p>
+                <p>08.00 - 17.00 WIB</p>
+              </div>
+              <div>
+                <p className="font-semibold text-white">Sabtu</p>
+                <p>08.00 - 14.00 WIB</p>
+              </div>
+            </div>
+            
+            <div>
+              <p className="text-sm font-semibold text-white mb-3">Berlangganan Newsletter</p>
+              <form className="relative" onSubmit={(e) => e.preventDefault()}>
+                <input 
+                  type="email" 
+                  placeholder="Masukkan email Anda" 
+                  className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 pl-4 pr-10 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-accent-primary transition-colors"
+                />
+                <button 
+                  type="submit" 
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-white/60 hover:text-accent-primary transition-colors p-1"
+                  aria-label="Berlangganan"
+                >
+                  <Send size={16} />
+                </button>
+              </form>
+            </div>
           </div>
         </div>
 

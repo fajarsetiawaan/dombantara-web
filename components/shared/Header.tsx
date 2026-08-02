@@ -5,14 +5,12 @@ import { useState, useEffect } from "react";
 import { Phone, ChevronDown } from "lucide-react";
 
 const ekosistemMenu = [
+  { title: "Dombantara Farm", desc: "Peternakan" },
   { title: "Dombantara Fresh", desc: "Fresh Food" },
-  { title: "Dombantara Care", desc: "Qurban, Aqiqah" },
-  { title: "Dombantara Process", desc: "RPH, Jagal" },
-  { title: "Dombantara Agri", desc: "Pakan, Pupuk, Plastik Silase" },
-  { title: "Dombantara Works", desc: "Mesin, Equipment" },
+  { title: "Dombantara Supply", desc: "Rantai Pasok" },
   { title: "Dombantara Academy", desc: "Edukasi & Pelatihan" },
-  { title: "Dombantara Digital", desc: "Sistem & Aplikasi" },
-  { title: "Dombantara Connect", desc: "Jaringan Kemitraan" },
+  { title: "Dombantara Tech", desc: "Sistem & Aplikasi" },
+  { title: "Dombantara Partner", desc: "Jaringan Kemitraan" },
 ];
 
 export default function Header({ theme = "dark" }: { theme?: "light" | "dark" }) {
