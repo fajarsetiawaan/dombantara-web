@@ -1,21 +1,32 @@
 [
   {
-    "id": "m1",
-    "name": "Peternakan Berkah Jaya",
-    "role": "peternak",
-    "phone": "62811111111",
-    "address": "Bogor, Jawa Barat",
-    "capacity": 200,
-    "status": "active",
-    "joinedAt": "2024-01-10T00:00:00Z"
+    "id": "MTR-001",
+    "nama": "Pak Budi Farm",
+    "tipe": "PETERNAK",
+    "status": "AKTIF",
+    "lokasi": "Garut",
+    "kapasitas": 50,
+    "kontak": "08111222333",
+    "tanggalGabung": "2024-01-15T10:00:00Z"
   },
   {
-    "id": "m2",
-    "name": "RPA Al-Halal",
-    "role": "jagal",
-    "phone": "62822222222",
-    "address": "Depok, Jawa Barat",
-    "status": "active",
-    "joinedAt": "2024-02-15T00:00:00Z"
+    "id": "MTR-002",
+    "nama": "RPA Berkah",
+    "tipe": "JAGAL",
+    "status": "AKTIF",
+    "lokasi": "Tasikmalaya",
+    "kapasitas": 100,
+    "kontak": "08222333444",
+    "tanggalGabung": "2024-02-20T10:00:00Z"
+  },
+  {
+    "id": "MTR-003",
+    "nama": "Kandang Sumber Sari",
+    "tipe": "PETERNAK",
+    "status": "PENDING",
+    "lokasi": "Bandung",
+    "kapasitas": 20,
+    "kontak": "08333444555",
+    "tanggalGabung": "2024-05-10T10:00:00Z"
   }
 ]

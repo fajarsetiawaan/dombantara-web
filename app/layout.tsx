@@ -5,6 +5,7 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -19,9 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body
-        className={`${inter.variable} font-body bg-base text-text-primary antialiased min-h-screen flex flex-col`}
-      >
+      <body className={`${inter.variable} font-body bg-base text-text-primary antialiased min-h-screen flex flex-col`}>
         {children}
       </body>
     </html>

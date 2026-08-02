@@ -1,6 +1,6 @@
 # User Flow — Website Dombantara
 
-Melengkapi `arsitektur-dombantara.md`. Dokumen ini memetakan alur pengguna per persona, disesuaikan dengan route group yang sudah didefinisikan: `(marketing)`, `(dashboard)`, `(member)`.
+Melengkapi `arsitektur-dombantara.md`. Dokumen ini memetakan alur pengguna per persona, disesuaikan dengan route yang sudah didefinisikan: halaman utama, `admin`, `member`.
 
 ---
 
@@ -8,8 +8,8 @@ Melengkapi `arsitektur-dombantara.md`. Dokumen ini memetakan alur pengguna per p
 
 | Persona | Route group | Aktif mulai fase |
 |---|---|---|
-| Pembeli B2B (resto, warung sate/soto/gulai, nasi Arab) | `(marketing)` | 1 |
-| Calon mitra peternak / jagal | `(marketing)` → `(dashboard)` internal | 1–2 |
+| Pembeli B2B (resto, warung sate/soto/gulai, nasi Arab) | Landing Page | 1 |
+| Calon mitra peternak / jagal | Landing Page → `admin` internal | 1–2 |
 | Tim ops Dombantara (internal) | `(dashboard)` | 2 |
 | Mitra peternak terdaftar (self-service) | `(member)` | 3 |
 

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "PSK-001",
+    "mitraId": "MTR-001",
+    "tanggalSetor": "2024-05-20T07:00:00Z",
+    "jumlahEkor": 5,
+    "totalBeratKg": 150,
+    "statusPembayaran": "DIBAYAR",
+    "nominalPembayaran": 7500000
+  },
+  {
+    "id": "PSK-002",
+    "mitraId": "MTR-001",
+    "tanggalSetor": "2024-06-02T07:00:00Z",
+    "jumlahEkor": 3,
+    "totalBeratKg": 95,
+    "statusPembayaran": "BELUM_DIBAYAR",
+    "nominalPembayaran": 4750000
+  }
+]

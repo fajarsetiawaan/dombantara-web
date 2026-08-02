@@ -1,19 +1,41 @@
 [
   {
-    "id": "o1",
-    "buyerName": "Sate Tegal Bang Ali",
-    "buyerContact": "62833333333",
-    "buyerAddress": "Jl. Sudirman, Jakarta",
+    "id": "ORD-1001",
+    "pembeliId": "B2B-001",
+    "namaPembeli": "Resto Nasi Mandhi Bang Ali",
+    "tipeB2B": "RESTO",
+    "status": "DIPESAN",
     "items": [
       {
-        "productId": "p1",
-        "quantity": 2
+        "id": "ITEM-01",
+        "namaProduk": "Karkas Domba Premium",
+        "kuantitas": 15,
+        "satuan": "KG",
+        "hargaSatuan": 120000
       }
     ],
-    "totalAmount": 5000000,
-    "status": "dipesan",
-    "orderDate": "2024-03-01T10:00:00Z",
-    "deliveryDate": "2024-03-03T08:00:00Z",
-    "assignedMitraId": "m1"
+    "totalHarga": 1800000,
+    "tanggalPesan": "2024-06-01T08:00:00Z",
+    "tanggalTargetKirim": "2024-06-03T08:00:00Z"
+  },
+  {
+    "id": "ORD-1002",
+    "pembeliId": "B2B-002",
+    "namaPembeli": "Sate Tegal Laka-Laka",
+    "tipeB2B": "WARUNG",
+    "status": "DIKIRIM",
+    "items": [
+      {
+        "id": "ITEM-02",
+        "namaProduk": "Daging Paha Belakang",
+        "kuantitas": 10,
+        "satuan": "KG",
+        "hargaSatuan": 150000
+      }
+    ],
+    "totalHarga": 1500000,
+    "tanggalPesan": "2024-05-28T09:00:00Z",
+    "tanggalTargetKirim": "2024-05-30T09:00:00Z",
+    "mitraId": "MTR-002"
   }
 ]

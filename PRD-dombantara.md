@@ -43,7 +43,7 @@ Visi jangka panjang: Dombantara tumbuh menjadi perusahaan yang menggabungkan pet
 
 ### Fase 1 — Validasi Pasar (sekarang, prioritas utama)
 **Scope:**
-- Landing page (`(marketing)`): hero, positioning, solusi (live animal vs karkas), CTA WhatsApp.
+- Landing page: hero, positioning, solusi (live animal vs karkas), CTA WhatsApp.
 - Halaman `/tentang` — kredibilitas (mitra peternak & jagal existing, cakupan area).
 - Halaman `/katalog` — daftar produk (kategori, varian, harga indikatif), tiap item dengan CTA WA.
 - Halaman `/kemitraan` — syarat & form pendaftaran mitra peternak/jagal (form sederhana, notifikasi manual ke tim ops).

@@ -1,26 +1,29 @@
 export const tokens = {
   colors: {
-    base: '#FFFFFF', // Putih bersih
-    surface: '#F8FAFC', // Abu sangat muda
+    base: '#FFFFFF', // Background (putih bersih)
+    surface: '#F8F9FA', // Background lembut untuk card / banner
+    primary: '#145C33', // Hijau tua / Forest green utama
+    secondary: '#1A7A42', // Hijau terang untuk hover
     accent: {
-      primary: '#10B981', // Hijau
-      secondary: '#059669', // Hijau lebih gelap (accent-primary-dark)
-      hover: '#059669',
+      primary: '#EC9A3C', // Aksen (jarang dipakai, mungkin untuk highlight)
+      hover: '#D9892A',
+      background: '#F0F6F2', // Background krem kehijauan untuk ikon
     },
     text: {
-      primary: '#0F172A', // Hitam/abu sangat gelap
-      muted: '#64748B', // Abu sedang
-      inverse: '#FFFFFF', // Teks di atas tombol hijau
+      primary: '#1A1A1A', // Hitam tegas untuk judul
+      muted: '#666666', // Abu-abu gelap untuk paragraf
+      inverse: '#FFFFFF', // Teks di atas warna utama
+      brand: '#145C33', // Teks hijau
     },
     border: {
-      subtle: '#E2E8F0', // Abu muda tipis
-      strong: '#CBD5E1',
+      subtle: '#EAEAEA', // Border tipis abu-abu
+      strong: '#D1D5DB', // Border sedikit lebih tebal
     },
     status: {
       success: '#10B981',
       warning: '#F59E0B',
-      error: '#EF4444',
-      info: '#3B82F6',
+      error: '#EF4444', 
+      info: '#3B82F6', 
     },
   },
   typography: {

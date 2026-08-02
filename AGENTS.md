@@ -25,11 +25,11 @@ Selalu rujuk ke dokumen berikut untuk mengambil keputusan (berdasarkan prioritas
 5. `desain.md` untuk token desain, tipografi, dan komponen visual.
 
 ## 5. Struktur Route Groups
-- Ikuti struktur folder route groups secara persis:
-  - `app/(marketing)`: Untuk landing page dan publik (Fase 1).
-  - `app/(dashboard)`: Untuk internal ops (Fase 2).
-  - `app/(member)`: Untuk mitra (Fase 3).
-- **Jangan mengubah struktur folder per-fase**. Fitur baru ditambahkan ke folder yang sudah disiapkan.
+- Ikuti struktur folder normal:
+  - `app/page.tsx`: Untuk landing page dan publik (Fase 1).
+  - `app/admin`: Untuk internal ops (Fase 2).
+  - `app/member`: Untuk mitra (Fase 3).
+- **Jangan mengubah struktur folder per-fase**. Fitur baru ditambahkan ke folder yang sudah disiapkan tanpa tambahan tanda kurung (route groups).
 
 ## 6. Desain System (Dark Luxury Aesthetic)
 - **Token Desain**: Seluruh token (warna, font scale, spacing) diatur di `styles/tokens.ts` dan dihubungkan ke `tailwind.config.ts`.

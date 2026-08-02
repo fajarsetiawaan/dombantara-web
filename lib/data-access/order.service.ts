@@ -1,23 +1,19 @@
-import { Order } from "@/lib/types/order";
-import mockData from "@/src/mocks/order.json";
+import { Order } from '../types';
+import orderData from '../../src/mocks/order.json';
 
 const USE_MOCK = true;
 
-export async function getOrderList(): Promise<Order[]> {
+export const getOrders = async (): Promise<Order[]> => {
   if (USE_MOCK) {
-    return mockData as Order[];
+    return orderData as Order[];
   }
-  
-  // TODO: Implement InsForge query here
+  // TODO: Fetch from InsForge
   return [];
-}
+};
 
-export async function getOrderById(id: string): Promise<Order | null> {
+export const getOrderById = async (id: string): Promise<Order | null> => {
   if (USE_MOCK) {
-    const order = (mockData as Order[]).find((o) => o.id === id);
-    return order || null;
+    return (orderData as Order[]).find((o) => o.id === id) || null;
   }
-  
-  // TODO: Implement InsForge query here
   return null;
-}
+};

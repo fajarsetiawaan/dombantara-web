@@ -32,7 +32,7 @@ Dokumen ini adalah cetak biru teknis untuk membangun website Dombantara agar rap
 dombantara-web/
 ├── AGENTS.md                     # governance: aturan kerja AI/dev, referensi PRD
 ├── app/                          # Next.js App Router
-│   ├── (marketing)/              # grup route publik — fase 1
+│   ├── admin/                    # grup route internal — fase 2
 │   │   ├── page.tsx              # landing utama
 │   │   ├── tentang/
 │   │   ├── katalog/              # katalog produk (live animal + karkas)
@@ -69,7 +69,7 @@ dombantara-web/
 └── public/
 ```
 
-Kenapa dipisah `(marketing)` / `(dashboard)` / `(member)` sebagai *route groups* Next.js: masing-masing bisa punya layout, auth-gate, dan tim kerja berbeda, tapi tetap satu codebase, satu deploy. Saat fase 2/3 aktif, tinggal isi folder yang sudah ada tempatnya — tidak ada migrasi struktur.
+Kenapa struktur route dipisah `admin` / `member`: masing-masing punya layout, auth-gate, dan tim kerja berbeda, tapi tetap satu codebase, satu deploy. Saat fase 2/3 aktif, tinggal isi folder yang sudah ada tempatnya — tidak ada migrasi struktur. Landing page ditempatkan langsung di `app/page.tsx` tanpa grup khusus.
 
 ---
 
@@ -106,8 +106,8 @@ Semua token (warna, spacing, font-scale) didefinisikan sekali di `styles/tokens.
 
 | Fase | Route group aktif | Data layer |
 |---|---|---|
-| 1 — Validasi pasar | `(marketing)` saja | 100% `mock-data`, CTA utama WhatsApp |
-| 2 — Ops mitra & repeat order | `(marketing)` + `(dashboard)` | `data-access` mulai pindah ke InsForge per-modul (mitra dulu, lalu order) |
+| 1 — Validasi pasar | Landing Page saja | 100% `mock-data`, CTA utama WhatsApp |
+| 2 — Ops mitra & repeat order | Landing Page + `admin` | `data-access` mulai pindah ke InsForge per-modul (mitra dulu, lalu order) |
 | 3 — Ekosistem/member area | + `(member)` | Full InsForge, `(member)` untuk mitra peternak lihat performa/pembayaran |
 
 Tidak ada fase yang menghapus/mengubah struktur fase sebelumnya — hanya menambah isi ke folder yang sudah disiapkan.
@@ -128,7 +128,7 @@ Isi minimal `AGENTS.md`:
 
 1. Mockup di Gemini → prototipe cepat di Emergent.sh (metode ATM/observe-replicate).
 2. Pindah ke Antigravity IDE dengan starter "cetakan" untuk hardening produksi.
-3. Bangun `(marketing)` dulu, penuh dummy data.
+3. Bangun halaman utama (Fase 1) dulu, penuh dummy data.
 4. Setelah approve UI, audit field vs `mock-data`/`types`, baru rancang skema InsForge.
 5. Aktifkan `(dashboard)` saat mitra & repeat order mulai jalan — tidak sebelumnya.
 6. Aktifkan `(member)` saat masuk fase ekosistem/skala.

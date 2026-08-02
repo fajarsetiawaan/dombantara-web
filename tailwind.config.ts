@@ -8,18 +8,31 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {
+      center: true,
+      padding: '1.5rem',
+      screens: {
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1440px',
+      },
+    },
     extend: {
       colors: {
         base: tokens.colors.base,
         surface: tokens.colors.surface,
+        primary: tokens.colors.primary,
+        secondary: tokens.colors.secondary,
         accent: tokens.colors.accent,
         text: tokens.colors.text,
         border: tokens.colors.border,
         status: tokens.colors.status,
       },
       fontFamily: {
-        display: tokens.typography.fontFamily.display,
-        body: tokens.typography.fontFamily.body,
+        display: ["var(--font-inter)", "sans-serif"],
+        body: ["var(--font-inter)", "sans-serif"],
       },
       animation: {
         reveal: 'reveal 0.7s ease-out forwards',

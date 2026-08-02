@@ -1,23 +1,27 @@
-import { Mitra } from "@/lib/types/mitra";
-import mockData from "@/src/mocks/mitra.json";
+import { Mitra, PasokanHistory } from '../types';
+import mitraData from '../../src/mocks/mitra.json';
+import pasokanData from '../../src/mocks/pasokan.json';
 
 const USE_MOCK = true;
 
-export async function getMitraList(): Promise<Mitra[]> {
+export const getMitras = async (): Promise<Mitra[]> => {
   if (USE_MOCK) {
-    return mockData as Mitra[];
+    return mitraData as Mitra[];
   }
-  
-  // TODO: Implement InsForge query here
+  // TODO: Fetch from InsForge
   return [];
-}
+};
 
-export async function getMitraById(id: string): Promise<Mitra | null> {
+export const getMitraById = async (id: string): Promise<Mitra | null> => {
   if (USE_MOCK) {
-    const mitra = (mockData as Mitra[]).find((m) => m.id === id);
-    return mitra || null;
+    return (mitraData as Mitra[]).find((m) => m.id === id) || null;
   }
-  
-  // TODO: Implement InsForge query here
   return null;
-}
+};
+
+export const getPasokanByMitraId = async (mitraId: string): Promise<PasokanHistory[]> => {
+  if (USE_MOCK) {
+    return (pasokanData as PasokanHistory[]).filter((p) => p.mitraId === mitraId);
+  }
+  return [];
+};
