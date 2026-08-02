@@ -36,7 +36,8 @@ export default function EkosistemPage() {
       desc: "Fondasi peternakan berkualitas tinggi",
       icon: Tractor,
       details: "Semua nilai berawal dari peternakan. Dengan manajemen modern dan standar tinggi, kami memastikan kualitas terbaik di setiap tahap.",
-      url: "/ekosistem/farm"
+      url: "/ekosistem/farm",
+      color: "#145C33"
     },
     { 
       id: "fresh",
@@ -44,7 +45,8 @@ export default function EkosistemPage() {
       desc: "Produk segar dan olahan berkualitas premium",
       icon: Store,
       details: "Penyediaan daging domba segar dan produk olahan premium yang dijamin higienis, halal, dan penuh nutrisi untuk konsumen.",
-      url: "/produk"
+      url: "/produk",
+      color: "#397A35"
     },
     { 
       id: "supply",
@@ -52,7 +54,8 @@ export default function EkosistemPage() {
       desc: "Sistem supply chain dan distribusi terpercaya",
       icon: Truck,
       details: "Infrastruktur logistik terdepan yang memastikan setiap produk dan kebutuhan peternakan terdistribusi dengan aman dan tepat waktu.",
-      url: "/produk"
+      url: "/produk",
+      color: "#E06B0F"
     },
     { 
       id: "partner",
@@ -60,7 +63,8 @@ export default function EkosistemPage() {
       desc: "Jaringan kemitraan strategis untuk tumbuh bersama",
       icon: Link2,
       details: "Membangun ekosistem bisnis yang saling menguntungkan bagi peternak plasma, investor, dan mitra perusahaan skala nasional.",
-      url: "/produk"
+      url: "/produk",
+      color: "#BA8B2D"
     },
     { 
       id: "academy",
@@ -68,7 +72,8 @@ export default function EkosistemPage() {
       desc: "Edukasi dan pelatihan untuk peternak dan mitra",
       icon: GraduationCap,
       details: "Pusat inkubasi pengetahuan yang membekali peternak dengan keterampilan modern, manajemen bisnis, dan teknologi agrikultur.",
-      url: "/produk"
+      url: "/produk",
+      color: "#2B5FA6"
     },
     { 
       id: "tech",
@@ -76,7 +81,8 @@ export default function EkosistemPage() {
       desc: "Teknologi digital untuk efisiensi dan inovasi",
       icon: Laptop,
       details: "Digitalisasi peternakan melalui IoT dan sistem informasi terpadu untuk monitoring, analitik data, dan efisiensi operasional.",
-      url: "/produk"
+      url: "/produk",
+      color: "#6B448C"
     },
   ];
 
@@ -228,10 +234,15 @@ export default function EkosistemPage() {
                       style={{ transform: `translate(${x}px, ${y}px)` }}
                       onMouseEnter={() => setActiveNode(i)}
                     >
-                      <div className={`
-                        w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-all duration-300
-                        ${isActive ? 'bg-primary text-white scale-110 shadow-primary/30' : 'bg-white text-primary border border-primary/10 hover:scale-105 hover:bg-primary/5'}
-                      `}>
+                      <div 
+                        className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ${isActive ? 'scale-110' : 'hover:scale-105'}`}
+                        style={{
+                          backgroundColor: isActive ? node.color : '#ffffff',
+                          color: isActive ? '#ffffff' : node.color,
+                          borderColor: isActive ? 'transparent' : node.color + '40',
+                          borderWidth: isActive ? '0' : '1px'
+                        }}
+                      >
                         <node.icon size={24} strokeWidth={isActive ? 2 : 1.5} />
                       </div>
                       
@@ -241,7 +252,7 @@ export default function EkosistemPage() {
                         ${isActive ? 'opacity-100 border-primary/30' : 'opacity-0 border-border-subtle'}
                         ${x > 0 ? 'left-20 top-2' : x < 0 ? 'right-20 top-2' : y < 0 ? 'bottom-20 -left-1/2' : 'top-20 -left-1/2'}
                       `}>
-                        <div className="text-primary font-bold text-sm">{node.title}</div>
+                        <div className="font-bold text-sm" style={{ color: node.color }}>{node.title}</div>
                         <div className="text-text-muted text-xs">{node.desc}</div>
                       </div>
                     </div>
@@ -253,13 +264,16 @@ export default function EkosistemPage() {
             {/* Right Content (Dynamic) */}
             <div className="lg:w-1/4">
               <div className="bg-white p-8 rounded-3xl shadow-sm border border-border-subtle relative overflow-hidden transition-all duration-300">
-                <div className="w-14 h-14 bg-surface rounded-xl flex items-center justify-center text-primary mb-6">
+                <div 
+                  className="w-14 h-14 bg-surface rounded-xl flex items-center justify-center mb-6 transition-colors"
+                  style={{ color: ecosystemNodes[activeNode].color }}
+                >
                   {(() => {
                     const Icon = ecosystemNodes[activeNode].icon;
                     return <Icon size={28} strokeWidth={1.5} />;
                   })()}
                 </div>
-                <h3 className="font-display font-bold text-xl mb-3 text-text-primary">
+                <h3 className="font-display font-bold text-xl mb-3" style={{ color: ecosystemNodes[activeNode].color }}>
                   {ecosystemNodes[activeNode].id === 'farm' ? 'Farm sebagai Fondasi' : ecosystemNodes[activeNode].title}
                 </h3>
                 <p className="text-text-muted text-sm leading-relaxed mb-6 min-h-[80px]">
@@ -283,27 +297,27 @@ export default function EkosistemPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-6">
             {[
               {
-                id: "farm", title: "Dombantara Farm", icon: Tractor, img: "1484557985045-edf25e08da73", url: "/ekosistem/farm",
+                id: "farm", title: "Dombantara Farm", icon: Tractor, img: "1484557985045-edf25e08da73", url: "/ekosistem/farm", color: "#145C33",
                 features: ["Domba", "Kambing", "Breeding", "Penggemukan", "Qurban", "Aqiqah", "RPH", "Jasa Jagal"]
               },
               {
-                id: "fresh", title: "Dombantara Fresh", icon: Store, img: "1603048297172-c92544798d5e", url: "/produk",
+                id: "fresh", title: "Dombantara Fresh", icon: Store, img: "1603048297172-c92544798d5e", url: "/produk", color: "#397A35",
                 features: ["Daging Segar", "Susu Domba", "Frozen Food", "Ready to Cook", "Olahan Premium"]
               },
               {
-                id: "supply", title: "Dombantara Supply", icon: Truck, img: "1519003722824-194d4455a60c", url: "/produk",
+                id: "supply", title: "Dombantara Supply", icon: Truck, img: "1519003722824-194d4455a60c", url: "/produk", color: "#E06B0F",
                 features: ["Livestock Supply", "Corporate Supply", "Distribusi Nasional", "Cold Chain", "Procurement"]
               },
               {
-                id: "academy", title: "Dombantara Academy", icon: GraduationCap, img: "1524178232363-1dc2bf40e365", url: "/produk",
+                id: "academy", title: "Dombantara Academy", icon: GraduationCap, img: "1524178232363-1dc2bf40e365", url: "/produk", color: "#2B5FA6",
                 features: ["Pelatihan & Workshop", "Sertifikasi", "Webinar", "Artikel & Panduan", "Edukasi Peternak"]
               },
               {
-                id: "tech", title: "Dombantara Tech", icon: Laptop, img: "1460925895917-afdab827c52f", url: "/produk",
+                id: "tech", title: "Dombantara Tech", icon: Laptop, img: "1460925895917-afdab827c52f", url: "/produk", color: "#6B448C",
                 features: ["Farm Management System", "IoT & Monitoring", "AI & Analytics", "Dashboard Real-time", "Data Integration"]
               },
               {
-                id: "partner", title: "Dombantara Partner", icon: Link2, img: "1556761175-5973dc0f32e7", url: "/produk",
+                id: "partner", title: "Dombantara Partner", icon: Link2, img: "1556761175-5973dc0f32e7", url: "/produk", color: "#BA8B2D",
                 features: ["Kemitraan Peternak", "Mitra Bisnis", "Investor", "Corporate Partner", "Franchise"]
               }
             ].map((pilar, idx) => (
@@ -311,10 +325,13 @@ export default function EkosistemPage() {
                 <div className="bg-white border border-border-subtle rounded-3xl overflow-hidden hover:shadow-xl hover:border-primary/20 transition-all h-full flex flex-col">
                   {/* Card Header */}
                   <div className="p-5 flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0">
+                    <div 
+                      className="w-10 h-10 rounded-full flex items-center justify-center text-white shrink-0"
+                      style={{ backgroundColor: pilar.color }}
+                    >
                       <pilar.icon size={18} />
                     </div>
-                    <h3 className="font-bold text-sm text-text-primary leading-tight">{pilar.title}</h3>
+                    <h3 className="font-bold text-sm leading-tight" style={{ color: pilar.color }}>{pilar.title}</h3>
                   </div>
                   
                   {/* Card Image */}
