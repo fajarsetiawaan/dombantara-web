@@ -54,7 +54,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <h3 className="font-display font-bold text-lg mb-6">Ekosistem</h3>
             <ul className="space-y-4 text-white/80 text-sm">
-              <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Farm</Link></li>
+              <li><Link href="/ekosistem/farm" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Farm</Link></li>
               <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Fresh</Link></li>
               <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Supply</Link></li>
               <li><Link href="/produk" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Dombantara Academy</Link></li>

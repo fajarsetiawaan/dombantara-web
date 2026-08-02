@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { 
   ArrowRight, 
   Play, 
@@ -232,28 +233,30 @@ export default function MarketingPage() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-left relative z-10">
           {[
-            { icon: Tractor, title: "Dombantara Farm", desc: "Peternakan domba terpadu dengan standar kualitas tinggi." },
-            { icon: Store, title: "Dombantara Fresh", desc: "Penyediaan daging domba segar berkualitas premium untuk kebutuhan Anda." },
-            { icon: Truck, title: "Dombantara Supply", desc: "Sistem logistik dan rantai pasok terpercaya untuk seluruh kebutuhan peternakan." },
-            { icon: GraduationCap, title: "Dombantara Academy", desc: "Pusat edukasi dan pelatihan modern bagi para peternak mitra." },
-            { icon: Laptop, title: "Dombantara Tech", desc: "Solusi sistem dan aplikasi cerdas untuk manajemen peternakan." },
-            { icon: Link2, title: "Dombantara Partner", desc: "Jaringan kemitraan strategis yang menghubungkan seluruh ekosistem." }
+            { icon: Tractor, title: "Dombantara Farm", desc: "Peternakan domba terpadu dengan standar kualitas tinggi.", url: "/ekosistem/farm" },
+            { icon: Store, title: "Dombantara Fresh", desc: "Penyediaan daging domba segar berkualitas premium untuk kebutuhan Anda.", url: "/produk" },
+            { icon: Truck, title: "Dombantara Supply", desc: "Sistem logistik dan rantai pasok terpercaya untuk seluruh kebutuhan peternakan.", url: "/produk" },
+            { icon: GraduationCap, title: "Dombantara Academy", desc: "Pusat edukasi dan pelatihan modern bagi para peternak mitra.", url: "/produk" },
+            { icon: Laptop, title: "Dombantara Tech", desc: "Solusi sistem dan aplikasi cerdas untuk manajemen peternakan.", url: "/produk" },
+            { icon: Link2, title: "Dombantara Partner", desc: "Jaringan kemitraan strategis yang menghubungkan seluruh ekosistem.", url: "/produk" }
           ].map((prod, idx) => (
             <Reveal index={idx % 3} key={idx}>
-              <motion.div 
-                whileHover={{ y: -5 }}
-                className="group cursor-pointer bg-white/40 backdrop-blur-md p-8 rounded-3xl border border-primary/20 hover:border-primary/40 shadow-[0_8px_32px_rgba(11,48,26,0.03)] hover:shadow-[0_8px_32px_rgba(11,48,26,0.08)] transition-all h-full flex flex-col relative overflow-hidden"
-              >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:bg-primary/20 transition-colors duration-500"></div>
-                <div className="relative z-10 w-14 h-14 rounded-2xl bg-white border border-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-colors duration-300 shadow-sm">
-                  <prod.icon size={28} strokeWidth={1.5} />
-                </div>
-                <h3 className="relative z-10 font-bold font-display text-xl mb-3 text-text-primary">{prod.title}</h3>
-                <p className="relative z-10 text-text-muted text-sm leading-relaxed mb-8 flex-1">{prod.desc}</p>
-                <span className="relative z-10 text-primary font-bold text-xs tracking-[0.2em] uppercase flex items-center gap-2 group-hover:gap-3 transition-all mt-auto group-hover:text-status-success">
-                  Pelajari Lebih Lanjut <ArrowRight size={14} />
-                </span>
-              </motion.div>
+              <Link href={prod.url} className="block h-full">
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className="group cursor-pointer bg-white/40 backdrop-blur-md p-8 rounded-3xl border border-primary/20 hover:border-primary/40 shadow-[0_8px_32px_rgba(11,48,26,0.03)] hover:shadow-[0_8px_32px_rgba(11,48,26,0.08)] transition-all h-full flex flex-col relative overflow-hidden"
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:bg-primary/20 transition-colors duration-500"></div>
+                  <div className="relative z-10 w-14 h-14 rounded-2xl bg-white border border-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-colors duration-300 shadow-sm">
+                    <prod.icon size={28} strokeWidth={1.5} />
+                  </div>
+                  <h3 className="relative z-10 font-bold font-display text-xl mb-3 text-text-primary">{prod.title}</h3>
+                  <p className="relative z-10 text-text-muted text-sm leading-relaxed mb-8 flex-1">{prod.desc}</p>
+                  <span className="relative z-10 text-primary font-bold text-xs tracking-[0.2em] uppercase flex items-center gap-2 group-hover:gap-3 transition-all mt-auto group-hover:text-status-success">
+                    Pelajari Lebih Lanjut <ArrowRight size={14} />
+                  </span>
+                </motion.div>
+              </Link>
             </Reveal>
           ))}
         </div>

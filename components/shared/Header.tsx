@@ -4,14 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Phone, ChevronDown } from "lucide-react";
 
-const ekosistemMenu = [
-  { title: "Dombantara Farm", desc: "Peternakan" },
-  { title: "Dombantara Fresh", desc: "Fresh Food" },
-  { title: "Dombantara Supply", desc: "Rantai Pasok" },
-  { title: "Dombantara Academy", desc: "Edukasi & Pelatihan" },
-  { title: "Dombantara Tech", desc: "Sistem & Aplikasi" },
-  { title: "Dombantara Partner", desc: "Jaringan Kemitraan" },
-];
+// Menu Ekosistem dihapus karena sekarang menjadi halaman tersendiri
 
 export default function Header({ theme = "dark" }: { theme?: "light" | "dark" }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -57,25 +50,12 @@ export default function Header({ theme = "dark" }: { theme?: "light" | "dark" })
             </div>
           </Link>
 
-          <div className="relative group py-6 cursor-pointer">
-            <Link href="/produk" className="relative block">
-              <span className="relative z-10 flex items-center gap-1 group-hover:text-primary transition-colors duration-300">
-                Ekosistem <ChevronDown size={14} className="group-hover:text-primary transition-all duration-300 group-hover:rotate-180" />
-              </span>
+          <Link href="/ekosistem" className="group flex items-center justify-center py-6">
+            <div className="relative">
+              <span className="relative z-10 group-hover:text-primary transition-colors duration-300">Ekosistem</span>
               <span className={glassDropClasses}></span>
-            </Link>
-
-            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 translate-y-2 group-hover:translate-y-0">
-              <div className="w-56 bg-white rounded-2xl shadow-[0_24px_60px_rgba(0,0,0,0.08)] border border-gray-100 p-2 flex flex-col gap-1 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                {ekosistemMenu.map((item, idx) => (
-                  <Link href="/produk" key={idx} className="block group/item px-4 py-3 rounded-xl hover:bg-primary/5 transition-colors relative z-10">
-                    <h3 className="font-display font-bold text-[11px] tracking-widest text-text-primary group-hover/item:text-primary transition-colors">{item.title}</h3>
-                  </Link>
-                ))}
-              </div>
             </div>
-          </div>
+          </Link>
 
           <Link href="/artikel" className="group flex items-center justify-center py-6">
             <div className="relative">
