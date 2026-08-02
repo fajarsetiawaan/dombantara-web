@@ -62,8 +62,8 @@ export default function EkosistemPage() {
       title: "Dombantara Partner", 
       desc: "Jaringan kemitraan strategis untuk tumbuh bersama",
       icon: Link2,
-      details: "Membangun ekosistem bisnis yang saling menguntungkan bagi peternak plasma, investor, dan mitra perusahaan skala nasional.",
-      url: "/produk",
+      details: "Jaringan kerja sama strategis antara Dombantara dan berbagai pemangku kepentingan untuk membangun ketahanan pangan dan ekonomi sirkular.",
+      url: "/ekosistem/partner",
       color: "#BA8B2D"
     },
     { 
@@ -317,8 +317,8 @@ export default function EkosistemPage() {
                 features: ["Farm Management", "IoT Sensors", "Data Analytics", "Mobile App", "Traceability"]
               },
               {
-                id: "partner", title: "Dombantara Partner", icon: Link2, img: "1556761175-5973dc0f32e7", url: "/produk", color: "#BA8B2D",
-                features: ["Kemitraan Peternak", "Mitra Bisnis", "Investor", "Corporate Partner", "Franchise"]
+                id: "partner", title: "Dombantara Partner", icon: Link2, img: "1556761175-5973dc0f32e7", url: "/ekosistem/partner", color: "#BA8B2D",
+                features: ["Mitra Peternak", "Reseller & Distributor", "Corporate Partner", "Investor", "Pemerintah"]
               }
             ].map((pilar, idx) => (
               <Reveal index={idx % 6} key={idx} className="h-full">

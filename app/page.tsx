@@ -238,7 +238,7 @@ export default function MarketingPage() {
             { icon: Truck, title: "Dombantara Supply", desc: "Sistem logistik dan rantai pasok terpercaya untuk seluruh kebutuhan peternakan.", url: "/ekosistem/supply" },
             { icon: GraduationCap, title: "Dombantara Academy", desc: "Pusat edukasi dan pelatihan modern bagi para peternak mitra.", url: "/ekosistem/academy" },
             { icon: Laptop, title: "Dombantara Tech", desc: "Solusi sistem dan aplikasi cerdas untuk manajemen peternakan.", url: "/ekosistem/tech" },
-            { icon: Link2, title: "Dombantara Partner", desc: "Jaringan kemitraan strategis yang menghubungkan seluruh ekosistem.", url: "/produk" }
+            { icon: Link2, title: "Dombantara Partner", desc: "Jaringan kemitraan strategis yang menghubungkan seluruh ekosistem.", url: "/ekosistem/partner" }
           ].map((prod, idx) => (
             <Reveal index={idx % 3} key={idx}>
               <Link href={prod.url} className="block h-full">
