@@ -26,21 +26,19 @@ export default function Header({ theme = "dark" }: { theme?: "light" | "dark" })
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const glassDropClasses = `absolute -inset-x-4 -inset-y-2 rounded-full backdrop-blur-xl opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out -z-10 scale-90 group-hover:scale-100 ${
-    isScrolled || theme === "light"
+  const glassDropClasses = `absolute -inset-x-4 -inset-y-2 rounded-full backdrop-blur-xl opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out -z-10 scale-90 group-hover:scale-100 ${isScrolled || theme === "light"
       ? "bg-primary/5 border border-primary/10 shadow-[0_4px_16px_rgba(11,48,26,0.06)]"
       : "bg-white/10 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
-  }`;
+    }`;
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? "bg-white text-text-primary shadow-sm" 
-          : theme === "light" 
-            ? "bg-transparent text-text-primary" 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+          ? "bg-white text-text-primary shadow-sm"
+          : theme === "light"
+            ? "bg-transparent text-text-primary"
             : "bg-transparent text-white"
-      }`}
+        }`}
     >
       <div className="container mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
@@ -60,7 +58,7 @@ export default function Header({ theme = "dark" }: { theme?: "light" | "dark" })
               <span className={glassDropClasses}></span>
             </div>
           </Link>
-          
+
           <div className="relative group py-6 cursor-pointer">
             <Link href="/produk" className="relative block">
               <span className="relative z-10 flex items-center gap-1 group-hover:text-primary transition-colors duration-300">
@@ -81,14 +79,14 @@ export default function Header({ theme = "dark" }: { theme?: "light" | "dark" })
             </div>
           </div>
 
-          <Link href="#edukasi" className="group flex items-center justify-center py-6">
+          <Link href="/artikel" className="group flex items-center justify-center py-6">
             <div className="relative">
               <span className="relative z-10 group-hover:text-primary transition-colors duration-300">Artikel</span>
               <span className={glassDropClasses}></span>
             </div>
           </Link>
 
-          <Link href="#kontak" className="group flex items-center justify-center py-6">
+          <Link href="/kontak" className="group flex items-center justify-center py-6">
             <div className="relative">
               <span className="relative z-10 group-hover:text-primary transition-colors duration-300">Kontak</span>
               <span className={glassDropClasses}></span>
@@ -96,9 +94,8 @@ export default function Header({ theme = "dark" }: { theme?: "light" | "dark" })
           </Link>
         </nav>
 
-        <button className={`hidden md:flex items-center gap-2 px-6 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg ${
-          isScrolled ? 'bg-primary text-white hover:bg-primary/90' : 'bg-primary text-white hover:bg-white hover:text-primary'
-        }`}>
+        <button className={`hidden md:flex items-center gap-2 px-6 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg ${isScrolled ? 'bg-primary text-white hover:bg-primary/90' : 'bg-primary text-white hover:bg-white hover:text-primary'
+          }`}>
           <Phone size={16} /> Hubungi Kami
         </button>
       </div>

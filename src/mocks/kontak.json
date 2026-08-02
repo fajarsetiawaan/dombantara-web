@@ -1,0 +1,76 @@
+{
+  "tim": [
+    {
+      "id": "1",
+      "role": "Sales & Konsultasi",
+      "name": "Fajar Ramadhan",
+      "description": "Siap membantu kebutuhan qurban, aqiqah, dan pembelian.",
+      "avatarUrl": "1507003211169-0a1dd7228f2d",
+      "whatsapp": "+6281112345678"
+    },
+    {
+      "id": "2",
+      "role": "Kemitraan",
+      "name": "Siti Aisyah",
+      "description": "Informasi kerja sama dan kemitraan peternak.",
+      "avatarUrl": "1573496359142-b8d87734a5a2",
+      "whatsapp": "+6281112345678"
+    },
+    {
+      "id": "3",
+      "role": "Customer Service",
+      "name": "Rizky Maulana",
+      "description": "Bantuan pesanan, pengiriman, dan layanan pelanggan.",
+      "avatarUrl": "1534528741775-53994a69daeb",
+      "whatsapp": "+6281112345678"
+    },
+    {
+      "id": "4",
+      "role": "Teknis Peternakan",
+      "name": "Drh. Nadya Putri",
+      "description": "Konsultasi kesehatan hewan dan manajemen peternakan.",
+      "avatarUrl": "1580489944761-15a19d654956",
+      "whatsapp": "+6281112345678"
+    }
+  ],
+  "lokasi": [
+    {
+      "id": "pusat",
+      "name": "Kantor Pusat",
+      "address": "Jl. Raya Ciomas No.88, Bogor,\nJawa Barat 16610, Indonesia",
+      "mapUrl": "https://maps.google.com",
+      "imageUrl": "1486406146926-c627a92ad1ab",
+      "type": "office"
+    },
+    {
+      "id": "farm",
+      "name": "Peternakan Dombantara",
+      "address": "Kp. Pasir Angin, Desa Cijeruk,\nKec. Cijeruk, Bogor, Jawa Barat",
+      "mapUrl": "https://maps.google.com",
+      "imageUrl": "1500648767791-00dcc994a43e",
+      "type": "farm"
+    }
+  ],
+  "faq": [
+    {
+      "id": "1",
+      "question": "Bagaimana cara memesan domba qurban di Dombantara?",
+      "answer": "Anda dapat memesan secara langsung melalui website kami pada menu Produk, atau menghubungi tim sales & konsultasi kami via WhatsApp untuk mendapatkan panduan lengkap."
+    },
+    {
+      "id": "2",
+      "question": "Apakah domba yang dijual sudah sesuai syariat?",
+      "answer": "Ya, kami menjamin seluruh proses mulai dari pemilihan bibit, perawatan, hingga penyembelihan (jika melalui RPH kami) 100% sesuai dengan syariat Islam."
+    },
+    {
+      "id": "3",
+      "question": "Berapa lama proses pengiriman ke daerah saya?",
+      "answer": "Proses pengiriman bervariasi tergantung lokasi Anda. Untuk area Jabodetabek biasanya memakan waktu 1 hari kerja, sementara untuk luar daerah dapat memakan waktu 2-3 hari kerja dengan armada khusus kami."
+    },
+    {
+      "id": "4",
+      "question": "Apakah bisa berkonsultasi sebelum membeli?",
+      "answer": "Sangat bisa! Kami menyediakan layanan konsultasi gratis. Anda dapat menghubungi Customer Service atau Teknis Peternakan kami untuk berdiskusi mengenai kebutuhan spesifik Anda."
+    }
+  ]
+}
