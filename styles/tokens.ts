@@ -22,8 +22,8 @@ export const tokens = {
     status: {
       success: '#10B981',
       warning: '#F59E0B',
-      error: '#EF4444', 
-      info: '#3B82F6', 
+      error: '#EF4444',
+      info: '#3B82F6',
     },
   },
   typography: {
