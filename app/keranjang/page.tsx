@@ -19,7 +19,11 @@ import {
   CheckSquare,
   Award,
   Headphones,
-  Tag
+  Tag,
+  MapPin,
+  User,
+  Phone,
+  Edit2
 } from "lucide-react";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
@@ -57,6 +61,8 @@ const initialCartItems = [
 
 export default function KeranjangPage() {
   const [items, setItems] = useState(initialCartItems);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [saveAddress, setSaveAddress] = useState(false);
 
   // Handlers
   const handleQtyChange = (id: number, delta: number) => {
@@ -128,10 +134,10 @@ export default function KeranjangPage() {
               </div>
               <div className="flex-1 border-t-2 border-dashed border-border-subtle mx-4"></div>
               {/* Step 2 */}
-              <div className="flex items-center gap-3 opacity-50">
-                <div className="w-10 h-10 rounded-full bg-surface text-text-secondary flex items-center justify-center font-bold text-sm">2</div>
+              <div className={`flex items-center gap-3 ${currentStep < 2 ? 'opacity-50' : ''}`}>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${currentStep >= 2 ? 'bg-[#166534] text-white' : 'bg-surface text-text-secondary'}`}>2</div>
                 <div>
-                  <div className="flex items-center gap-1.5 font-bold text-text-secondary text-sm"><Truck size={14} /> Pengiriman</div>
+                  <div className={`flex items-center gap-1.5 font-bold text-sm ${currentStep >= 2 ? 'text-[#0e2a47]' : 'text-text-secondary'}`}><Truck size={14} /> Pengiriman</div>
                   <div className="text-xs text-text-muted mt-0.5">Pilih lokasi & metode</div>
                 </div>
               </div>
@@ -158,11 +164,13 @@ export default function KeranjangPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
-            {/* LEFT COLUMN: CART ITEMS */}
+            {/* LEFT COLUMN: MAIN CONTENT */}
             <div className="lg:col-span-8 flex flex-col gap-4">
               
-              {/* Select All Bar */}
-              <div className="bg-white rounded-2xl p-4 shadow-sm border border-border-subtle flex items-center justify-between">
+              {currentStep === 1 ? (
+                <>
+                  {/* Select All Bar */}
+                  <div className="bg-white rounded-2xl p-4 shadow-sm border border-border-subtle flex items-center justify-between">
                 <label className="flex items-center gap-3 cursor-pointer group">
                   <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${allSelected ? 'bg-[#166534] border-[#166534] text-white' : 'border-slate-300 bg-white group-hover:border-[#166534]'}`}>
                     {allSelected && <CheckCircle2 size={14} className="fill-current text-white" />}
@@ -274,6 +282,185 @@ export default function KeranjangPage() {
                   Masukkan kode <ChevronRight size={16} />
                 </div>
               </div>
+                </>
+              ) : (
+                <div className="space-y-6">
+                  {/* PENGIRIMAN FORM */}
+                  <div className="bg-white rounded-2xl p-6 shadow-sm border border-border-subtle">
+                    
+                    {/* SAVED ADDRESSES */}
+                    <div className="mb-8">
+                      <p className="text-xs font-bold text-text-secondary mb-4">Pilih alamat tersimpan</p>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {/* Saved Address Card */}
+                        <label className="border border-[#166534] bg-emerald-50/20 rounded-xl p-4 cursor-pointer relative transition-all block">
+                          <div className="absolute top-4 left-4">
+                            <CheckCircle2 size={18} className="fill-[#166534] text-white" />
+                          </div>
+                          <div className="pl-8">
+                            <div className="inline-block bg-emerald-100 text-[#166534] text-[9px] font-bold px-2 py-0.5 rounded mb-2">
+                              UTAMA
+                            </div>
+                            <h4 className="font-bold text-[#0e2a47] text-sm mb-1">Andi Wijaya</h4>
+                            <p className="text-xs text-text-secondary mb-2">0812-3456-7890</p>
+                            <p className="text-xs text-text-secondary leading-relaxed mb-4">
+                              Jl. Raya Cileunyi No. 123, Cileunyi, Kec. Cileunyi,<br/>
+                              Kab. Bandung, Jawa Barat 40622
+                            </p>
+                            <div className="flex items-center gap-2">
+                              <button className="flex items-center gap-1.5 px-3 py-1.5 border border-border-subtle rounded-lg text-xs font-bold text-[#166534] hover:bg-emerald-50 transition-colors">
+                                <Edit2 size={12} /> Ubah
+                              </button>
+                              <button className="flex items-center gap-1.5 px-3 py-1.5 border border-border-subtle rounded-lg text-xs font-bold text-red-500 hover:bg-red-50 transition-colors">
+                                <Trash2 size={12} /> Hapus
+                              </button>
+                            </div>
+                          </div>
+                        </label>
+
+                        {/* Add New Address Card */}
+                        <button className="border border-dashed border-border-subtle hover:border-[#166534] rounded-xl p-4 flex flex-col items-center justify-center text-text-muted hover:text-[#166534] hover:bg-emerald-50/30 transition-all h-full min-h-[160px]">
+                          <div className="w-10 h-10 rounded-full border border-current flex items-center justify-center mb-3">
+                            <Plus size={20} />
+                          </div>
+                          <span className="text-sm font-bold">Tambah Alamat Baru</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="border-t border-border-subtle pt-6 relative">
+                      <span className="absolute top-0 left-0 -mt-2.5 bg-white pr-3 text-[11px] font-bold text-text-muted">Atau masukkan alamat baru</span>
+                      
+                      <h2 className="font-bold text-lg text-[#0e2a47] mb-6 flex items-center gap-2 mt-4">
+                        <User size={20} className="text-[#166534]" /> Informasi Penerima
+                      </h2>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-text-secondary mb-2">Nama Lengkap</label>
+                        <input type="text" placeholder="Masukkan nama penerima" className="w-full border border-border-subtle rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#166534]" />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-text-secondary mb-2">Nomor WhatsApp</label>
+                        <input type="tel" placeholder="Contoh: 08123456789" className="w-full border border-border-subtle rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#166534]" />
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-2xl p-6 shadow-sm border border-border-subtle">
+                    <h2 className="font-bold text-lg text-[#0e2a47] mb-6 flex items-center gap-2">
+                      <MapPin size={20} className="text-[#166534]" /> Alamat Pengiriman
+                    </h2>
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-xs font-bold text-text-secondary mb-2">Provinsi</label>
+                          <select className="w-full border border-border-subtle rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#166534] bg-white appearance-none">
+                            <option value="">Pilih Provinsi</option>
+                            <option value="Jawa Barat">Jawa Barat</option>
+                            <option value="DKI Jakarta">DKI Jakarta</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-xs font-bold text-text-secondary mb-2">Kota/Kabupaten</label>
+                          <select className="w-full border border-border-subtle rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#166534] bg-white appearance-none">
+                            <option value="">Pilih Kota/Kab</option>
+                            <option value="Bandung">Bandung</option>
+                            <option value="Garut">Garut</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-text-secondary mb-2">Detail Alamat (Jalan, RT/RW, Patokan)</label>
+                        <textarea rows={3} placeholder="Contoh: Jl. Diponegoro No. 22, RT 01/RW 02, Rumah pagar hitam" className="w-full border border-border-subtle rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#166534] resize-none"></textarea>
+                      </div>
+
+                      <label className="flex items-center gap-3 cursor-pointer group pt-2">
+                        <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${saveAddress ? 'bg-[#166534] border-[#166534] text-white' : 'border-slate-300 bg-white group-hover:border-[#166534]'}`}>
+                          {saveAddress && <CheckCircle2 size={14} className="fill-current text-white" />}
+                        </div>
+                        <input type="checkbox" className="hidden" checked={saveAddress} onChange={() => setSaveAddress(!saveAddress)} />
+                        <span className="text-sm font-bold text-[#0e2a47]">Simpan untuk menjadi alamat utama</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-2xl p-6 shadow-sm border border-border-subtle">
+                    <h2 className="font-bold text-lg text-[#0e2a47] mb-6 flex items-center gap-2">
+                      <Truck size={20} className="text-[#166534]" /> Metode Pengiriman
+                    </h2>
+                    <div className="flex flex-col gap-3">
+                      
+                      {/* Ambil di Peternakan */}
+                      <label className="border-2 border-[#166534] bg-emerald-50/20 rounded-xl p-4 flex items-center gap-4 cursor-pointer relative transition-all shadow-sm">
+                        <div className="text-[#166534] shrink-0">
+                          <CheckCircle2 size={24} className="fill-current text-white" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-bold text-[#0e2a47] text-sm mb-1">Ambil di Peternakan</h3>
+                          <p className="text-xs text-text-secondary">Ambil mandiri di Farm Dombantara (Self-pickup)</p>
+                        </div>
+                        <div className="font-bold text-[#166534] text-sm shrink-0">
+                          Gratis
+                        </div>
+                      </label>
+
+                      {/* Dombantara Delivery */}
+                      <label className="border border-border-subtle hover:border-[#166534] bg-white rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all">
+                        <div className="w-6 h-6 rounded-full border border-border-subtle shrink-0"></div>
+                        <div className="flex-1">
+                          <h3 className="font-bold text-[#0e2a47] text-sm mb-1">Dombantara Delivery</h3>
+                          <p className="text-xs text-text-secondary">Dikirim langsung oleh tim internal kami (Aman & Terjamin)</p>
+                        </div>
+                        <div className="font-bold text-[#0e2a47] text-sm shrink-0">
+                          Rp 50.000
+                        </div>
+                      </label>
+
+                      {/* Pengiriman Standard */}
+                      <label className="border border-border-subtle hover:border-[#166534] bg-white rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all">
+                        <div className="w-6 h-6 rounded-full border border-border-subtle shrink-0"></div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <h3 className="font-bold text-[#0e2a47] text-sm">Pengiriman Standard</h3>
+                            <span className="bg-emerald-100 text-[#166534] text-[10px] font-bold px-2 py-0.5 rounded">Rekomendasi</span>
+                          </div>
+                          <p className="text-xs text-text-secondary">Estimasi tiba 2 - 3 hari kerja</p>
+                        </div>
+                        <div className="font-bold text-[#166534] text-sm shrink-0">
+                          Gratis
+                        </div>
+                      </label>
+
+                      {/* Pengiriman Express */}
+                      <label className="border border-border-subtle hover:border-[#166534] bg-white rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all">
+                        <div className="w-6 h-6 rounded-full border border-border-subtle shrink-0"></div>
+                        <div className="flex-1">
+                          <h3 className="font-bold text-[#0e2a47] text-sm mb-1">Pengiriman Express</h3>
+                          <p className="text-xs text-text-secondary">Estimasi tiba 1 hari kerja</p>
+                        </div>
+                        <div className="font-bold text-[#0e2a47] text-sm shrink-0">
+                          Rp 25.000
+                        </div>
+                      </label>
+
+                      {/* Lalamove */}
+                      <label className="border border-border-subtle hover:border-[#166534] bg-white rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all">
+                        <div className="w-6 h-6 rounded-full border border-border-subtle shrink-0"></div>
+                        <div className="flex-1">
+                          <h3 className="font-bold text-[#0e2a47] text-sm mb-1">Lalamove</h3>
+                          <p className="text-xs text-text-secondary">Estimasi tiba hari ini (Instant)</p>
+                        </div>
+                        <div className="font-bold text-[#0e2a47] text-sm shrink-0">
+                          Rp 150.000
+                        </div>
+                      </label>
+
+                    </div>
+                  </div>
+                </div>
+              )}
 
             </div>
 
@@ -287,10 +474,12 @@ export default function KeranjangPage() {
                     <span className="text-text-secondary">Subtotal ({selectedItems.length} item)</span>
                     <span className="font-bold text-[#0e2a47]">Rp {subtotal.toLocaleString('id-ID')}</span>
                   </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-text-secondary">Ongkir</span>
-                    <span className="font-bold text-[#166534]">Gratis</span>
-                  </div>
+                  {currentStep >= 2 && (
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-text-secondary">Ongkir</span>
+                      <span className="font-bold text-[#166534]">Gratis</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="border-t border-border-subtle pt-6 mb-6">
@@ -300,28 +489,49 @@ export default function KeranjangPage() {
                   </div>
                 </div>
 
-                {/* Free Shipping Banner */}
-                <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-4 mb-6 flex items-start gap-3">
-                  <ShieldCheck className="text-[#166534] shrink-0 mt-0.5" size={18} />
-                  <div>
-                    <h4 className="font-bold text-sm text-[#166534]">Anda menghemat ongkir</h4>
-                    <p className="text-xs text-emerald-700 mt-1">Selamat! Anda mendapatkan gratis ongkir.</p>
+                {/* Free Shipping Banner - Only show in step 2+ */}
+                {currentStep >= 2 && (
+                  <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-4 mb-6 flex items-start gap-3">
+                    <ShieldCheck className="text-[#166534] shrink-0 mt-0.5" size={18} />
+                    <div>
+                      <h4 className="font-bold text-sm text-[#166534]">Anda menghemat ongkir</h4>
+                      <p className="text-xs text-emerald-700 mt-1">Selamat! Anda mendapatkan gratis ongkir.</p>
+                    </div>
+                    <span className="text-2xl ml-auto">🎉</span>
                   </div>
-                  <span className="text-2xl ml-auto">🎉</span>
-                </div>
+                )}
 
                 {/* Actions */}
                 <div className="space-y-3 mb-8">
-                  <button 
-                    onClick={() => alert("Halaman Lanjut ke Pengiriman akan diimplementasikan pada tahap selanjutnya.")}
-                    disabled={selectedItems.length === 0}
-                    className="w-full py-3.5 rounded-xl bg-[#166534] text-white font-bold hover:bg-[#15532b] shadow-sm transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    <Lock size={16} /> Lanjut ke Pengiriman <ArrowRight size={16} />
-                  </button>
-                  <Link href="/market" className="w-full py-3.5 rounded-xl bg-white border border-border-subtle text-text-primary font-bold hover:bg-surface transition-all flex items-center justify-center gap-2">
-                    <ArrowLeft size={16} /> Belanja Lagi
-                  </Link>
+                  {currentStep === 1 ? (
+                    <>
+                      <button 
+                        onClick={() => setCurrentStep(2)}
+                        disabled={selectedItems.length === 0}
+                        className="w-full py-3.5 rounded-xl bg-[#166534] text-white font-bold hover:bg-[#15532b] shadow-sm transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        Isi Data Pengiriman <ArrowRight size={16} />
+                      </button>
+                      <Link href="/market" className="w-full py-3.5 rounded-xl bg-white border border-border-subtle text-text-primary font-bold hover:bg-surface transition-all flex items-center justify-center gap-2">
+                        <ArrowLeft size={16} /> Belanja Lagi
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <button 
+                        onClick={() => alert("Lanjut ke Pembayaran akan diimplementasikan pada tahap selanjutnya.")}
+                        className="w-full py-3.5 rounded-xl bg-[#166534] text-white font-bold hover:bg-[#15532b] shadow-sm transition-all flex items-center justify-center gap-2"
+                      >
+                        <Lock size={16} /> Lanjut ke Pembayaran <ArrowRight size={16} />
+                      </button>
+                      <button 
+                        onClick={() => setCurrentStep(1)}
+                        className="w-full py-3.5 rounded-xl bg-white border border-border-subtle text-text-primary font-bold hover:bg-surface transition-all flex items-center justify-center gap-2"
+                      >
+                        <ArrowLeft size={16} /> Kembali ke Keranjang
+                      </button>
+                    </>
+                  )}
                 </div>
 
                 {/* Payment Methods */}

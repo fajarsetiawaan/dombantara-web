@@ -318,12 +318,12 @@ export default function ProductDetailPage() {
                   >
                     <ShoppingCart size={16} /> Masukkan Keranjang
                   </button>
-                  <button 
-                    onClick={() => setIsCheckoutModalOpen(true)}
-                    className="w-full py-3 rounded-xl bg-white border-2 border-[#166534] text-[#166534] font-bold text-sm hover:bg-[#166534]/5 transition-all"
+                  <Link 
+                    href="/keranjang"
+                    className="w-full py-3 rounded-xl bg-white border-2 border-[#166534] text-[#166534] font-bold text-sm hover:bg-[#166534]/5 transition-all flex items-center justify-center"
                   >
                     Beli Langsung
-                  </button>
+                  </Link>
                 </div>
                 
                 {/* Secondary Actions */}
