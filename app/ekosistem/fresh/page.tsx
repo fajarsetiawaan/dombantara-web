@@ -166,7 +166,7 @@ export default function FreshPage() {
                       </li>
                     ))}
                   </ul>
-                  <Link href="/produk" className="inline-flex items-center gap-2 text-primary font-bold text-sm hover:gap-3 transition-all mt-auto">
+                  <Link href="/market" className="inline-flex items-center gap-2 text-primary font-bold text-sm hover:gap-3 transition-all mt-auto">
                     Lihat Semua Produk <ArrowRight size={16} />
                   </Link>
                 </div>
@@ -197,7 +197,7 @@ export default function FreshPage() {
                       </li>
                     ))}
                   </ul>
-                  <Link href="/produk" className="inline-flex items-center gap-2 text-primary font-bold text-sm hover:gap-3 transition-all mt-auto">
+                  <Link href="/market" className="inline-flex items-center gap-2 text-primary font-bold text-sm hover:gap-3 transition-all mt-auto">
                     Lihat Semua Produk <ArrowRight size={16} />
                   </Link>
                 </div>
@@ -228,7 +228,7 @@ export default function FreshPage() {
                       </li>
                     ))}
                   </ul>
-                  <Link href="/produk" className="inline-flex items-center gap-2 text-primary font-bold text-sm hover:gap-3 transition-all mt-auto">
+                  <Link href="/market" className="inline-flex items-center gap-2 text-primary font-bold text-sm hover:gap-3 transition-all mt-auto">
                     Lihat Semua Produk <ArrowRight size={16} />
                   </Link>
                 </div>

@@ -120,23 +120,23 @@ export default function AcademyPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
               {
-                title: "Pelatihan Peternakan", icon: GraduationCap, img: "1516253593875-bd7ba2a62e1a", url: "/produk",
+                title: "Pelatihan Peternakan", icon: GraduationCap, img: "1516253593875-bd7ba2a62e1a", url: "/market",
                 desc: "Pelatihan dasar hingga lanjutan untuk meningkatkan keterampilan dan produktivitas peternakan."
               },
               {
-                title: "Workshop & Praktik", icon: Users, img: "1573164713988-8665fc963095", url: "/produk",
+                title: "Workshop & Praktik", icon: Users, img: "1573164713988-8665fc963095", url: "/market",
                 desc: "Kegiatan hands-on dengan instruktur berpengalaman untuk hasil yang nyata."
               },
               {
-                title: "Sertifikasi", icon: Award, img: "1517048676732-5ac56ef09624", url: "/produk",
+                title: "Sertifikasi", icon: Award, img: "1517048676732-5ac56ef09624", url: "/market",
                 desc: "Sertifikasi kompetensi yang diakui untuk meningkatkan kredibilitas dan profesionalitas."
               },
               {
-                title: "Webinar & Seminar", icon: Video, img: "1588196749597-9ff0c200698b", url: "/produk",
+                title: "Webinar & Seminar", icon: Video, img: "1588196749597-9ff0c200698b", url: "/market",
                 desc: "Akses materi terbaru dari para ahli kapan saja dan di mana saja."
               },
               {
-                title: "Artikel & Resource", icon: BookOpen, img: "1457369804613-52c61a468e7d", url: "/produk",
+                title: "Artikel & Resource", icon: BookOpen, img: "1457369804613-52c61a468e7d", url: "/market",
                 desc: "Kumpulan artikel, panduan, dan referensi lengkap seputar dunia peternakan."
               }
             ].map((card, idx) => (
@@ -321,7 +321,7 @@ export default function AcademyPage() {
               </p>
               
               <div className="flex flex-wrap items-center gap-4">
-                <Link href="/produk" className="px-6 py-3.5 bg-white text-[#166534] rounded-xl font-bold hover:shadow-lg hover:-translate-y-1 transition-all text-sm">
+                <Link href="/market" className="px-6 py-3.5 bg-white text-[#166534] rounded-xl font-bold hover:shadow-lg hover:-translate-y-1 transition-all text-sm">
                   Jelajahi Program &rarr;
                 </Link>
                 <Link href="/kontak" className="px-6 py-3.5 bg-transparent border border-white text-white rounded-xl font-bold hover:bg-white/10 transition-all text-sm">

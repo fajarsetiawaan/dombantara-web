@@ -1,0 +1,38 @@
+[
+  {
+    "id": "domba-garut-premium",
+    "name": "Domba Garut Premium",
+    "badge": "Qurban",
+    "age": "10 - 12 bulan",
+    "weight": "35 - 45 kg",
+    "status": "Tersedia",
+    "image": "1484557985045-edf25e08da73"
+  },
+  {
+    "id": "domba-texel-cross",
+    "name": "Domba Texel Cross",
+    "badge": "Pedaging",
+    "age": "6 - 8 bulan",
+    "weight": "30 - 40 kg",
+    "status": "Tersedia",
+    "image": "1511117833895-4b473c0b85d6"
+  },
+  {
+    "id": "domba-dorper",
+    "name": "Domba Dorper",
+    "badge": "Breeding",
+    "age": "8 - 10 bulan",
+    "weight": "40 - 55 kg",
+    "status": "Tersedia",
+    "image": "1563636619-e9143da7973b"
+  },
+  {
+    "id": "domba-garut-super",
+    "name": "Domba Garut Super",
+    "badge": "Premium",
+    "age": "12 - 14 bulan",
+    "weight": "45 - 60 kg",
+    "status": "Tersedia",
+    "image": "1543877087-ebf71fde2be1"
+  }
+]

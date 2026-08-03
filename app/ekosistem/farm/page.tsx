@@ -33,7 +33,7 @@ export default function FarmPage() {
           <div className="flex items-center gap-2 text-xs md:text-sm text-text-muted font-medium">
             <Link href="/" className="hover:text-primary transition-colors">Beranda</Link>
             <ChevronRight size={14} />
-            <Link href="/produk" className="hover:text-primary transition-colors">Ekosistem</Link>
+            <Link href="/market" className="hover:text-primary transition-colors">Ekosistem</Link>
             <ChevronRight size={14} />
             <span className="text-text-primary">Dombantara Farm</span>
           </div>

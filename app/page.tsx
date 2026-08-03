@@ -5,30 +5,16 @@ import Link from "next/link";
 import { 
   ArrowRight, 
   Play, 
-  ShieldCheck, 
   Leaf, 
   Stethoscope, 
   CheckCircle2,
   Truck,
-  FileText,
-  Search,
-  MessageSquare,
-  CreditCard,
-  PackageCheck,
-  Star,
-  MapPin,
   Tractor,
   Store,
-  HeartHandshake,
-  Factory,
-  Sprout,
-  Settings,
   GraduationCap,
+  ShieldCheck,
   Laptop,
-  Link2,
-  Building,
-  Zap,
-  Anchor,
+  Link2
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import Header from "@/components/shared/Header";
@@ -99,52 +85,6 @@ export default function MarketingPage() {
             </motion.div>
             <span className="text-white text-sm font-bold tracking-wider uppercase">Video Profil</span>
           </Reveal>
-        </div>
-
-        {/* Floating Stats Bar */}
-        <div className="absolute bottom-0 left-0 right-0 z-30 transform translate-y-1/2">
-          <div className="container mx-auto px-6 lg:px-10">
-            <Reveal index={4}>
-              <div className="bg-[#0B301A]/90 backdrop-blur-xl rounded-2xl p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x divide-white/10 shadow-2xl border border-white/20">
-                <div className="flex items-center gap-4 px-4 hover:-translate-y-1 transition-transform cursor-default">
-                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-status-success shrink-0">
-                    <PackageCheck size={24} />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-display font-bold text-2xl">50.000+</h4>
-                    <p className="text-white/70 text-sm">Domba Disalurkan</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 px-4 hover:-translate-y-1 transition-transform cursor-default">
-                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-status-success shrink-0">
-                    <MapPin size={24} />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-display font-bold text-2xl">34</h4>
-                    <p className="text-white/70 text-sm">Provinsi</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 px-4 hover:-translate-y-1 transition-transform cursor-default">
-                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-status-success shrink-0">
-                    <ShieldCheck size={24} />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-display font-bold text-2xl">10+</h4>
-                    <p className="text-white/70 text-sm">Tahun Pengalaman</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 px-4 hover:-translate-y-1 transition-transform cursor-default">
-                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-status-success shrink-0">
-                    <Star size={24} />
-                  </div>
-                  <div>
-                    <h4 className="text-white font-display font-bold text-2xl">10.000+</h4>
-                    <p className="text-white/70 text-sm">Pelanggan Puas</p>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          </div>
         </div>
       </section>
 

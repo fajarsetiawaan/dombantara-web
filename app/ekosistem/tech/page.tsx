@@ -117,7 +117,7 @@ export default function TechPage() {
                 </div>
               </div>
 
-              <Link href="/produk" className="inline-flex items-center gap-3 px-8 py-4 bg-[#6D28D9] text-white rounded-xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all text-sm">
+              <Link href="/market" className="inline-flex items-center gap-3 px-8 py-4 bg-[#6D28D9] text-white rounded-xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all text-sm">
                 Jelajahi Solusi Kami <ArrowRight size={18} />
               </Link>
             </Reveal>
@@ -200,32 +200,32 @@ export default function TechPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Farm Management System", icon: LayoutDashboard, img: "1460925895917-afdab827c52f", url: "/produk",
+                title: "Farm Management System", icon: LayoutDashboard, img: "1460925895917-afdab827c52f", url: "/market",
                 desc: "Kelola data hewan, kandang, pakan, kesehatan, reproduksi, dan keuangan dalam satu platform.",
                 features: ["Manajemen Hewan", "Manajemen Kandang", "Manajemen Pakan", "Laporan & Analitik"]
               },
               {
-                title: "IoT & Monitoring", icon: Wifi, img: "1518314916590-f5158d586614", url: "/produk",
+                title: "IoT & Monitoring", icon: Wifi, img: "1518314916590-f5158d586614", url: "/market",
                 desc: "Pantau kondisi kandang secara real-time dengan sensor IoT yang terhubung.",
                 features: ["Suhu & Kelembapan", "Kualitas Udara", "Ammonia Monitoring", "CCTV Monitoring"]
               },
               {
-                title: "AI & Analytics", icon: Cpu, img: "1451187580459-43490279c0fa", url: "/produk",
+                title: "AI & Analytics", icon: Cpu, img: "1451187580459-43490279c0fa", url: "/market",
                 desc: "Analisis data menggunakan AI untuk prediksi, rekomendasi, dan deteksi dini masalah.",
                 features: ["Prediksi Pertumbuhan", "Deteksi Penyakit Dini", "Rekomendasi Pakan", "Forecasting Produksi"]
               },
               {
-                title: "Traceability System", icon: Search, img: "1603048297172-c92544798d5e", url: "/produk",
+                title: "Traceability System", icon: Search, img: "1603048297172-c92544798d5e", url: "/market",
                 desc: "Lacak asal usul hewan dan produk secara transparan dari hulu hingga hilir.",
                 features: ["QR Code Tracking", "Riwayat Kesehatan", "Asal Usul Hewan", "Sertifikasi Digital"]
               },
               {
-                title: "Smart Feeding", icon: Zap, img: "1550583724-b2692b85b150", url: "/produk",
+                title: "Smart Feeding", icon: Zap, img: "1550583724-b2692b85b150", url: "/market",
                 desc: "Sistem pemberian pakan otomatis dan terukur untuk efisiensi maksimal.",
                 features: ["Automated Feeding", "Jadwal Pakan Cerdas", "Kontrol Porsi", "Monitoring Konsumsi"]
               },
               {
-                title: "Mobile Application", icon: Smartphone, img: "1512941937669-90a1b58e7e9c", url: "/produk",
+                title: "Mobile Application", icon: Smartphone, img: "1512941937669-90a1b58e7e9c", url: "/market",
                 desc: "Akses semua data dan kontrol peternakan Anda kapan saja dan di mana saja.",
                 features: ["Dashboard Mobile", "Notifikasi Real-time", "Input Data Cepat", "Laporan Harian"]
               }

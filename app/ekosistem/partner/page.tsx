@@ -172,27 +172,27 @@ export default function PartnerPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
               {
-                title: "Mitra Peternak", icon: Tractor, img: "1595859703065-2144365b21ea", url: "/produk",
+                title: "Mitra Peternak", icon: Tractor, img: "1595859703065-2144365b21ea", url: "/market",
                 desc: "Bergabung sebagai peternak binaan dan tingkatkan produktivitas bersama Dombantara.",
                 features: ["Pendampingan & Pelatihan", "Akses Pakan & Sarana", "Jaminan Pasar", "Insentif & Program Loyalitas"]
               },
               {
-                title: "Mitra Reseller & Distributor", icon: Store, img: "1542838132-92c53300491e", url: "/produk",
+                title: "Mitra Reseller & Distributor", icon: Store, img: "1542838132-92c53300491e", url: "/market",
                 desc: "Jual produk Dombantara dengan dukungan pasokan, harga kompetitif, dan promosi bersama.",
                 features: ["Produk Berkualitas", "Harga Kompetitif", "Materi Promosi", "Dukungan Penjualan"]
               },
               {
-                title: "Mitra Korporasi", icon: Truck, img: "1519003722824-194d4455a60c", url: "/produk",
+                title: "Mitra Korporasi", icon: Truck, img: "1519003722824-194d4455a60c", url: "/market",
                 desc: "Solusi penyediaan ternak, daging, dan layanan peternakan untuk kebutuhan bisnis Anda.",
                 features: ["Supply Terjamin", "Kualitas Premium", "SLA & Layanan Khusus", "Fleksibel & Skalable"]
               },
               {
-                title: "Mitra Institusi & Pemerintah", icon: Landmark, img: "1556761175-5973dc0f32e7", url: "/produk",
+                title: "Mitra Institusi & Pemerintah", icon: Landmark, img: "1556761175-5973dc0f32e7", url: "/market",
                 desc: "Kolaborasi program untuk ketahanan pangan, pemberdayaan peternak, dan pembangunan daerah.",
                 features: ["Program Berkelanjutan", "Dampak Sosial Nyata", "Monitoring & Evaluasi", "Laporan Transparan"]
               },
               {
-                title: "Mitra Investor", icon: Briefcase, img: "1579226905173-22582c5ea4b5", url: "/produk",
+                title: "Mitra Investor", icon: Briefcase, img: "1579226905173-22582c5ea4b5", url: "/market",
                 desc: "Investasi berdampak di sektor peternakan dengan model bisnis yang sehat dan bertumbuh.",
                 features: ["Prospek Menjanjikan", "Model Bisnis Teruji", "Tata Kelola Baik", "Dampak Berkelanjutan"]
               }

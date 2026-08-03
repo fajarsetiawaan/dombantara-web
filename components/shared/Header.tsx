@@ -50,9 +50,30 @@ export default function Header({ theme = "dark" }: { theme?: "light" | "dark" })
             </div>
           </Link>
 
-          <Link href="/ekosistem" className="group flex items-center justify-center py-6">
+          <div className="group flex items-center justify-center py-6 cursor-pointer">
             <div className="relative">
-              <span className="relative z-10 group-hover:text-primary transition-colors duration-300">Ekosistem</span>
+              <Link href="/ekosistem" className="relative z-10 group-hover:text-primary transition-colors duration-300 flex items-center gap-1">
+                Ekosistem <ChevronDown size={14} className="group-hover:-rotate-180 transition-transform duration-300" />
+              </Link>
+              <span className={glassDropClasses}></span>
+              
+              {/* Dropdown Menu */}
+              <div className="absolute top-[40px] -left-4 w-56 bg-white rounded-2xl shadow-xl shadow-black/5 border border-border-subtle opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left scale-95 group-hover:scale-100 overflow-hidden">
+                <div className="py-2 flex flex-col font-bold text-[11px] text-left">
+                  <Link href="/ekosistem/farm" className="px-5 py-3 hover:bg-surface text-text-secondary hover:text-primary transition-colors">Dombantara Farm</Link>
+                  <Link href="/ekosistem/fresh" className="px-5 py-3 hover:bg-surface text-text-secondary hover:text-primary transition-colors">Dombantara Fresh</Link>
+                  <Link href="/ekosistem/supply" className="px-5 py-3 hover:bg-surface text-text-secondary hover:text-primary transition-colors">Dombantara Supply</Link>
+                  <Link href="/ekosistem/tech" className="px-5 py-3 hover:bg-surface text-text-secondary hover:text-primary transition-colors">Dombantara Tech</Link>
+                  <Link href="/ekosistem/academy" className="px-5 py-3 hover:bg-surface text-text-secondary hover:text-primary transition-colors">Dombantara Academy</Link>
+                  <Link href="/ekosistem/partner" className="px-5 py-3 hover:bg-surface text-text-secondary hover:text-primary transition-colors">Dombantara Partner</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <Link href="/market" className="group flex items-center justify-center py-6">
+            <div className="relative">
+              <span className="relative z-10 group-hover:text-primary transition-colors duration-300">Market</span>
               <span className={glassDropClasses}></span>
             </div>
           </Link>

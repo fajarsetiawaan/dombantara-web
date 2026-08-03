@@ -192,27 +192,27 @@ export default function SupplyPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {[
               {
-                title: "Livestock Supply", icon: Box, img: "1484557985045-edf25e08da73", url: "/produk",
+                title: "Livestock Supply", icon: Box, img: "1484557985045-edf25e08da73", url: "/market",
                 desc: "Penyediaan hewan berkualitas untuk berbagai kebutuhan Anda.",
                 features: ["Domba & Kambing Qurban", "Hewan Aqiqah", "Bibit Breeding", "Penggemukan"]
               },
               {
-                title: "Corporate Supply", icon: Building2, img: "1556761175-5973dc0f32e7", url: "/produk",
+                title: "Corporate Supply", icon: Building2, img: "1556761175-5973dc0f32e7", url: "/market",
                 desc: "Solusi pengadaan hewan dan produk untuk kebutuhan korporasi.",
                 features: ["Hotel & Restoran", "Catering & Event", "Retail & Supermarket", "Instansi & Pemerintah"]
               },
               {
-                title: "Distribusi Nasional", icon: Truck, img: "1519003722824-194d4455a60c", url: "/produk",
+                title: "Distribusi Nasional", icon: Truck, img: "1519003722824-194d4455a60c", url: "/market",
                 desc: "Jangkauan luas ke seluruh Indonesia dengan sistem distribusi handal.",
                 features: ["Jangkauan 34 Provinsi", "Armada Terstandar", "Rute Teroptimal", "Pelacakan Real-time"]
               },
               {
-                title: "Cold Chain", icon: Snowflake, img: "1603048297172-c92544798d5e", url: "/produk",
+                title: "Cold Chain", icon: Snowflake, img: "1603048297172-c92544798d5e", url: "/market",
                 desc: "Menjaga kualitas produk dengan rantai dingin terkontrol.",
                 features: ["Refrigerated Truck", "Cold Storage", "Suhu Terjaga 0-4°C", "Quality Control"]
               },
               {
-                title: "Procurement Solution", icon: ClipboardList, img: "1460925895917-afdab827c52f", url: "/produk",
+                title: "Procurement Solution", icon: ClipboardList, img: "1460925895917-afdab827c52f", url: "/market",
                 desc: "Layanan pengadaan terintegrasi sesuai kebutuhan bisnis Anda.",
                 features: ["Perencanaan Kebutuhan", "Pengadaan Terencana", "Manajemen Supplier", "Laporan & Analitik"]
               }
