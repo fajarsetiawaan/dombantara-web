@@ -147,16 +147,17 @@ export default function FarmPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { img: "1543877087-ebf71fde2be1", icon: Tractor, title: "Domba", desc: "Domba berkualitas unggul untuk berbagai kebutuhan." },
-              { img: "1511117833895-4b473c0b85d6", icon: Tractor, title: "Kambing", desc: "Kambing sehat dan terawat dengan standar terbaik." },
-              { img: "1563636619-e9143da7973b", icon: Leaf, title: "Breeding", desc: "Program pembibitan selektif untuk genetika unggul." },
-              { img: "1484557985045-edf25e08da73", icon: Activity, title: "Penggemukan", desc: "Penggemukan terkontrol untuk hasil optimal." },
-              { img: "1543877087-ebf71fde2be1", icon: Building, title: "Qurban", desc: "Domba pilihan untuk ibadah qurban yang sempurna." },
-              { img: "1511117833895-4b473c0b85d6", icon: Users, title: "Aqiqah", desc: "Layanan aqiqah praktis, aman, dan sesuai syariat." },
-              { img: "1563636619-e9143da7973b", icon: Building, title: "RPH", desc: "Rumah Potong Hewan modern dengan standar higienis." },
-              { img: "1484557985045-edf25e08da73", icon: PackageCheck, title: "Jasa Jagal", desc: "Jasa jagal profesional, halal, dan terpercaya." },
+              { img: "1543877087-ebf71fde2be1", icon: Tractor, title: "Domba", desc: "Domba berkualitas unggul untuk berbagai kebutuhan.", url: "/ekosistem/farm/domba" },
+              { img: "1511117833895-4b473c0b85d6", icon: Tractor, title: "Kambing", desc: "Kambing sehat dan terawat dengan standar terbaik.", url: "#" },
+              { img: "1563636619-e9143da7973b", icon: Leaf, title: "Breeding", desc: "Program pembibitan selektif untuk genetika unggul.", url: "#" },
+              { img: "1484557985045-edf25e08da73", icon: Activity, title: "Penggemukan", desc: "Penggemukan terkontrol untuk hasil optimal.", url: "#" },
+              { img: "1543877087-ebf71fde2be1", icon: Building, title: "Qurban", desc: "Domba pilihan untuk ibadah qurban yang sempurna.", url: "#" },
+              { img: "1511117833895-4b473c0b85d6", icon: Users, title: "Aqiqah", desc: "Layanan aqiqah praktis, aman, dan sesuai syariat.", url: "#" },
+              { img: "1563636619-e9143da7973b", icon: Building, title: "RPH", desc: "Rumah Potong Hewan modern dengan standar higienis.", url: "#" },
+              { img: "1484557985045-edf25e08da73", icon: PackageCheck, title: "Jasa Jagal", desc: "Jasa jagal profesional, halal, dan terpercaya.", url: "#" },
             ].map((card, idx) => (
               <Reveal index={idx % 4} key={idx}>
+                <Link href={card.url} className="block h-full">
                 <motion.div 
                   whileHover={{ y: -5 }}
                   className="bg-white rounded-3xl border border-border-subtle hover:border-primary/20 hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer flex flex-col h-full"
@@ -179,6 +180,7 @@ export default function FarmPage() {
                     </div>
                   </div>
                 </motion.div>
+                </Link>
               </Reveal>
             ))}
           </div>
