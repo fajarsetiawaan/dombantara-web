@@ -1,4 +1,5 @@
 import farmUnggulanMock from '@/src/mocks/farm_unggulan.json';
+import kambingUnggulanMock from '@/src/mocks/kambing_unggulan.json';
 
 const USE_MOCK = true;
 
@@ -22,4 +23,16 @@ export async function getFarmFeaturedProducts(): Promise<FarmProduct[]> {
   }
 
   return farmUnggulanMock as FarmProduct[];
+}
+
+export async function getKambingFeaturedProducts(): Promise<FarmProduct[]> {
+  // Simulasi network delay
+  await new Promise(resolve => setTimeout(resolve, 500));
+
+  if (!USE_MOCK) {
+    // Nanti diganti dengan fetch InsForge
+    return [];
+  }
+
+  return kambingUnggulanMock as FarmProduct[];
 }

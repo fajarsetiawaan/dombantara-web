@@ -1,0 +1,38 @@
+[
+  {
+    "id": "kambing-etawa-premium",
+    "name": "Kambing Etawa Premium",
+    "badge": "Qurban",
+    "age": "10 - 12 bulan",
+    "weight": "35 - 45 kg",
+    "status": "Tersedia",
+    "image": "1524024969020-6126cd23467f"
+  },
+  {
+    "id": "kambing-boer-cross",
+    "name": "Kambing Boer Cross",
+    "badge": "Pedaging",
+    "age": "6 - 8 bulan",
+    "weight": "30 - 40 kg",
+    "status": "Tersedia",
+    "image": "1515516089376-88db1e26e9b0"
+  },
+  {
+    "id": "kambing-jawarandu",
+    "name": "Kambing Jawarandu",
+    "badge": "Breeding",
+    "age": "12 - 15 bulan",
+    "weight": "40 - 55 kg",
+    "status": "Tersedia",
+    "image": "1534067783141-86ea4bdfd188"
+  },
+  {
+    "id": "kambing-etawa-super",
+    "name": "Kambing Etawa Super",
+    "badge": "Premium",
+    "age": "12 - 14 bulan",
+    "weight": "45 - 60 kg",
+    "status": "Tersedia",
+    "image": "1524024969020-6126cd23467f"
+  }
+]
