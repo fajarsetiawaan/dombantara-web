@@ -27,7 +27,8 @@ import {
   Wrench,
   Wheat,
   Pill,
-  MoreHorizontal
+  MoreHorizontal,
+  Stethoscope
 } from "lucide-react";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
@@ -43,8 +44,64 @@ const marketProducts = [
   { id: 7, title: "Susu Domba Segar", badge: "Fresh", category: "Pasteurisasi", spec: "", weight: "1 Liter", price: "Rp 65.000", location: "Bandung, Jawa Barat", img: "1484557985045-edf25e08da73" },
   { id: 8, title: "Jasa Penyembelihan", badge: "Layanan", category: "Sesuai Syariat", spec: "", weight: "Per Hewan", price: "Mulai Rp 250.000", location: "Tersedia di 20+ kota", img: "1484557985045-edf25e08da73" },
 ];
+const ProductCard = ({ prod }: { prod: any }) => (
+  <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-border-subtle flex flex-col group hover:shadow-md transition-all h-full">
+    {/* Image Area */}
+    <div className="h-40 relative overflow-hidden bg-surface shrink-0">
+      <img 
+        src={`https://images.unsplash.com/photo-${prod.img}?auto=format&fit=crop&q=80&w=400`} 
+        alt={prod.title} 
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 text-transparent"
+      />
+      {/* Badge Top Left */}
+      <div className={`absolute top-3 left-3 px-2 py-1 text-[9px] font-bold rounded flex items-center gap-1 shadow-sm
+        ${prod.badge === 'Terverifikasi' ? 'bg-[#166534] text-white' : 
+          prod.badge === 'Paket' ? 'bg-[#7e22ce] text-white' : 
+          prod.badge === 'Fresh' ? 'bg-[#0284c7] text-white' : 
+          'bg-[#d97706] text-white'}`}
+      >
+        {prod.badge === 'Terverifikasi' && <ShieldCheck size={10} />}
+        {prod.badge}
+      </div>
+      
+      {/* Circle Icon Bottom Left */}
+      <div className="absolute -bottom-4 left-4 w-10 h-10 bg-white rounded-full flex items-center justify-center border border-border-subtle text-text-muted shadow-sm z-10 group-hover:text-[#166534] transition-colors">
+         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+           <circle cx="12" cy="12" r="10" />
+           <path d="M12 8v8M8 12h8" />
+         </svg>
+      </div>
+    </div>
+
+    {/* Content Area */}
+    <div className="p-5 pt-8 flex-1 flex flex-col">
+      <h3 className="font-bold text-text-primary leading-tight mb-1">{prod.title}</h3>
+      <p className="text-[11px] text-text-secondary mb-3 flex items-center gap-1">
+        {prod.category} {prod.spec && <span className="text-text-muted px-1">•</span>} {prod.spec}
+      </p>
+      
+      <div className="flex items-center gap-1.5 text-[10px] text-text-muted mb-4">
+        <Package size={12} /> {prod.weight}
+      </div>
+
+      <div className="mt-auto flex items-end justify-between">
+        <div>
+          <p className="font-bold text-text-primary text-base">{prod.price}</p>
+          <p className="text-[9px] text-text-muted mt-1 flex items-center gap-1">
+            <MapPin size={10} /> {prod.location}
+          </p>
+        </div>
+        <button className="w-8 h-8 rounded bg-[#166534]/10 text-[#166534] flex items-center justify-center hover:bg-[#166534] hover:text-white transition-colors shrink-0">
+          <ShoppingCart size={16} />
+        </button>
+      </div>
+    </div>
+  </div>
+);
 
 export default function MarketPage() {
+  const [activeTab, setActiveTab] = useState("foryou");
+  const [activeMainCategory, setActiveMainCategory] = useState("semua");
   const [openFilters, setOpenFilters] = useState({
     kategori: false,
     jenis: false,
@@ -111,18 +168,28 @@ export default function MarketPage() {
             </div>
           </div>
 
-          {/* Search Bar (Moved outside) */}
-          <div className="flex gap-2 w-full bg-white rounded-xl shadow-sm border border-border-subtle p-2 mb-8">
-            <div className="flex items-center px-3 text-text-muted">
-              <Search size={20} />
+          {/* Search Bar & Cart */}
+          <div className="flex gap-4 mb-8">
+            <div className="flex-1 flex gap-2 bg-white rounded-xl shadow-sm border border-border-subtle p-2">
+              <div className="flex items-center px-3 text-text-muted">
+                <Search size={20} />
+              </div>
+              <input 
+                type="text" 
+                placeholder="Cari produk atau layanan... (contoh: Domba Garut, Paket Qurban, Susu)"
+                className="flex-1 bg-transparent border-none focus:ring-0 text-sm outline-none"
+              />
+              <button className="bg-[#166534] text-white px-8 py-3 rounded-lg font-bold text-sm hover:bg-[#166534]/90 transition-colors shrink-0">
+                Cari
+              </button>
             </div>
-            <input 
-              type="text" 
-              placeholder="Cari produk atau layanan... (contoh: Domba Garut, Paket Qurban, Susu)"
-              className="flex-1 bg-transparent border-none focus:ring-0 text-sm outline-none"
-            />
-            <button className="bg-[#166534] text-white px-8 py-3 rounded-lg font-bold text-sm hover:bg-[#166534]/90 transition-colors">
-              Cari
+            
+            {/* Cart Button */}
+            <button className="bg-white rounded-xl shadow-sm border border-border-subtle w-[64px] shrink-0 flex items-center justify-center text-text-secondary hover:text-[#166534] hover:border-[#166534]/30 transition-all relative group">
+              <ShoppingCart size={22} className="group-hover:scale-110 transition-transform" />
+              <span className="absolute top-2 right-2 bg-red-500 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white shadow-sm">
+                3
+              </span>
             </button>
           </div>
 
@@ -134,41 +201,183 @@ export default function MarketPage() {
             {/* MIDDLE: PRODUCT GRID */}
             <div className="flex-1 min-w-0">
               
-              {/* 2. CATEGORY NAV (Moved to align with grid) */}
-              <div className="flex gap-4 overflow-x-auto pb-6 scrollbar-hide mb-2 items-center justify-start">
-                {[
-                  { id: 'semua', label: 'Semua', icon: LayoutGrid },
-                  { id: 'domba', label: 'Domba', icon: Box },
-                  { id: 'kambing', label: 'Kambing', icon: Package },
-                  { id: 'sapi', label: 'Sapi', icon: Database },
-                  { id: 'qurban', label: 'Qurban', icon: Gift },
-                  { id: 'aqiqah', label: 'Aqiqah', icon: Heart },
-                  { id: 'daging', label: 'Daging', icon: Beef },
-                  { id: 'susu', label: 'Susu', icon: Milk },
-                  { id: 'alat', label: 'Alat', icon: Wrench },
-                  { id: 'pakan', label: 'Pakan', icon: Wheat },
-                  { id: 'obat', label: 'Obat', icon: Pill },
-                  { id: 'lainnya', label: 'Lainnya', icon: MoreHorizontal }
-                ].map((cat) => (
-                  <button 
-                    key={cat.id} 
-                    className={`flex flex-col items-center gap-2 min-w-[80px] p-2 rounded-2xl transition-all ${
-                      cat.id === 'semua' 
-                        ? 'bg-[#166534]/10 border border-[#166534]/20' 
-                        : 'bg-transparent border border-transparent hover:bg-white hover:shadow-sm'
-                    }`}
-                  >
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                      cat.id === 'semua' ? 'text-[#166534]' : 'text-text-secondary bg-white shadow-sm border border-border-subtle'
-                    }`}>
-                      <cat.icon size={24} strokeWidth={1.5} />
-                    </div>
-                    <span className={`text-xs font-bold ${cat.id === 'semua' ? 'text-[#166534]' : 'text-text-secondary'}`}>
-                      {cat.label}
-                    </span>
-                  </button>
-                ))}
+              {/* 2. CATEGORY NAV */}
+              <div className="mb-8">
+                {/* Main Categories */}
+                <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
+                  {['Semua', 'Hewan', 'Produk', 'Layanan', 'Operasional'].map((cat) => (
+                    <button
+                      key={cat}
+                      onClick={() => setActiveMainCategory(cat.toLowerCase())}
+                      className={`px-5 py-2 rounded-full font-bold text-sm whitespace-nowrap transition-all border ${
+                        activeMainCategory === cat.toLowerCase()
+                          ? 'bg-[#166534] text-white border-[#166534] shadow-sm'
+                          : 'bg-white text-text-secondary border-border-subtle hover:border-[#166534]/50 hover:text-[#166534]'
+                      }`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Sub Categories */}
+                <div className="flex gap-4 overflow-x-auto scrollbar-hide pt-2 items-center justify-start">
+                  {(activeMainCategory === 'semua' ? [
+                    { id: 'domba', label: 'Domba', icon: Box },
+                    { id: 'kambing', label: 'Kambing', icon: Package },
+                    { id: 'sapi', label: 'Sapi', icon: Database },
+                    { id: 'daging', label: 'Daging', icon: Beef },
+                    { id: 'susu', label: 'Susu', icon: Milk },
+                    { id: 'fresh', label: 'Fresh', icon: Package },
+                    { id: 'qurban', label: 'Qurban', icon: Gift },
+                    { id: 'aqiqah', label: 'Aqiqah', icon: Heart },
+                    { id: 'jagal', label: 'Jagal', icon: Wrench },
+                    { id: 'rph', label: 'RPH', icon: Box },
+                    { id: 'kesehatan', label: 'Jasa Kesehatan', icon: Stethoscope },
+                    { id: 'alat', label: 'Alat', icon: Wrench },
+                    { id: 'pakan', label: 'Pakan', icon: Wheat },
+                    { id: 'obat', label: 'Obat', icon: Pill },
+                    { id: 'pupuk', label: 'Pupuk', icon: Package }
+                  ] : activeMainCategory === 'hewan' ? [
+                    { id: 'domba', label: 'Domba', icon: Box },
+                    { id: 'kambing', label: 'Kambing', icon: Package },
+                    { id: 'sapi', label: 'Sapi', icon: Database }
+                  ] : activeMainCategory === 'produk' ? [
+                    { id: 'daging', label: 'Daging', icon: Beef },
+                    { id: 'susu', label: 'Susu', icon: Milk },
+                    { id: 'fresh', label: 'Fresh Food', icon: Package }
+                  ] : activeMainCategory === 'layanan' ? [
+                    { id: 'qurban', label: 'Qurban', icon: Gift },
+                    { id: 'aqiqah', label: 'Aqiqah', icon: Heart },
+                    { id: 'jagal', label: 'Jagal', icon: Wrench },
+                    { id: 'rph', label: 'RPH', icon: Box },
+                    { id: 'kesehatan', label: 'Jasa Kesehatan', icon: Stethoscope }
+                  ] : activeMainCategory === 'operasional' ? [
+                    { id: 'alat', label: 'Alat', icon: Wrench },
+                    { id: 'pakan', label: 'Pakan', icon: Wheat },
+                    { id: 'obat', label: 'Obat', icon: Pill },
+                    { id: 'pupuk', label: 'Pupuk', icon: Package }
+                  ] : []).map((cat) => (
+                    <button 
+                      key={cat.id} 
+                      className="flex flex-col items-center gap-2 min-w-[80px] p-2 rounded-2xl transition-all bg-transparent border border-transparent hover:bg-white hover:shadow-sm group"
+                    >
+                      <div className="w-12 h-12 rounded-full flex items-center justify-center text-text-secondary bg-white shadow-sm border border-border-subtle group-hover:border-[#166534]/30 group-hover:text-[#166534] transition-colors">
+                        <cat.icon size={24} strokeWidth={1.5} />
+                      </div>
+                      <span className="text-[11px] font-bold text-text-secondary text-center group-hover:text-text-primary transition-colors">
+                        {cat.label}
+                      </span>
+                    </button>
+                  ))}
+                </div>
               </div>
+
+              {/* SPECIAL SHOWCASE SECTIONS */}
+              <div className="mb-12">
+                {/* Tabs */}
+                <div className="flex gap-6 border-b border-border-subtle mb-6 overflow-x-auto scrollbar-hide">
+                  {[
+                    { id: 'foryou', label: '⭐ For You', items: marketProducts.slice(0, 6) },
+                    { id: 'latest', label: '🕒 Latest View', items: marketProducts.slice(4, 8) }
+                  ].map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`pb-3 font-bold text-sm whitespace-nowrap transition-colors relative ${
+                        activeTab === tab.id ? 'text-[#166534]' : 'text-text-muted hover:text-text-secondary'
+                      }`}
+                    >
+                      {tab.label}
+                      {activeTab === tab.id && (
+                        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#166534] rounded-t-full"></div>
+                      )}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Content */}
+                <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x">
+                  {([
+                    { id: 'foryou', items: marketProducts.slice(0, 6) },
+                    { id: 'latest', items: marketProducts.slice(4, 8) }
+                  ].find(t => t.id === activeTab)?.items || []).map((prod) => (
+                    <div key={prod.id} className="min-w-[240px] w-[240px] snap-start shrink-0 h-[380px]">
+                      <ProductCard prod={prod} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* PROMO CAROUSEL */}
+              <div className="mb-10 w-full overflow-hidden rounded-2xl relative">
+                <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x">
+                  {[
+                    {
+                      badge: "Spesial Dombantara",
+                      title: "Diskon hingga Rp 500.000 untuk Paket Ekosistem!",
+                      desc: "Tingkatkan produktivitas farm Anda dengan produk terverifikasi. Pesan sekarang dan dapatkan gratis ongkos kirim ke seluruh Jawa!",
+                      btn: "Klaim Promo",
+                      bg: "1543877087-ebf71fde2be1",
+                      fallbackBg: "#0f2e1a",
+                      badgeStyle: "bg-yellow-500 text-yellow-950",
+                      btnStyle: "bg-white text-[#0f2e1a]"
+                    },
+                    {
+                      badge: "Promo Qurban",
+                      title: "DP Ringan Mulai 10% untuk Sapi & Domba!",
+                      desc: "Amankan hewan qurban terbaik Anda sekarang dengan DP ringan. Pelunasan bisa dilakukan H-7 Idul Adha tanpa biaya tambahan.",
+                      btn: "Lihat Katalog",
+                      bg: "1511117833895-4b473c0b85d6",
+                      fallbackBg: "#4a1c1c",
+                      badgeStyle: "bg-orange-500 text-white",
+                      btnStyle: "bg-white text-[#4a1c1c]"
+                    },
+                    {
+                      badge: "Gratis Ongkir",
+                      title: "Bebas Biaya Kirim Pembelian Pakan Grosir!",
+                      desc: "Beli pakan minimal 500kg dan nikmati pengiriman gratis ke seluruh peternakan di area Jabodetabek. Promo terbatas!",
+                      btn: "Beli Pakan",
+                      bg: "1589923188900-85dae523342b",
+                      fallbackBg: "#1c3a4a",
+                      badgeStyle: "bg-blue-500 text-white",
+                      btnStyle: "bg-white text-[#1c3a4a]"
+                    },
+                    {
+                      badge: "Flash Sale",
+                      title: "Susu Domba Segar Beli 2 Gratis 1!",
+                      desc: "Khusus hari ini, dapatkan promo beli 2 liter gratis 1 liter susu domba pasteurisasi murni berkualitas tinggi langsung dari peternakan.",
+                      btn: "Borong Sekarang",
+                      bg: "1550583724-b2692b85b150",
+                      fallbackBg: "#5a2e15",
+                      badgeStyle: "bg-red-500 text-white",
+                      btnStyle: "bg-white text-[#5a2e15]"
+                    }
+                  ].map((promo, idx) => (
+                    <div key={idx} style={{ backgroundColor: promo.fallbackBg }} className="min-w-full snap-center rounded-2xl overflow-hidden relative text-white shadow-sm flex items-center justify-between group shrink-0">
+                      <div className="absolute inset-0 opacity-40 group-hover:opacity-50 transition-opacity duration-700">
+                        <img src={`https://images.unsplash.com/photo-${promo.bg}?auto=format&fit=crop&q=80&w=1000`} className="w-full h-full object-cover" alt="Promo Background" />
+                      </div>
+                      <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(to right, ${promo.fallbackBg}, ${promo.fallbackBg}E6, transparent)` }}></div>
+                      <div className="relative p-6 lg:p-10 z-10 lg:w-3/4">
+                        <div className={`inline-block px-3 py-1 font-bold text-xs rounded-full mb-4 shadow-sm ${promo.badgeStyle}`}>
+                          {promo.badge}
+                        </div>
+                        <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3 leading-tight text-white max-w-xl">
+                          {promo.title}
+                        </h2>
+                        <p className="text-white/80 text-sm mb-8 max-w-lg leading-relaxed">
+                          {promo.desc}
+                        </p>
+                        <button className={`${promo.btnStyle} px-6 py-2.5 rounded-lg font-bold text-sm hover:opacity-90 transition-opacity flex items-center gap-2 w-fit shadow-lg`}>
+                          {promo.btn} <ArrowRight size={16} />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Toolbar */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
                 <p className="text-sm font-bold text-text-primary">Menampilkan 342 produk</p>
@@ -183,58 +392,8 @@ export default function MarketPage() {
               {/* Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
                 {marketProducts.map((prod) => (
-                  <div key={prod.id} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-border-subtle flex flex-col group hover:shadow-md transition-all">
-                    {/* Image Area */}
-                    <div className="h-40 relative overflow-hidden bg-surface">
-                      <img 
-                        src={`https://images.unsplash.com/photo-${prod.img}?auto=format&fit=crop&q=80&w=400`} 
-                        alt={prod.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 text-transparent"
-                      />
-                      {/* Badge Top Left */}
-                      <div className={`absolute top-3 left-3 px-2 py-1 text-[9px] font-bold rounded flex items-center gap-1 shadow-sm
-                        ${prod.badge === 'Terverifikasi' ? 'bg-[#166534] text-white' : 
-                          prod.badge === 'Paket' ? 'bg-[#7e22ce] text-white' : 
-                          prod.badge === 'Fresh' ? 'bg-[#0284c7] text-white' : 
-                          'bg-[#d97706] text-white'}`}
-                      >
-                        {prod.badge === 'Terverifikasi' && <ShieldCheck size={10} />}
-                        {prod.badge}
-                      </div>
-                      
-                      {/* Circle Icon Bottom Left */}
-                      <div className="absolute -bottom-4 left-4 w-10 h-10 bg-white rounded-full flex items-center justify-center border border-border-subtle text-text-muted shadow-sm z-10 group-hover:text-[#166534] transition-colors">
-                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                           {/* Placeholder generic icon shape based on category */}
-                           <circle cx="12" cy="12" r="10" />
-                           <path d="M12 8v8M8 12h8" />
-                         </svg>
-                      </div>
-                    </div>
-
-                    {/* Content Area */}
-                    <div className="p-5 pt-8 flex-1 flex flex-col">
-                      <h3 className="font-bold text-text-primary leading-tight mb-1">{prod.title}</h3>
-                      <p className="text-[11px] text-text-secondary mb-3 flex items-center gap-1">
-                        {prod.category} {prod.spec && <span className="text-text-muted px-1">•</span>} {prod.spec}
-                      </p>
-                      
-                      <div className="flex items-center gap-1.5 text-[10px] text-text-muted mb-4">
-                        <Package size={12} /> {prod.weight}
-                      </div>
-
-                      <div className="mt-auto flex items-end justify-between">
-                        <div>
-                          <p className="font-bold text-text-primary text-base">{prod.price}</p>
-                          <p className="text-[9px] text-text-muted mt-1 flex items-center gap-1">
-                            <MapPin size={10} /> {prod.location}
-                          </p>
-                        </div>
-                        <button className="w-8 h-8 rounded bg-[#166534]/10 text-[#166534] flex items-center justify-center hover:bg-[#166534] hover:text-white transition-colors shrink-0">
-                          <ShoppingCart size={16} />
-                        </button>
-                      </div>
-                    </div>
+                  <div key={prod.id} className="h-[380px]">
+                    <ProductCard prod={prod} />
                   </div>
                 ))}
               </div>
@@ -430,69 +589,6 @@ export default function MarketPage() {
         </div>
       </div>
 
-      {/* 4. BOTTOM SECTIONS */}
-      <section className="bg-white border-t border-border-subtle py-12">
-        <div className="container mx-auto px-6 lg:px-10">
-          <div className="flex flex-col xl:flex-row gap-12">
-            
-            {/* Belanja Mudah Steps */}
-            <div className="flex-1">
-              <h3 className="font-display font-bold text-xl text-text-primary mb-8">Belanja Mudah di Dombantara Market</h3>
-              
-              <div className="flex flex-col sm:flex-row justify-between items-start relative gap-y-8">
-                {/* Connecting Line Desktop */}
-                <div className="hidden sm:block absolute top-6 left-12 right-12 h-px bg-border-strong -z-10"></div>
-                
-                {[
-                  { num: 1, icon: Search, title: "Pilih Produk", desc: "Temukan produk sesuai kebutuhan Anda menggunakan filter." },
-                  { num: 2, icon: Headset, title: "Konsultasi", desc: "Hubungi kami untuk konsultasi dan konfirmasi ketersediaan." },
-                  { num: 3, icon: FileText, title: "Checkout", desc: "Lengkapi data dan pilih metode pengiriman yang tersedia." },
-                  { num: 4, icon: CreditCard, title: "Pembayaran", desc: "Lakukan pembayaran dengan metode yang aman dan mudah." },
-                  { num: 5, icon: Truck, title: "Pengiriman", desc: "Pesanan dikirim dengan aman ke alamat yang Anda tuju." },
-                ].map((step, idx) => (
-                  <div key={idx} className="flex flex-col items-center text-center w-full sm:w-32 relative">
-                    <div className="w-12 h-12 rounded-full bg-white text-[#166534] border border-[#166534]/30 flex items-center justify-center mb-4 relative z-10 shadow-sm">
-                      <step.icon size={20} strokeWidth={1.5} />
-                      <div className="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-surface border border-border-subtle text-[9px] font-bold flex items-center justify-center text-text-secondary">{step.num}</div>
-                    </div>
-                    <h4 className="font-bold text-xs text-text-primary mb-2">{step.title}</h4>
-                    <p className="text-[9px] text-text-muted leading-relaxed">{step.desc}</p>
-                    
-                    {/* Arrow desktop */}
-                    {idx !== 4 && <div className="hidden sm:block absolute top-4 -right-6 text-border-strong bg-white px-1">
-                      <ArrowRight size={14} />
-                    </div>}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Payment Methods */}
-            <div className="xl:w-[400px] shrink-0">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="font-display font-bold text-xl text-text-primary">Metode Pembayaran</h3>
-                <span className="text-xs font-bold text-[#166534] cursor-pointer">Lihat Semua</span>
-              </div>
-              
-              <div className="grid grid-cols-4 gap-3 opacity-60">
-                {/* Fake Logos for banks/payments */}
-                <div className="h-10 border border-border-subtle rounded-lg flex items-center justify-center text-[10px] font-bold text-blue-800">BCA</div>
-                <div className="h-10 border border-border-subtle rounded-lg flex items-center justify-center text-[10px] font-bold text-yellow-500">mandiri</div>
-                <div className="h-10 border border-border-subtle rounded-lg flex items-center justify-center text-[10px] font-bold text-blue-600">BRI</div>
-                <div className="h-10 border border-border-subtle rounded-lg flex items-center justify-center text-[10px] font-bold text-orange-600">BNI</div>
-                
-                <div className="h-10 border border-border-subtle rounded-lg flex items-center justify-center text-[10px] font-bold text-blue-500">gopay</div>
-                <div className="h-10 border border-border-subtle rounded-lg flex items-center justify-center text-[10px] font-bold text-purple-600">OVO</div>
-                <div className="h-10 border border-border-subtle rounded-lg flex items-center justify-center text-[10px] font-bold text-blue-400">DANA</div>
-                <div className="h-10 border border-border-subtle rounded-lg flex items-center justify-center text-[10px] font-bold text-orange-500">ShopeePay</div>
-                
-                <div className="h-10 border border-border-subtle rounded-lg flex items-center justify-center text-[10px] font-bold text-blue-900 italic">VISA</div>
-                <div className="h-10 border border-border-subtle rounded-lg flex items-center justify-center text-[10px] font-bold text-red-600">MasterCard</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 5. FOOTER INFO BANNER */}
       <section className="bg-surface py-12 border-t border-border-subtle">
@@ -520,10 +616,10 @@ export default function MarketPage() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="text-text-muted shrink-0"><ShieldCheck size={24} strokeWidth={1.5}/></div>
+              <div className="text-text-muted shrink-0"><CreditCard size={24} strokeWidth={1.5}/></div>
               <div>
-                <h4 className="font-bold text-xs text-text-primary mb-1">Keamanan Transaksi</h4>
-                <p className="text-[10px] text-text-muted leading-relaxed">Transaksi aman dengan sistem pembayaran terpercaya.</p>
+                <h4 className="font-bold text-xs text-text-primary mb-1">Payment Gateway</h4>
+                <p className="text-[10px] text-text-muted leading-relaxed">Mendukung berbagai metode pembayaran praktis dan aman.</p>
               </div>
             </div>
           </div>
