@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { 
@@ -23,6 +24,14 @@ import Footer from "@/components/shared/Footer";
 import Reveal from "@/components/ui/Reveal";
 
 export default function FarmPage() {
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+
+  const getCardStyle = (category: string) => {
+    if (!hoveredCategory) return 'border-border-subtle hover:border-primary/30 hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)]';
+    if (hoveredCategory === category) return 'border-primary shadow-[0_15px_40px_rgba(15,46,26,0.25)] scale-[1.03] z-20 relative ring-2 ring-primary/20';
+    return 'opacity-40 grayscale blur-[1.5px] scale-[0.97] border-border-subtle pointer-events-none';
+  };
+
   return (
     <main className="min-h-screen bg-surface">
       <Header theme="light" />
@@ -145,38 +154,179 @@ export default function FarmPage() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_1fr_192px_1fr_1fr] gap-6 lg:gap-8">
+            {/* ROW 1 */}
+            {/* Card 1 & 2: Livestock */}
             {[
               { img: "1543877087-ebf71fde2be1", icon: Tractor, title: "Domba", desc: "Domba berkualitas unggul untuk berbagai kebutuhan.", url: "/ekosistem/farm/domba" },
               { img: "1511117833895-4b473c0b85d6", icon: Tractor, title: "Kambing", desc: "Kambing sehat dan terawat dengan standar terbaik.", url: "/ekosistem/farm/kambing" },
-              { img: "1563636619-e9143da7973b", icon: Leaf, title: "Breeding", desc: "Program pembibitan selektif untuk genetika unggul.", url: "/ekosistem/farm/breeding" },
-              { img: "1484557985045-edf25e08da73", icon: Activity, title: "Penggemukan", desc: "Penggemukan terkontrol untuk hasil optimal.", url: "/ekosistem/farm/fattening" },
-              { img: "1543877087-ebf71fde2be1", icon: Building, title: "Qurban", desc: "Domba pilihan untuk ibadah qurban yang sempurna.", url: "/ekosistem/farm/qurban" },
-              { img: "1511117833895-4b473c0b85d6", icon: Users, title: "Aqiqah", desc: "Layanan aqiqah praktis, aman, dan sesuai syariat.", url: "/ekosistem/farm/aqiqah" },
-              { img: "1563636619-e9143da7973b", icon: Building, title: "RPH", desc: "Rumah Potong Hewan modern dengan standar higienis.", url: "/ekosistem/farm/rph" },
-              { img: "1484557985045-edf25e08da73", icon: PackageCheck, title: "Jasa Jagal", desc: "Jasa jagal profesional, halal, dan terpercaya.", url: "/ekosistem/farm/jagal" },
             ].map((card, idx) => (
-              <Reveal index={idx % 4} key={idx}>
+              <Reveal index={idx} key={`livestock-${idx}`}>
                 <Link href={card.url} className="block h-full">
                 <motion.div 
                   whileHover={{ y: -5 }}
-                  className="bg-white rounded-3xl border border-border-subtle hover:border-primary/20 hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer flex flex-col h-full"
+                  className={`bg-white rounded-3xl border transition-all duration-500 overflow-hidden group cursor-pointer flex flex-col h-full ${getCardStyle('livestock')}`}
                 >
-                  <div className="relative h-48 overflow-hidden p-2 pb-0">
+                  <div className="relative h-40 lg:h-36 overflow-hidden p-2 pb-0">
                     <img 
                       src={`https://images.unsplash.com/photo-${card.img}?auto=format&fit=crop&q=80&w=500`}
                       alt={card.title}
                       className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
                     />
-                    <div className="absolute top-6 left-6 w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center shadow-lg">
-                      <card.icon size={20} />
+                    <div className="absolute top-4 left-4 w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center shadow-lg">
+                      <card.icon size={16} />
                     </div>
                   </div>
-                  <div className="p-6 flex flex-col flex-1">
-                    <h3 className="font-display font-bold text-xl mb-3 group-hover:text-primary transition-colors">{card.title}</h3>
-                    <p className="text-text-muted text-sm leading-relaxed mb-6 flex-1">{card.desc}</p>
-                    <div className="text-primary font-bold text-xs uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all mt-auto">
-                      Lihat Selengkapnya <ArrowRight size={14} />
+                  <div className="p-5 flex flex-col flex-1">
+                    <h3 className="font-display font-bold text-lg mb-2 group-hover:text-primary transition-colors">{card.title}</h3>
+                    <p className="text-text-muted text-xs leading-relaxed mb-4 flex-1">{card.desc}</p>
+                    <div className="text-primary font-bold text-[10px] uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all mt-auto">
+                      Selengkapnya <ArrowRight size={12} />
+                    </div>
+                  </div>
+                </motion.div>
+                </Link>
+              </Reveal>
+            ))}
+
+            {/* THE PIZZA DIAGRAM (Center Column, Spanning 2 Rows) */}
+            <div className="hidden lg:flex row-span-2 items-center justify-center">
+              <div className="relative w-48 h-48 bg-surface rounded-full shadow-[0_0_30px_rgba(0,0,0,0.1)] border-8 border-surface z-20 overflow-hidden">
+                <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 rounded-full overflow-hidden">
+                  {/* Top Left: Livestock */}
+                  <div 
+                    className="bg-[#0f2e1a] text-white flex flex-col items-center justify-center p-2 border-r-[3px] border-b-[3px] border-surface hover:bg-primary transition-colors cursor-pointer"
+                    onMouseEnter={() => setHoveredCategory('livestock')}
+                    onMouseLeave={() => setHoveredCategory(null)}
+                  >
+                    <span className="text-[9px] font-bold uppercase tracking-widest -rotate-45 mt-4 ml-4">Livestock</span>
+                  </div>
+                  {/* Top Right: Produksi */}
+                  <div 
+                    className="bg-[#1b4d3e] text-white flex flex-col items-center justify-center p-2 border-b-[3px] border-surface hover:bg-primary transition-colors cursor-pointer"
+                    onMouseEnter={() => setHoveredCategory('produksi')}
+                    onMouseLeave={() => setHoveredCategory(null)}
+                  >
+                    <span className="text-[9px] font-bold uppercase tracking-widest rotate-45 mt-4 mr-4">Produksi</span>
+                  </div>
+                  {/* Bottom Left: Ibadah */}
+                  <div 
+                    className="bg-[#2d6a4f] text-white flex flex-col items-center justify-center p-2 border-r-[3px] border-surface hover:bg-primary transition-colors cursor-pointer"
+                    onMouseEnter={() => setHoveredCategory('ibadah')}
+                    onMouseLeave={() => setHoveredCategory(null)}
+                  >
+                    <span className="text-[9px] font-bold uppercase tracking-widest rotate-45 mb-4 ml-4">Ibadah</span>
+                  </div>
+                  {/* Bottom Right: Service */}
+                  <div 
+                    className="bg-[#40916c] text-white flex flex-col items-center justify-center p-2 hover:bg-primary transition-colors cursor-pointer"
+                    onMouseEnter={() => setHoveredCategory('service')}
+                    onMouseLeave={() => setHoveredCategory(null)}
+                  >
+                    <span className="text-[9px] font-bold uppercase tracking-widest -rotate-45 mb-4 mr-4">Service</span>
+                  </div>
+                </div>
+                
+                {/* Center Donut Hole */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-surface rounded-full shadow-inner flex items-center justify-center z-10 border-4 border-white">
+                  <div className="font-display font-bold text-lg text-primary">D</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3 & 4: Produksi */}
+            {[
+              { img: "1563636619-e9143da7973b", icon: Leaf, title: "Breeding", desc: "Program pembibitan selektif untuk genetika unggul.", url: "/ekosistem/farm/breeding" },
+              { img: "1484557985045-edf25e08da73", icon: Activity, title: "Penggemukan", desc: "Penggemukan terkontrol untuk hasil optimal.", url: "/ekosistem/farm/fattening" },
+            ].map((card, idx) => (
+              <Reveal index={idx+2} key={`produksi-${idx}`}>
+                <Link href={card.url} className="block h-full">
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className={`bg-white rounded-3xl border transition-all duration-500 overflow-hidden group cursor-pointer flex flex-col h-full ${getCardStyle('produksi')}`}
+                >
+                  <div className="relative h-40 lg:h-36 overflow-hidden p-2 pb-0">
+                    <img 
+                      src={`https://images.unsplash.com/photo-${card.img}?auto=format&fit=crop&q=80&w=500`}
+                      alt={card.title}
+                      className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute top-4 left-4 w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center shadow-lg">
+                      <card.icon size={16} />
+                    </div>
+                  </div>
+                  <div className="p-5 flex flex-col flex-1">
+                    <h3 className="font-display font-bold text-lg mb-2 group-hover:text-primary transition-colors">{card.title}</h3>
+                    <p className="text-text-muted text-xs leading-relaxed mb-4 flex-1">{card.desc}</p>
+                    <div className="text-primary font-bold text-[10px] uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all mt-auto">
+                      Selengkapnya <ArrowRight size={12} />
+                    </div>
+                  </div>
+                </motion.div>
+                </Link>
+              </Reveal>
+            ))}
+
+            {/* ROW 2 */}
+            {/* Card 5 & 6: Ibadah */}
+            {[
+              { img: "1543877087-ebf71fde2be1", icon: Building, title: "Qurban", desc: "Domba pilihan untuk ibadah qurban yang sempurna.", url: "/ekosistem/farm/qurban" },
+              { img: "1511117833895-4b473c0b85d6", icon: Users, title: "Aqiqah", desc: "Layanan aqiqah praktis, aman, dan sesuai syariat.", url: "/ekosistem/farm/aqiqah" },
+            ].map((card, idx) => (
+              <Reveal index={idx+4} key={`ibadah-${idx}`}>
+                <Link href={card.url} className="block h-full">
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className={`bg-white rounded-3xl border transition-all duration-500 overflow-hidden group cursor-pointer flex flex-col h-full ${getCardStyle('ibadah')}`}
+                >
+                  <div className="relative h-40 lg:h-36 overflow-hidden p-2 pb-0">
+                    <img 
+                      src={`https://images.unsplash.com/photo-${card.img}?auto=format&fit=crop&q=80&w=500`}
+                      alt={card.title}
+                      className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute top-4 left-4 w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center shadow-lg">
+                      <card.icon size={16} />
+                    </div>
+                  </div>
+                  <div className="p-5 flex flex-col flex-1">
+                    <h3 className="font-display font-bold text-lg mb-2 group-hover:text-primary transition-colors">{card.title}</h3>
+                    <p className="text-text-muted text-xs leading-relaxed mb-4 flex-1">{card.desc}</p>
+                    <div className="text-primary font-bold text-[10px] uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all mt-auto">
+                      Selengkapnya <ArrowRight size={12} />
+                    </div>
+                  </div>
+                </motion.div>
+                </Link>
+              </Reveal>
+            ))}
+
+            {/* Card 7 & 8: Service */}
+            {[
+              { img: "1563636619-e9143da7973b", icon: Building, title: "RPH", desc: "Rumah Potong Hewan modern dengan standar higienis.", url: "/ekosistem/farm/rph" },
+              { img: "1484557985045-edf25e08da73", icon: PackageCheck, title: "Jasa Jagal", desc: "Jasa jagal profesional, halal, dan terpercaya.", url: "/ekosistem/farm/jagal" },
+            ].map((card, idx) => (
+              <Reveal index={idx+6} key={`service-${idx}`}>
+                <Link href={card.url} className="block h-full">
+                <motion.div 
+                  whileHover={{ y: -5 }}
+                  className={`bg-white rounded-3xl border transition-all duration-500 overflow-hidden group cursor-pointer flex flex-col h-full ${getCardStyle('service')}`}
+                >
+                  <div className="relative h-40 lg:h-36 overflow-hidden p-2 pb-0">
+                    <img 
+                      src={`https://images.unsplash.com/photo-${card.img}?auto=format&fit=crop&q=80&w=500`}
+                      alt={card.title}
+                      className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute top-4 left-4 w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center shadow-lg">
+                      <card.icon size={16} />
+                    </div>
+                  </div>
+                  <div className="p-5 flex flex-col flex-1">
+                    <h3 className="font-display font-bold text-lg mb-2 group-hover:text-primary transition-colors">{card.title}</h3>
+                    <p className="text-text-muted text-xs leading-relaxed mb-4 flex-1">{card.desc}</p>
+                    <div className="text-primary font-bold text-[10px] uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all mt-auto">
+                      Selengkapnya <ArrowRight size={12} />
                     </div>
                   </div>
                 </motion.div>

@@ -45,6 +45,7 @@ export default function Footer() {
             <ul className="space-y-4 text-white/80 text-sm">
               <li><Link href="/" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Beranda</Link></li>
               <li><Link href="/ekosistem" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Ekosistem</Link></li>
+              <li><Link href="/market" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Market</Link></li>
               <li><Link href="/artikel" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Artikel</Link></li>
               <li><Link href="/kontak" className="hover:text-white hover:translate-x-1 inline-block transition-transform">Kontak</Link></li>
             </ul>
