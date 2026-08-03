@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Phone, ChevronDown } from "lucide-react";
+import { Phone, ChevronDown, ShoppingCart } from "lucide-react";
 
 // Menu Ekosistem dihapus karena sekarang menjadi halaman tersendiri
 
@@ -93,10 +93,16 @@ export default function Header({ theme = "dark" }: { theme?: "light" | "dark" })
           </Link>
         </nav>
 
-        <button className={`hidden md:flex items-center gap-2 px-6 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg ${isScrolled ? 'bg-primary text-white hover:bg-primary/90' : 'bg-primary text-white hover:bg-white hover:text-primary'
-          }`}>
-          <Phone size={16} /> Hubungi Kami
-        </button>
+        <div className="hidden md:flex items-center gap-4">
+          <Link href="/keranjang" className={`p-2 rounded-full transition-colors relative ${isScrolled || theme === "light" ? 'text-text-primary hover:bg-surface' : 'text-white hover:bg-white/10'}`}>
+            <ShoppingCart size={22} />
+            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+          </Link>
+          <button className={`flex items-center gap-2 px-6 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg ${isScrolled ? 'bg-primary text-white hover:bg-primary/90' : 'bg-primary text-white hover:bg-white hover:text-primary'
+            }`}>
+            <Phone size={16} /> Hubungi Kami
+          </button>
+        </div>
       </div>
     </header>
   );

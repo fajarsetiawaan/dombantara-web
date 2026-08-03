@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 import { 
@@ -28,75 +29,64 @@ import {
   Wheat,
   Pill,
   MoreHorizontal,
-  Stethoscope
+  Stethoscope,
+  Star
 } from "lucide-react";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 
 // Dummy Data untuk Produk
 const marketProducts = [
-  { id: 1, title: "Domba Garut Premium", badge: "Terverifikasi", category: "Qurban", spec: "10-12 bulan", weight: "40 - 45 kg", price: "Rp 4.750.000", location: "Bandung, Jawa Barat", img: "1484557985045-edf25e08da73" },
-  { id: 2, title: "Kambing Etawa Super", badge: "Terverifikasi", category: "Aqiqah", spec: "7-9 bulan", weight: "30 - 35 kg", price: "Rp 3.250.000", location: "Boyolali, Jawa Tengah", img: "1484557985045-edf25e08da73" },
-  { id: 3, title: "Sapi Limousin", badge: "Terverifikasi", category: "Qurban", spec: "18-24 bulan", weight: "250 - 300 kg", price: "Rp 24.500.000", location: "Lampung, Lampung", img: "1484557985045-edf25e08da73" },
-  { id: 4, title: "Paket Qurban Domba", badge: "Paket", category: "1 Domba + Layanan", spec: "", weight: "25 - 40 kg", price: "Mulai Rp 4.950.000", location: "Tersedia di 20+ kota", img: "1484557985045-edf25e08da73" },
-  { id: 5, title: "Paket Aqiqah", badge: "Paket", category: "Kambing + Masak", spec: "", weight: "20 - 25 kg", price: "Mulai Rp 2.250.000", location: "Tersedia di 20+ kota", img: "1484557985045-edf25e08da73" },
-  { id: 6, title: "Daging Domba Segar", badge: "Fresh", category: "Tanpa tulang", spec: "", weight: "500 gram", price: "Rp 145.000", location: "Jakarta, DKI Jakarta", img: "1484557985045-edf25e08da73" },
-  { id: 7, title: "Susu Domba Segar", badge: "Fresh", category: "Pasteurisasi", spec: "", weight: "1 Liter", price: "Rp 65.000", location: "Bandung, Jawa Barat", img: "1484557985045-edf25e08da73" },
-  { id: 8, title: "Jasa Penyembelihan", badge: "Layanan", category: "Sesuai Syariat", spec: "", weight: "Per Hewan", price: "Mulai Rp 250.000", location: "Tersedia di 20+ kota", img: "1484557985045-edf25e08da73" },
+  { id: 1, title: "Domba Garut Premium", badge: "", category: "Qurban", spec: "10-12 bulan", weight: "40 - 45 kg", price: "Rp 4.750.000", location: "Bandung, Jawa Barat", img: "1484557985045-edf25e08da73", rating: 4.8, sold: "1rb+" },
+  { id: 2, title: "Kambing Etawa Super", badge: "", category: "Aqiqah", spec: "7-9 bulan", weight: "30 - 35 kg", price: "Rp 3.250.000", location: "Boyolali, Jawa Tengah", img: "1484557985045-edf25e08da73", rating: 4.9, sold: "500+" },
+  { id: 3, title: "Sapi Limousin", badge: "", category: "Qurban", spec: "18-24 bulan", weight: "250 - 300 kg", price: "Rp 24.500.000", location: "Lampung, Lampung", img: "1484557985045-edf25e08da73", rating: 4.7, sold: "50+" },
+  { id: 4, title: "Paket Qurban Domba", badge: "Paket", category: "1 Domba + Layanan", spec: "", weight: "25 - 40 kg", price: "Rp 4.950.000", location: "Tersedia di 20+ kota", img: "1484557985045-edf25e08da73", rating: 5.0, sold: "2rb+" },
+  { id: 5, title: "Paket Aqiqah", badge: "Paket", category: "Kambing + Masak", spec: "", weight: "20 - 25 kg", price: "Rp 2.250.000", location: "Tersedia di 20+ kota", img: "1484557985045-edf25e08da73", rating: 4.8, sold: "1.5rb+" },
+  { id: 6, title: "Daging Domba Segar", badge: "", category: "Tanpa tulang", spec: "", weight: "500 gram", price: "Rp 145.000", location: "Jakarta, DKI Jakarta", img: "1484557985045-edf25e08da73", rating: 4.6, sold: "3rb+" },
+  { id: 7, title: "Susu Domba Segar", badge: "", category: "Pasteurisasi", spec: "", weight: "1 Liter", price: "Rp 65.000", location: "Bandung, Jawa Barat", img: "1484557985045-edf25e08da73", rating: 4.9, sold: "800+" },
+  { id: 8, title: "Jasa Penyembelihan", badge: "", category: "Sesuai Syariat", spec: "", weight: "Per Hewan", price: "Rp 250.000", location: "Tersedia di 20+ kota", img: "1484557985045-edf25e08da73", rating: 4.7, sold: "100+" },
 ];
 const ProductCard = ({ prod }: { prod: any }) => (
-  <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-border-subtle flex flex-col group hover:shadow-md transition-all h-full">
+  <Link href={`/market/${prod.id}`} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-border-subtle flex flex-col group hover:shadow-lg hover:border-[#166534]/30 transition-all duration-300 h-full cursor-pointer block">
     {/* Image Area */}
-    <div className="h-40 relative overflow-hidden bg-surface shrink-0">
+    <div className="h-44 relative overflow-hidden bg-surface shrink-0">
       <img 
         src={`https://images.unsplash.com/photo-${prod.img}?auto=format&fit=crop&q=80&w=400`} 
         alt={prod.title} 
         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 text-transparent"
       />
-      {/* Badge Top Left */}
-      <div className={`absolute top-3 left-3 px-2 py-1 text-[9px] font-bold rounded flex items-center gap-1 shadow-sm
-        ${prod.badge === 'Terverifikasi' ? 'bg-[#166534] text-white' : 
-          prod.badge === 'Paket' ? 'bg-[#7e22ce] text-white' : 
-          prod.badge === 'Fresh' ? 'bg-[#0284c7] text-white' : 
-          'bg-[#d97706] text-white'}`}
-      >
-        {prod.badge === 'Terverifikasi' && <ShieldCheck size={10} />}
-        {prod.badge}
-      </div>
-      
-      {/* Circle Icon Bottom Left */}
-      <div className="absolute -bottom-4 left-4 w-10 h-10 bg-white rounded-full flex items-center justify-center border border-border-subtle text-text-muted shadow-sm z-10 group-hover:text-[#166534] transition-colors">
-         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-           <circle cx="12" cy="12" r="10" />
-           <path d="M12 8v8M8 12h8" />
-         </svg>
-      </div>
     </div>
 
     {/* Content Area */}
-    <div className="p-5 pt-8 flex-1 flex flex-col">
-      <h3 className="font-bold text-text-primary leading-tight mb-1">{prod.title}</h3>
-      <p className="text-[11px] text-text-secondary mb-3 flex items-center gap-1">
-        {prod.category} {prod.spec && <span className="text-text-muted px-1">•</span>} {prod.spec}
-      </p>
-      
-      <div className="flex items-center gap-1.5 text-[10px] text-text-muted mb-4">
-        <Package size={12} /> {prod.weight}
+    <div className="p-2.5 flex flex-col gap-1.5 flex-1">
+      <h3 className="font-bold text-text-primary text-sm leading-snug line-clamp-2 group-hover:text-[#166534] transition-colors">
+        {prod.badge && (
+          <span className="inline-flex items-center justify-center bg-[#166534] text-white text-[9px] font-bold px-1.5 rounded mr-1.5 align-middle leading-tight h-[16px]">
+            {prod.badge}
+          </span>
+        )}
+        {prod.title}
+      </h3>
+
+      <div className="flex items-center gap-1 text-[11px] text-text-secondary">
+        <Star size={11} className="fill-yellow-400 text-yellow-400" />
+        <span className="font-bold">{prod.rating}</span>
       </div>
 
-      <div className="mt-auto flex items-end justify-between">
-        <div>
-          <p className="font-bold text-text-primary text-base">{prod.price}</p>
-          <p className="text-[9px] text-text-muted mt-1 flex items-center gap-1">
-            <MapPin size={10} /> {prod.location}
-          </p>
+      <div className="flex flex-col mt-auto pt-1 gap-0.5">
+        <div className="flex items-center gap-1.5">
+          <span className="text-[9px] font-bold text-white bg-red-500 px-1 rounded leading-tight h-[14px] flex items-center">-5%</span>
+          <span className="text-[10px] text-text-muted line-through">
+            {prod.price.replace('4.750', '5.000').replace('3.250', '3.420').replace('24.500', '25.780').replace('4.950', '5.210').replace('2.250', '2.360')}
+          </span>
         </div>
-        <button className="w-8 h-8 rounded bg-[#166534]/10 text-[#166534] flex items-center justify-center hover:bg-[#166534] hover:text-white transition-colors shrink-0">
-          <ShoppingCart size={16} />
-        </button>
+        <div className="flex items-center justify-between">
+          <p className="font-bold text-[#166534] text-sm leading-tight">{prod.price}</p>
+          <span className="text-[10px] text-text-muted">{prod.sold} terjual</span>
+        </div>
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 export default function MarketPage() {
@@ -302,7 +292,7 @@ export default function MarketPage() {
                     { id: 'foryou', items: marketProducts.slice(0, 6) },
                     { id: 'latest', items: marketProducts.slice(4, 8) }
                   ].find(t => t.id === activeTab)?.items || []).map((prod) => (
-                    <div key={prod.id} className="min-w-[240px] w-[240px] snap-start shrink-0 h-[380px]">
+                    <div key={prod.id} className="min-w-[240px] w-[240px] snap-start shrink-0 h-auto">
                       <ProductCard prod={prod} />
                     </div>
                   ))}
@@ -392,7 +382,7 @@ export default function MarketPage() {
               {/* Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
                 {marketProducts.map((prod) => (
-                  <div key={prod.id} className="h-[380px]">
+                  <div key={prod.id} className="h-auto">
                     <ProductCard prod={prod} />
                   </div>
                 ))}
