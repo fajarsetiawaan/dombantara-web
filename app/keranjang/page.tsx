@@ -23,7 +23,9 @@ import {
   MapPin,
   User,
   Phone,
-  Edit2
+  Edit2,
+  ChevronUp,
+  ChevronDown
 } from "lucide-react";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
@@ -63,6 +65,7 @@ export default function KeranjangPage() {
   const [items, setItems] = useState(initialCartItems);
   const [currentStep, setCurrentStep] = useState(1);
   const [saveAddress, setSaveAddress] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false);
 
   // Handlers
   const handleQtyChange = (id: number, delta: number) => {
@@ -106,11 +109,23 @@ export default function KeranjangPage() {
           {/* Page Header */}
           <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-6">
             <div>
-              <h1 className="text-3xl font-display font-bold text-[#0e2a47] mb-2">Keranjang Belanja</h1>
-              <div className="flex items-center gap-1.5 text-sm text-[#166534] font-medium">
-                <ShieldCheck size={16} />
-                <span>Semua transaksi aman & terpercaya</span>
-              </div>
+              <h1 className="text-3xl font-display font-bold text-[#0e2a47] mb-2">
+                {currentStep === 1 ? 'Keranjang Belanja' : currentStep === 2 ? 'Pengiriman' : currentStep === 3 ? 'Pembayaran' : 'Konfirmasi Pesanan'}
+              </h1>
+              {currentStep === 4 ? (
+                <div className="text-sm text-text-secondary">
+                  Periksa kembali detail pesanan Anda sebelum dilakukan
+                </div>
+              ) : currentStep === 3 ? (
+                <div className="text-sm text-text-secondary">
+                  Pilih metode pembayaran yang paling nyaman untuk Anda
+                </div>
+              ) : (
+                <div className="flex items-center gap-1.5 text-sm text-[#166534] font-medium">
+                  <ShieldCheck size={16} />
+                  <span>Semua transaksi aman & terpercaya</span>
+                </div>
+              )}
             </div>
             
             <div className="flex flex-wrap items-center gap-6 text-[10px] sm:text-xs font-bold text-text-secondary">
@@ -126,36 +141,42 @@ export default function KeranjangPage() {
             <div className="flex items-center justify-between min-w-[700px]">
               {/* Step 1 */}
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#166534] text-white flex items-center justify-center font-bold text-sm">1</div>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${currentStep > 1 ? 'bg-emerald-50 text-[#166534]' : 'bg-[#166534] text-white'}`}>
+                  {currentStep > 1 ? <CheckCircle2 size={16} className="text-[#166534]" /> : '1'}
+                </div>
                 <div>
-                  <div className="flex items-center gap-1.5 font-bold text-[#0e2a47] text-sm"><ShoppingCart size={14} /> Keranjang</div>
+                  <div className={`flex items-center gap-1.5 font-bold text-sm ${currentStep > 1 ? 'text-text-secondary' : 'text-[#0e2a47]'}`}><ShoppingCart size={14} /> Keranjang</div>
                   <div className="text-xs text-text-muted mt-0.5">Review produk</div>
                 </div>
               </div>
               <div className="flex-1 border-t-2 border-dashed border-border-subtle mx-4"></div>
               {/* Step 2 */}
               <div className={`flex items-center gap-3 ${currentStep < 2 ? 'opacity-50' : ''}`}>
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${currentStep >= 2 ? 'bg-[#166534] text-white' : 'bg-surface text-text-secondary'}`}>2</div>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${currentStep > 2 ? 'bg-emerald-50 text-[#166534]' : currentStep === 2 ? 'bg-[#166534] text-white' : 'bg-surface text-text-secondary'}`}>
+                  {currentStep > 2 ? <CheckCircle2 size={16} className="text-[#166534]" /> : '2'}
+                </div>
                 <div>
-                  <div className={`flex items-center gap-1.5 font-bold text-sm ${currentStep >= 2 ? 'text-[#0e2a47]' : 'text-text-secondary'}`}><Truck size={14} /> Pengiriman</div>
+                  <div className={`flex items-center gap-1.5 font-bold text-sm ${currentStep > 2 ? 'text-text-secondary' : currentStep === 2 ? 'text-[#0e2a47]' : 'text-text-secondary'}`}><Truck size={14} /> Pengiriman</div>
                   <div className="text-xs text-text-muted mt-0.5">Pilih lokasi & metode</div>
                 </div>
               </div>
               <div className="flex-1 border-t-2 border-dashed border-border-subtle mx-4"></div>
               {/* Step 3 */}
-              <div className="flex items-center gap-3 opacity-50">
-                <div className="w-10 h-10 rounded-full bg-surface text-text-secondary flex items-center justify-center font-bold text-sm">3</div>
+              <div className={`flex items-center gap-3 ${currentStep < 3 ? 'opacity-50' : ''}`}>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${currentStep > 3 ? 'bg-emerald-50 text-[#166534]' : currentStep === 3 ? 'bg-[#166534] text-white' : 'bg-surface text-text-secondary'}`}>
+                  {currentStep > 3 ? <CheckCircle2 size={16} className="text-[#166534]" /> : '3'}
+                </div>
                 <div>
-                  <div className="flex items-center gap-1.5 font-bold text-text-secondary text-sm"><CreditCard size={14} /> Pembayaran</div>
+                  <div className={`flex items-center gap-1.5 font-bold text-sm ${currentStep > 3 ? 'text-text-secondary' : currentStep === 3 ? 'text-[#0e2a47]' : 'text-text-secondary'}`}><CreditCard size={14} /> Pembayaran</div>
                   <div className="text-xs text-text-muted mt-0.5">Pilih metode pembayaran</div>
                 </div>
               </div>
               <div className="flex-1 border-t-2 border-dashed border-border-subtle mx-4"></div>
               {/* Step 4 */}
-              <div className="flex items-center gap-3 opacity-50">
-                <div className="w-10 h-10 rounded-full bg-surface text-text-secondary flex items-center justify-center font-bold text-sm">4</div>
+              <div className={`flex items-center gap-3 ${currentStep < 4 ? 'opacity-50' : ''}`}>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${currentStep >= 4 ? 'bg-[#166534] text-white' : 'bg-surface text-text-secondary'}`}>4</div>
                 <div>
-                  <div className="flex items-center gap-1.5 font-bold text-text-secondary text-sm"><CheckSquare size={14} /> Konfirmasi</div>
+                  <div className={`flex items-center gap-1.5 font-bold text-sm ${currentStep >= 4 ? 'text-[#0e2a47]' : 'text-text-secondary'}`}><CheckSquare size={14} /> Konfirmasi</div>
                   <div className="text-xs text-text-muted mt-0.5">Pesanan diproses</div>
                 </div>
               </div>
@@ -283,7 +304,7 @@ export default function KeranjangPage() {
                 </div>
               </div>
                 </>
-              ) : (
+              ) : currentStep === 2 ? (
                 <div className="space-y-6">
                   {/* PENGIRIMAN FORM */}
                   <div className="bg-white rounded-2xl p-6 shadow-sm border border-border-subtle">
@@ -460,6 +481,276 @@ export default function KeranjangPage() {
                     </div>
                   </div>
                 </div>
+              ) : currentStep === 3 ? (
+                <div className="space-y-6">
+                  {/* PEMBAYARAN FORM (Step 3) */}
+                  
+                  {/* Metode Pembayaran */}
+                  <div className="bg-white rounded-2xl p-6 shadow-sm border border-border-subtle">
+                    <h2 className="font-bold text-lg text-[#0e2a47] mb-6 flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-[#166534] text-white flex items-center justify-center text-xs">1</div>
+                      Metode Pembayaran
+                    </h2>
+                    
+                    <div className="mb-4">
+                      <p className="text-xs text-text-secondary mb-3">Pilih metode pembayaran</p>
+                      <div className="flex overflow-x-auto gap-2 pb-2">
+                        <button className="px-4 py-2 bg-emerald-50 text-[#166534] rounded-lg text-xs font-bold border border-emerald-200 whitespace-nowrap">Semua Metode</button>
+                        <button className="px-4 py-2 bg-white text-text-secondary rounded-lg text-xs font-medium border border-border-subtle hover:border-[#166534] whitespace-nowrap">Transfer Bank</button>
+                        <button className="px-4 py-2 bg-white text-text-secondary rounded-lg text-xs font-medium border border-border-subtle hover:border-[#166534] whitespace-nowrap">Virtual Account</button>
+                        <button className="px-4 py-2 bg-white text-text-secondary rounded-lg text-xs font-medium border border-border-subtle hover:border-[#166534] whitespace-nowrap">E-Wallet</button>
+                        <button className="px-4 py-2 bg-white text-text-secondary rounded-lg text-xs font-medium border border-border-subtle hover:border-[#166534] whitespace-nowrap">QR Code</button>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      {/* BCA VA */}
+                      <div className="border border-[#166534] rounded-xl overflow-hidden shadow-sm bg-emerald-50/10">
+                        <label className="flex items-center gap-4 p-4 cursor-pointer relative transition-all">
+                          <div className="text-[#166534] shrink-0">
+                            <CheckCircle2 size={20} className="fill-current text-white" />
+                          </div>
+                          <div className="w-12 h-8 bg-white rounded border border-border-subtle flex items-center justify-center text-[10px] font-bold text-blue-600 shrink-0">BCA</div>
+                          <div className="flex-1">
+                            <h3 className="font-bold text-[#0e2a47] text-sm">BCA Virtual Account</h3>
+                            <p className="text-xs text-text-secondary">Bayar melalui Virtual Account BCA</p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="bg-emerald-100 text-[#166534] text-[10px] font-bold px-2 py-0.5 rounded">Rekomendasi</span>
+                            <ChevronUp size={16} className="text-text-secondary" />
+                          </div>
+                        </label>
+                        <div className="px-14 pb-4">
+                          <p className="text-xs text-text-secondary bg-white p-3 border border-border-subtle rounded-lg">Setelah klik "Bayar Sekarang", Anda akan mendapatkan nomor Virtual Account untuk melakukan pembayaran.</p>
+                        </div>
+                      </div>
+
+                      {/* BNI VA */}
+                      <label className="border border-border-subtle hover:border-[#166534] bg-white rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all">
+                        <div className="w-5 h-5 rounded-full border border-border-subtle shrink-0"></div>
+                        <div className="w-12 h-8 rounded border border-border-subtle flex items-center justify-center text-[10px] font-bold text-[#F15A23] shrink-0">BNI</div>
+                        <div className="flex-1">
+                          <h3 className="font-bold text-[#0e2a47] text-sm mb-0.5">BNI Virtual Account</h3>
+                          <p className="text-xs text-text-secondary">Bayar melalui Virtual Account BNI</p>
+                        </div>
+                        <ChevronDown size={16} className="text-text-secondary" />
+                      </label>
+                      
+                      {/* BRI VA */}
+                      <label className="border border-border-subtle hover:border-[#166534] bg-white rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all">
+                        <div className="w-5 h-5 rounded-full border border-border-subtle shrink-0"></div>
+                        <div className="w-12 h-8 rounded border border-border-subtle flex items-center justify-center text-[10px] font-bold text-[#0B5599] shrink-0">BRI</div>
+                        <div className="flex-1">
+                          <h3 className="font-bold text-[#0e2a47] text-sm mb-0.5">BRI Virtual Account</h3>
+                          <p className="text-xs text-text-secondary">Bayar melalui Virtual Account BRI</p>
+                        </div>
+                        <ChevronDown size={16} className="text-text-secondary" />
+                      </label>
+
+                      {/* Mandiri VA */}
+                      <label className="border border-border-subtle hover:border-[#166534] bg-white rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all">
+                        <div className="w-5 h-5 rounded-full border border-border-subtle shrink-0"></div>
+                        <div className="w-12 h-8 rounded border border-border-subtle flex items-center justify-center text-[10px] font-bold text-[#0B5599] shrink-0">Mandiri</div>
+                        <div className="flex-1">
+                          <h3 className="font-bold text-[#0e2a47] text-sm mb-0.5">Mandiri Virtual Account</h3>
+                          <p className="text-xs text-text-secondary">Bayar melalui Virtual Account Mandiri</p>
+                        </div>
+                        <ChevronDown size={16} className="text-text-secondary" />
+                      </label>
+
+                      {/* E-Wallet */}
+                      <label className="border border-border-subtle hover:border-[#166534] bg-white rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all">
+                        <div className="w-5 h-5 rounded-full border border-border-subtle shrink-0"></div>
+                        <div className="flex gap-1 shrink-0 w-12 justify-center">
+                          <div className="w-5 h-5 rounded bg-purple-600 flex items-center justify-center text-[6px] font-bold text-white">OVO</div>
+                          <div className="w-5 h-5 rounded bg-blue-500 flex items-center justify-center text-[6px] font-bold text-white">DANA</div>
+                        </div>
+                        <div className="flex-1 ml-2">
+                          <h3 className="font-bold text-[#0e2a47] text-sm mb-0.5">E-Wallet</h3>
+                          <p className="text-xs text-text-secondary">Bayar menggunakan saldo e-wallet</p>
+                        </div>
+                        <ChevronDown size={16} className="text-text-secondary" />
+                      </label>
+
+                      {/* QRIS */}
+                      <label className="border border-border-subtle hover:border-[#166534] bg-white rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all">
+                        <div className="w-5 h-5 rounded-full border border-border-subtle shrink-0"></div>
+                        <div className="w-12 h-8 rounded border border-border-subtle flex items-center justify-center text-[12px] font-bold text-red-600 shrink-0">QRIS</div>
+                        <div className="flex-1">
+                          <h3 className="font-bold text-[#0e2a47] text-sm mb-0.5">QRIS</h3>
+                          <p className="text-xs text-text-secondary">Bayar dengan QR Code</p>
+                        </div>
+                        <ChevronDown size={16} className="text-text-secondary" />
+                      </label>
+                      
+                      {/* Transfer Bank Manual */}
+                      <label className="border border-border-subtle hover:border-[#166534] bg-white rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all">
+                        <div className="w-5 h-5 rounded-full border border-border-subtle shrink-0"></div>
+                        <div className="w-12 h-8 rounded border border-border-subtle flex items-center justify-center shrink-0">
+                          <CreditCard size={16} className="text-text-secondary" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-bold text-[#0e2a47] text-sm mb-0.5">Transfer Bank Manual</h3>
+                          <p className="text-xs text-text-secondary">Transfer ke rekening bank Dombantara secara manual</p>
+                        </div>
+                        <ChevronDown size={16} className="text-text-secondary" />
+                      </label>
+
+                    </div>
+                  </div>
+
+                  {/* Detail Pembayaran Banner */}
+                  <div className="bg-white rounded-2xl p-6 shadow-sm border border-border-subtle">
+                    <h2 className="font-bold text-lg text-[#0e2a47] mb-6 flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-[#166534] text-white flex items-center justify-center text-xs">2</div>
+                      Detail Pembayaran
+                    </h2>
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 border border-border-subtle rounded-xl bg-slate-50">
+                      <div className="flex items-start gap-3">
+                        <ShieldCheck className="text-[#166534] shrink-0" size={24} />
+                        <div>
+                          <h4 className="font-bold text-sm text-[#0e2a47]">Transaksi aman & terlindungi</h4>
+                          <p className="text-xs text-text-secondary mt-0.5">Data Anda dienkripsi dan transaksi dijamin aman.</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4 shrink-0">
+                        <div className="text-xs font-bold text-text-muted flex items-center gap-1"><ShieldCheck size={14}/> SSL SECURE</div>
+                        <div className="text-xs font-bold text-text-muted flex items-center gap-1"><CreditCard size={14}/> PCI DSS</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  {/* KONFIRMASI PESANAN FORM (Step 4) */}
+                  <div className="bg-white rounded-2xl p-6 shadow-sm border border-border-subtle">
+                    <div className="flex items-center justify-between mb-6 pb-6 border-b border-border-subtle">
+                      <h2 className="font-bold text-lg text-[#0e2a47] flex items-center gap-2">
+                        <CheckSquare size={20} className="text-[#166534]" /> Ringkasan Informasi Pesanan
+                      </h2>
+                      <button onClick={() => setCurrentStep(2)} className="text-sm font-bold text-[#166534] flex items-center gap-1 hover:underline">
+                        <Edit2 size={14} /> Ubah
+                      </button>
+                    </div>
+
+                    <div className="space-y-6">
+                      {/* Alamat Pengiriman */}
+                      <div className="flex gap-4">
+                        <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-[#166534] shrink-0">
+                          <MapPin size={18} />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-xs font-bold text-text-muted mb-1">Alamat Pengiriman</p>
+                          <h4 className="font-bold text-[#0e2a47] text-sm mb-1">Andi Wijaya</h4>
+                          <p className="text-xs text-text-secondary leading-relaxed">
+                            Jl. Raya Cileunyi No. 123, Cileunyi, Kec. Cileunyi,<br/>
+                            Kab. Bandung, Jawa Barat 40622<br/>
+                            0812-3456-7890
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="border-t border-border-subtle"></div>
+
+                      {/* Metode Pengiriman */}
+                      <div className="flex gap-4">
+                        <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-[#166534] shrink-0">
+                          <Truck size={18} />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-xs font-bold text-text-muted mb-1">Metode Pengiriman</p>
+                          <div className="flex items-center justify-between gap-4">
+                            <div>
+                              <div className="flex items-center gap-2 mb-1">
+                                <h4 className="font-bold text-[#0e2a47] text-sm">Pengiriman Standar</h4>
+                                <span className="bg-emerald-100 text-[#166534] text-[10px] font-bold px-2 py-0.5 rounded">Rekomendasi</span>
+                              </div>
+                              <p className="text-xs text-text-secondary">Estimasi tiba 2 - 3 hari kerja</p>
+                            </div>
+                            <div className="font-bold text-[#166534] text-sm">Gratis</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="border-t border-border-subtle"></div>
+
+                      {/* Metode Pembayaran */}
+                      <div className="flex gap-4">
+                        <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-[#166534] shrink-0">
+                          <CreditCard size={18} />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-xs font-bold text-text-muted mb-1">Metode Pembayaran</p>
+                          <div className="flex items-center justify-between gap-4">
+                            <div>
+                              <h4 className="font-bold text-[#0e2a47] text-sm mb-1">BCA Virtual Account</h4>
+                              <p className="text-xs text-text-secondary">Bayar melalui Virtual Account BCA</p>
+                            </div>
+                            <div className="text-blue-600 font-bold text-xl italic pr-2">BCA</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="border-t border-border-subtle"></div>
+
+                      {/* Catatan Pesanan */}
+                      <div className="flex gap-4">
+                        <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-[#166534] shrink-0">
+                          <Edit2 size={18} />
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between">
+                            <p className="text-xs font-bold text-text-muted mb-1">Catatan Pesanan</p>
+                            <button className="text-xs font-bold text-[#166534] flex items-center gap-1 hover:underline">
+                              <Edit2 size={12} /> Ubah
+                            </button>
+                          </div>
+                          <p className="text-sm text-[#0e2a47]">Tidak ada catatan</p>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  {/* Banner Aman */}
+                  <div className="bg-emerald-50/50 rounded-2xl p-6 border border-emerald-100 flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-white border border-emerald-200 flex items-center justify-center text-[#166534] shrink-0">
+                      <ShieldCheck size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-[#166534] text-sm mb-1">Tenang, Pesanan Anda Aman</h4>
+                      <p className="text-xs text-emerald-800 mb-4 leading-relaxed">Kami menggunakan sistem keamanan berlapis untuk melindungi setiap transaksi Anda.</p>
+                      <div className="flex flex-wrap items-center gap-6">
+                        <div className="flex items-center gap-2">
+                          <ShieldCheck size={16} className="text-emerald-700"/>
+                          <span className="text-[10px] font-bold text-emerald-800 leading-tight">SSL<br/>Encrypted</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <CreditCard size={16} className="text-emerald-700"/>
+                          <span className="text-[10px] font-bold text-emerald-800 leading-tight">PCI DSS<br/>Compliant</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <CheckCircle2 size={16} className="text-emerald-700"/>
+                          <span className="text-[10px] font-bold text-emerald-800 leading-tight">100%<br/>Aman</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Persetujuan TNC */}
+                  <div className="bg-white rounded-2xl p-6 shadow-sm border border-border-subtle mt-4">
+                    <label className="flex items-start gap-4 cursor-pointer group">
+                      <div className={`mt-0.5 w-6 h-6 rounded border flex items-center justify-center shrink-0 transition-colors ${isConfirmed ? 'bg-[#166534] border-[#166534] text-white' : 'border-slate-300 bg-white group-hover:border-[#166534]'}`}>
+                        {isConfirmed && <CheckCircle2 size={16} className="fill-current text-white" />}
+                      </div>
+                      <input type="checkbox" className="hidden" checked={isConfirmed} onChange={() => setIsConfirmed(!isConfirmed)} />
+                      <div>
+                        <p className="text-sm font-bold text-[#0e2a47] mb-1">Saya telah memeriksa dan memastikan semua detail pesanan sudah benar.</p>
+                        <p className="text-xs text-text-secondary leading-relaxed">Dengan melanjutkan, saya menyetujui <Link href="#" className="font-bold text-[#166534] hover:underline">Syarat & Ketentuan</Link> dan <Link href="#" className="font-bold text-[#166534] hover:underline">Kebijakan Privasi</Link> Dombantara Farm.</p>
+                      </div>
+                    </label>
+                  </div>
+                </div>
               )}
 
             </div>
@@ -467,7 +758,31 @@ export default function KeranjangPage() {
             {/* RIGHT COLUMN: ORDER SUMMARY */}
             <div className="lg:col-span-4">
               <div className="bg-white rounded-2xl p-6 shadow-sm border border-border-subtle sticky top-28">
-                <h2 className="font-bold text-lg text-[#0e2a47] mb-6">Ringkasan Pesanan</h2>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="font-bold text-lg text-[#0e2a47]">Ringkasan Pesanan</h2>
+                  {currentStep >= 2 && (
+                    <button onClick={() => setCurrentStep(1)} className="text-xs font-bold text-[#166534] hover:underline">
+                      Ubah Keranjang
+                    </button>
+                  )}
+                </div>
+
+                {selectedItems.length > 0 && (
+                  <div className="mb-6 space-y-4">
+                    <p className="text-xs font-bold text-text-secondary">{selectedItems.length} Item</p>
+                    {selectedItems.map((item) => (
+                      <div key={item.id} className="flex gap-3 items-center">
+                        <img src={`https://images.unsplash.com/photo-${item.image}?auto=format&fit=crop&q=80&w=150`} className="w-12 h-12 rounded object-cover shrink-0" />
+                        <div className="flex-1 overflow-hidden">
+                          <h4 className="font-bold text-[#0e2a47] text-xs truncate">{item.title}</h4>
+                          <p className="text-[10px] text-text-secondary truncate">{item.specs.split('•')[0].trim()}</p>
+                        </div>
+                        <div className="text-xs font-bold text-text-secondary w-4 text-center shrink-0">{item.qty}x</div>
+                        <div className="font-bold text-[#166534] text-xs text-right min-w-[70px] shrink-0">Rp {(item.price * item.qty).toLocaleString('id-ID')}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
                 
                 <div className="space-y-4 mb-6">
                   <div className="flex items-center justify-between text-sm">
@@ -484,7 +799,7 @@ export default function KeranjangPage() {
 
                 <div className="border-t border-border-subtle pt-6 mb-6">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-[#0e2a47]">Total</span>
+                    <span className="font-bold text-[#0e2a47]">Total {currentStep === 3 && 'Pembayaran'}</span>
                     <span className="font-display font-bold text-2xl text-[#166534]">Rp {subtotal.toLocaleString('id-ID')}</span>
                   </div>
                 </div>
@@ -516,13 +831,13 @@ export default function KeranjangPage() {
                         <ArrowLeft size={16} /> Belanja Lagi
                       </Link>
                     </>
-                  ) : (
+                  ) : currentStep === 2 ? (
                     <>
                       <button 
-                        onClick={() => alert("Lanjut ke Pembayaran akan diimplementasikan pada tahap selanjutnya.")}
+                        onClick={() => setCurrentStep(3)}
                         className="w-full py-3.5 rounded-xl bg-[#166534] text-white font-bold hover:bg-[#15532b] shadow-sm transition-all flex items-center justify-center gap-2"
                       >
-                        <Lock size={16} /> Lanjut ke Pembayaran <ArrowRight size={16} />
+                        Lanjut ke Pembayaran <ArrowRight size={16} />
                       </button>
                       <button 
                         onClick={() => setCurrentStep(1)}
@@ -531,12 +846,47 @@ export default function KeranjangPage() {
                         <ArrowLeft size={16} /> Kembali ke Keranjang
                       </button>
                     </>
+                  ) : currentStep === 3 ? (
+                    <>
+                      <button 
+                        onClick={() => setCurrentStep(4)}
+                        className="w-full py-3.5 rounded-xl bg-[#166534] text-white font-bold hover:bg-[#15532b] shadow-sm transition-all flex items-center justify-center gap-2"
+                      >
+                        <Lock size={16} /> Bayar Sekarang
+                      </button>
+                      <p className="text-[10px] text-center text-text-muted mt-2 leading-relaxed">
+                        Dengan melanjutkan, Anda menyetujui<br/> <Link href="#" className="font-bold text-[#166534] hover:underline">Syarat & Ketentuan</Link> & <Link href="#" className="font-bold text-[#166534] hover:underline">Kebijakan Privasi</Link>
+                      </p>
+                      <button 
+                        onClick={() => setCurrentStep(2)}
+                        className="w-full mt-4 py-3.5 rounded-xl bg-white border border-border-subtle text-text-primary font-bold hover:bg-surface transition-all flex items-center justify-center gap-2"
+                      >
+                        <ArrowLeft size={16} /> Kembali ke Pengiriman
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button 
+                        onClick={() => alert("Pesanan Berhasil Dibuat!")}
+                        disabled={!isConfirmed}
+                        className="w-full py-3.5 rounded-xl bg-[#166534] text-white font-bold hover:bg-[#15532b] shadow-sm transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <Lock size={16} /> Konfirmasi & Buat Pesanan <ArrowRight size={16} />
+                      </button>
+                      <button 
+                        onClick={() => setCurrentStep(3)}
+                        className="w-full py-3.5 rounded-xl bg-white border border-border-subtle text-text-primary font-bold hover:bg-surface transition-all flex items-center justify-center gap-2"
+                      >
+                        <ArrowLeft size={16} /> Kembali ke Pembayaran
+                      </button>
+                    </>
                   )}
                 </div>
 
-                {/* Payment Methods */}
-                <div>
-                  <p className="text-xs font-bold text-text-muted mb-3">Metode Pembayaran</p>
+                {/* Payment Methods - only show in Step 1 & 2 */}
+                {currentStep < 3 && (
+                  <div>
+                    <p className="text-xs font-bold text-text-muted mb-3">Metode Pembayaran</p>
                   <div className="flex flex-wrap items-center gap-2">
                     <div className="px-2 py-1 border border-border-subtle rounded bg-white text-[9px] font-bold text-blue-600">BCA</div>
                     <div className="px-2 py-1 border border-border-subtle rounded bg-white text-[9px] font-bold text-[#F15A23]">BNI</div>
@@ -546,6 +896,7 @@ export default function KeranjangPage() {
                     <div className="px-2 py-1 border border-border-subtle rounded bg-white text-[9px] font-bold text-[#00A550]">QRIS</div>
                   </div>
                 </div>
+                )}
 
               </div>
             </div>
