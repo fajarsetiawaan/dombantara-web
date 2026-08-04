@@ -197,7 +197,7 @@ export default function SupplyPage() {
                 features: ["Domba & Kambing Qurban", "Hewan Aqiqah", "Bibit Breeding", "Penggemukan"]
               },
               {
-                title: "Corporate Supply", icon: Building2, img: "1556761175-5973dc0f32e7", url: "/market",
+                title: "Corporate Supply", icon: Building2, img: "1556761175-5973dc0f32e7", url: "/ekosistem/supply/corporate",
                 desc: "Solusi pengadaan hewan dan produk untuk kebutuhan korporasi.",
                 features: ["Hotel & Restoran", "Catering & Event", "Retail & Supermarket", "Instansi & Pemerintah"]
               },
