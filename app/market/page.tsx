@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 
 import { 
@@ -10,7 +9,6 @@ import {
   CheckCircle2,
   Truck,
   Headset,
-  MapPin,
   ChevronDown,
   CreditCard,
   FileText,
@@ -18,7 +16,6 @@ import {
   Globe,
   Grid,
   ArrowRight,
-  LayoutGrid,
   Box,
   Database,
   Gift,
@@ -28,74 +25,13 @@ import {
   Wrench,
   Wheat,
   Pill,
-  MoreHorizontal,
-  Stethoscope,
-  Star
+  Stethoscope
 } from "lucide-react";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 
-// Dummy Data untuk Produk
-const marketProducts = [
-  { id: 1, title: "Domba Garut Premium", badge: "", category: "Qurban", spec: "10-12 bulan", weight: "40 - 45 kg", price: "Rp 4.750.000", location: "Bandung, Jawa Barat", img: "1484557985045-edf25e08da73", rating: 4.8, sold: "1rb+" },
-  { id: 2, title: "Kambing Etawa Super", badge: "", category: "Aqiqah", spec: "7-9 bulan", weight: "30 - 35 kg", price: "Rp 3.250.000", location: "Boyolali, Jawa Tengah", img: "1484557985045-edf25e08da73", rating: 4.9, sold: "500+" },
-  { id: 3, title: "Sapi Limousin", badge: "", category: "Qurban", spec: "18-24 bulan", weight: "250 - 300 kg", price: "Rp 24.500.000", location: "Lampung, Lampung", img: "1484557985045-edf25e08da73", rating: 4.7, sold: "50+" },
-  { id: 4, title: "Paket Qurban Domba", badge: "Paket", category: "1 Domba + Layanan", spec: "", weight: "25 - 40 kg", price: "Rp 4.950.000", location: "Tersedia di 20+ kota", img: "1484557985045-edf25e08da73", rating: 5.0, sold: "2rb+" },
-  { id: 5, title: "Paket Aqiqah", badge: "Paket", category: "Kambing + Masak", spec: "", weight: "20 - 25 kg", price: "Rp 2.250.000", location: "Tersedia di 20+ kota", img: "1484557985045-edf25e08da73", rating: 4.8, sold: "1.5rb+" },
-  { id: 6, title: "Daging Domba Segar", badge: "", category: "Tanpa tulang", spec: "", weight: "500 gram", price: "Rp 145.000", location: "Jakarta, DKI Jakarta", img: "1484557985045-edf25e08da73", rating: 4.6, sold: "3rb+" },
-  { id: 7, title: "Susu Domba Segar", badge: "", category: "Pasteurisasi", spec: "", weight: "1 Liter", price: "Rp 65.000", location: "Bandung, Jawa Barat", img: "1484557985045-edf25e08da73", rating: 4.9, sold: "800+" },
-  { id: 8, title: "Jasa Penyembelihan", badge: "", category: "Sesuai Syariat", spec: "", weight: "Per Hewan", price: "Rp 250.000", location: "Tersedia di 20+ kota", img: "1484557985045-edf25e08da73", rating: 4.7, sold: "100+" },
-  { id: 101, title: "Pakan Domba Premium", badge: "Terlaris", category: "Pakan Ternak", spec: "Semua umur", weight: "20 Kg", price: "Rp 195.000", location: "Tersedia di 20+ kota", img: "/pakan.png", rating: 4.8, sold: "5rb+" },
-  { id: 102, title: "Konsentrat Domba", badge: "", category: "Pakan Ternak", spec: "Fattening", weight: "20 Kg", price: "Rp 175.000", location: "Bandung, Jawa Barat", img: "/pakan.png", rating: 4.7, sold: "2rb+" },
-  { id: 103, title: "Pakan Kambing Complete", badge: "Promo", category: "Pakan Ternak", spec: "Semua umur", weight: "20 Kg", price: "Rp 185.000", location: "Boyolali, Jawa Tengah", img: "/pakan.png", rating: 4.9, sold: "3rb+" },
-  { id: 104, title: "Pelet Hi-Protein", badge: "", category: "Pakan Ternak", spec: "Performa optimal", weight: "20 Kg", price: "Rp 210.000", location: "Lampung, Lampung", img: "/pakan.png", rating: 4.8, sold: "1rb+" },
-  { id: 105, title: "Paket Breeding Domba", badge: "Rekomendasi", category: "Hewan Ternak", spec: "Indukan unggul", weight: "1 Jantan, 5 Betina", price: "Rp 15.000.000", location: "Tersedia di 20+ kota", img: "1484557985045-edf25e08da73", rating: 5.0, sold: "50+" },
-  { id: 106, title: "Paket Fattening Domba", badge: "", category: "Hewan Ternak", spec: "Bakalan prospek tinggi", weight: "10 Ekor Bakalan", price: "Rp 12.500.000", location: "Bandung, Jawa Barat", img: "1484557985045-edf25e08da73", rating: 4.7, sold: "100+" },
-  { id: 107, title: "Paket Breeding Kambing", badge: "", category: "Hewan Ternak", spec: "Kambing Etawa", weight: "1 Jantan, 5 Betina", price: "Rp 18.000.000", location: "Boyolali, Jawa Tengah", img: "1484557985045-edf25e08da73", rating: 4.9, sold: "30+" },
-  { id: 108, title: "Paket Fattening Kambing", badge: "", category: "Hewan Ternak", spec: "Bakalan unggul", weight: "10 Ekor Bakalan", price: "Rp 14.500.000", location: "Lampung, Lampung", img: "1484557985045-edf25e08da73", rating: 4.8, sold: "80+" }
-];
-const ProductCard = ({ prod }: { prod: any }) => (
-  <Link href={`/market/${prod.id}`} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-border-subtle flex flex-col group hover:shadow-lg hover:border-[#166534]/30 transition-all duration-300 h-full cursor-pointer block">
-    {/* Image Area */}
-    <div className="h-44 relative overflow-hidden bg-surface shrink-0">
-      <img 
-        src={prod.img?.startsWith('/') ? prod.img : `https://images.unsplash.com/photo-${prod.img}?auto=format&fit=crop&q=80&w=400`} 
-        alt={prod.title} 
-        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 text-transparent"
-      />
-    </div>
-
-    {/* Content Area */}
-    <div className="p-2.5 flex flex-col gap-1.5 flex-1">
-      <h3 className="font-bold text-text-primary text-sm leading-snug line-clamp-2 group-hover:text-[#166534] transition-colors">
-        {prod.badge && (
-          <span className="inline-flex items-center justify-center bg-[#166534] text-white text-[9px] font-bold px-1.5 rounded mr-1.5 align-middle leading-tight h-[16px]">
-            {prod.badge}
-          </span>
-        )}
-        {prod.title}
-      </h3>
-
-      <div className="flex items-center gap-1 text-[11px] text-text-secondary">
-        <Star size={11} className="fill-yellow-400 text-yellow-400" />
-        <span className="font-bold">{prod.rating}</span>
-      </div>
-
-      <div className="flex flex-col mt-auto pt-1 gap-0.5">
-        <div className="flex items-center gap-1.5">
-          <span className="text-[9px] font-bold text-white bg-red-500 px-1 rounded leading-tight h-[14px] flex items-center">-5%</span>
-          <span className="text-[10px] text-text-muted line-through">
-            {prod.price.replace('4.750', '5.000').replace('3.250', '3.420').replace('24.500', '25.780').replace('4.950', '5.210').replace('2.250', '2.360').replace('195.000', '205.000').replace('175.000', '185.000').replace('185.000', '195.000').replace('210.000', '225.000').replace('15.000.000', '15.500.000').replace('12.500.000', '13.000.000').replace('18.000.000', '19.000.000').replace('14.500.000', '15.500.000')}
-          </span>
-        </div>
-        <div className="flex items-center justify-between">
-          <p className="font-bold text-[#166534] text-sm leading-tight">{prod.price}</p>
-          <span className="text-[10px] text-text-muted">{prod.sold} terjual</span>
-        </div>
-      </div>
-    </div>
-  </Link>
-);
+import { marketProducts } from "@/lib/mock-data/marketProducts";
+import { ProductCard } from "@/components/market/ProductCard";
 
 export default function MarketPage() {
   const [activeTab, setActiveTab] = useState("foryou");

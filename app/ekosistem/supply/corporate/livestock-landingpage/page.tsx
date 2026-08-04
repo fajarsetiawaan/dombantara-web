@@ -145,9 +145,9 @@ export default function LivestockLandingPage() {
                   <h3 className="font-display font-bold text-lg text-text-primary mb-2">{sol.title}</h3>
                   <p className="text-[10px] text-text-secondary leading-relaxed mb-4">{sol.desc}</p>
                   <div className="mt-auto flex gap-2">
-                    <button className="flex-1 text-center border border-border-subtle rounded-xl py-2.5 text-[10px] font-bold text-text-primary hover:bg-primary hover:text-white hover:border-primary transition-colors">
+                    <Link href={sol.title === "Restoran & Jaringan Kuliner" ? "/ekosistem/supply/corporate/livestock-landingpage/restoran" : "#"} className="flex-1 text-center border border-border-subtle rounded-xl py-2.5 text-[10px] font-bold text-text-primary hover:bg-primary hover:text-white hover:border-primary transition-colors block leading-tight">
                       Lihat Detail
-                    </button>
+                    </Link>
                     <button className="w-9 shrink-0 flex items-center justify-center border border-border-subtle rounded-xl text-text-primary hover:bg-primary hover:text-white hover:border-primary transition-colors" title="Hubungi Sales Corporate">
                       <MessageSquare size={14} />
                     </button>
