@@ -457,7 +457,7 @@ export default function LivestockLandingPage() {
         </div>
       </section>
 
-      <Footer theme="light" />
+      <Footer />
     </main>
   );
 }

@@ -103,7 +103,7 @@ const products = [
 ];
 
 const categories = [
-  { id: "hewan", label: "Hewan Ternak", desc: "Penyediaan hewan berkualitas mulai dari paket breeding hingga fattening.", icon: Box },
+  { id: "hewan", label: "Bibit Ternak", desc: "Penyediaan hewan berkualitas mulai dari paket breeding hingga fattening.", icon: Box },
   { id: "pakan", label: "Pakan Ternak", desc: "Pakan berkualitas untuk mendukung pertumbuhan ternak yang sehat dan produktif.", icon: Box },
   { id: "vitamin", label: "Obat & Vitamin", desc: "Obat-obatan dan vitamin untuk menjaga imunitas dan kesehatan ternak.", icon: Droplet },
   { id: "obat", label: "Suplemen & Mineral", desc: "Suplemen dan mineral lengkap untuk performa maksimal.", icon: HeartPulse },
