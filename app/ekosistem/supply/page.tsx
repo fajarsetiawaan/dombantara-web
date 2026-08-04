@@ -192,7 +192,7 @@ export default function SupplyPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {[
               {
-                title: "Livestock Supply", icon: Box, img: "1484557985045-edf25e08da73", url: "/market",
+                title: "Livestock Supply", icon: Box, img: "1484557985045-edf25e08da73", url: "/ekosistem/supply/livestock",
                 desc: "Penyediaan hewan berkualitas untuk berbagai kebutuhan Anda.",
                 features: ["Domba & Kambing Qurban", "Hewan Aqiqah", "Bibit Breeding", "Penggemukan"]
               },
