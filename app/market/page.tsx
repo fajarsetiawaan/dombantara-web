@@ -45,13 +45,21 @@ const marketProducts = [
   { id: 6, title: "Daging Domba Segar", badge: "", category: "Tanpa tulang", spec: "", weight: "500 gram", price: "Rp 145.000", location: "Jakarta, DKI Jakarta", img: "1484557985045-edf25e08da73", rating: 4.6, sold: "3rb+" },
   { id: 7, title: "Susu Domba Segar", badge: "", category: "Pasteurisasi", spec: "", weight: "1 Liter", price: "Rp 65.000", location: "Bandung, Jawa Barat", img: "1484557985045-edf25e08da73", rating: 4.9, sold: "800+" },
   { id: 8, title: "Jasa Penyembelihan", badge: "", category: "Sesuai Syariat", spec: "", weight: "Per Hewan", price: "Rp 250.000", location: "Tersedia di 20+ kota", img: "1484557985045-edf25e08da73", rating: 4.7, sold: "100+" },
+  { id: 101, title: "Pakan Domba Premium", badge: "Terlaris", category: "Pakan Ternak", spec: "Semua umur", weight: "20 Kg", price: "Rp 195.000", location: "Tersedia di 20+ kota", img: "/pakan.png", rating: 4.8, sold: "5rb+" },
+  { id: 102, title: "Konsentrat Domba", badge: "", category: "Pakan Ternak", spec: "Fattening", weight: "20 Kg", price: "Rp 175.000", location: "Bandung, Jawa Barat", img: "/pakan.png", rating: 4.7, sold: "2rb+" },
+  { id: 103, title: "Pakan Kambing Complete", badge: "Promo", category: "Pakan Ternak", spec: "Semua umur", weight: "20 Kg", price: "Rp 185.000", location: "Boyolali, Jawa Tengah", img: "/pakan.png", rating: 4.9, sold: "3rb+" },
+  { id: 104, title: "Pelet Hi-Protein", badge: "", category: "Pakan Ternak", spec: "Performa optimal", weight: "20 Kg", price: "Rp 210.000", location: "Lampung, Lampung", img: "/pakan.png", rating: 4.8, sold: "1rb+" },
+  { id: 105, title: "Paket Breeding Domba", badge: "Rekomendasi", category: "Hewan Ternak", spec: "Indukan unggul", weight: "1 Jantan, 5 Betina", price: "Rp 15.000.000", location: "Tersedia di 20+ kota", img: "1484557985045-edf25e08da73", rating: 5.0, sold: "50+" },
+  { id: 106, title: "Paket Fattening Domba", badge: "", category: "Hewan Ternak", spec: "Bakalan prospek tinggi", weight: "10 Ekor Bakalan", price: "Rp 12.500.000", location: "Bandung, Jawa Barat", img: "1484557985045-edf25e08da73", rating: 4.7, sold: "100+" },
+  { id: 107, title: "Paket Breeding Kambing", badge: "", category: "Hewan Ternak", spec: "Kambing Etawa", weight: "1 Jantan, 5 Betina", price: "Rp 18.000.000", location: "Boyolali, Jawa Tengah", img: "1484557985045-edf25e08da73", rating: 4.9, sold: "30+" },
+  { id: 108, title: "Paket Fattening Kambing", badge: "", category: "Hewan Ternak", spec: "Bakalan unggul", weight: "10 Ekor Bakalan", price: "Rp 14.500.000", location: "Lampung, Lampung", img: "1484557985045-edf25e08da73", rating: 4.8, sold: "80+" }
 ];
 const ProductCard = ({ prod }: { prod: any }) => (
   <Link href={`/market/${prod.id}`} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-border-subtle flex flex-col group hover:shadow-lg hover:border-[#166534]/30 transition-all duration-300 h-full cursor-pointer block">
     {/* Image Area */}
     <div className="h-44 relative overflow-hidden bg-surface shrink-0">
       <img 
-        src={`https://images.unsplash.com/photo-${prod.img}?auto=format&fit=crop&q=80&w=400`} 
+        src={prod.img?.startsWith('/') ? prod.img : `https://images.unsplash.com/photo-${prod.img}?auto=format&fit=crop&q=80&w=400`} 
         alt={prod.title} 
         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 text-transparent"
       />
@@ -77,7 +85,7 @@ const ProductCard = ({ prod }: { prod: any }) => (
         <div className="flex items-center gap-1.5">
           <span className="text-[9px] font-bold text-white bg-red-500 px-1 rounded leading-tight h-[14px] flex items-center">-5%</span>
           <span className="text-[10px] text-text-muted line-through">
-            {prod.price.replace('4.750', '5.000').replace('3.250', '3.420').replace('24.500', '25.780').replace('4.950', '5.210').replace('2.250', '2.360')}
+            {prod.price.replace('4.750', '5.000').replace('3.250', '3.420').replace('24.500', '25.780').replace('4.950', '5.210').replace('2.250', '2.360').replace('195.000', '205.000').replace('175.000', '185.000').replace('185.000', '195.000').replace('210.000', '225.000').replace('15.000.000', '15.500.000').replace('12.500.000', '13.000.000').replace('18.000.000', '19.000.000').replace('14.500.000', '15.500.000')}
           </span>
         </div>
         <div className="flex items-center justify-between">

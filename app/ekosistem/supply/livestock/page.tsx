@@ -105,10 +105,11 @@ const products = [
 const categories = [
   { id: "hewan", label: "Hewan Ternak", desc: "Penyediaan hewan berkualitas mulai dari paket breeding hingga fattening.", icon: Box },
   { id: "pakan", label: "Pakan Ternak", desc: "Pakan berkualitas untuk mendukung pertumbuhan ternak yang sehat dan produktif.", icon: Box },
-  { id: "vitamin", label: "Vitamin & Suplemen", desc: "Suplemen lengkap untuk menjaga imunitas dan performa ternak.", icon: Droplet },
-  { id: "obat", label: "Obat & Kesehatan Ternak", desc: "Obat-obatan dan solusi kesehatan terpercaya untuk peternakan Anda.", icon: HeartPulse },
+  { id: "vitamin", label: "Obat & Vitamin", desc: "Obat-obatan dan vitamin untuk menjaga imunitas dan kesehatan ternak.", icon: Droplet },
+  { id: "obat", label: "Suplemen & Mineral", desc: "Suplemen dan mineral lengkap untuk performa maksimal.", icon: HeartPulse },
   { id: "kandang", label: "Kandang & Aksesoris", desc: "Peralatan kandang tangguh dan tahan lama untuk kenyamanan ternak.", icon: LayoutGrid },
   { id: "peralatan", label: "Peralatan Peternakan", desc: "Alat-alat esensial untuk memaksimalkan operasional harian peternakan.", icon: Box },
+  { id: "layanan", label: "Layanan & Konsultasi", desc: "Layanan profesional dan konsultasi peternakan.", icon: Headphones },
   { id: "lainnya", label: "Lainnya", desc: "Berbagai kebutuhan pendukung lainnya.", icon: MoreHorizontal },
 ];
 
