@@ -56,7 +56,7 @@ const corporateCategories = [
   },
   {
     id: "processed",
-    title: "Processed Meat",
+    title: "Fresh Food",
     desc: "Produk olahan daging praktis berkualitas untuk kebutuhan kuliner dan retail.",
     image: "1555939594-58d7cb561ad1",
     icon: <Flame size={20} />,
@@ -66,18 +66,7 @@ const corporateCategories = [
       "Custom Recipe & Private Label"
     ]
   },
-  {
-    id: "frozen",
-    title: "Frozen Supply",
-    desc: "Produk beku berkualitas dengan penyimpanan cold storage dan distribusi berpendingin.",
-    image: "1587314168485-64fbc605be5a",
-    icon: <Snowflake size={20} />,
-    features: [
-      "Daging Beku",
-      "Jeroan & Daging Olahan",
-      "Kemasan Retail & Bulk"
-    ]
-  },
+
   {
     id: "dairy",
     title: "Dairy & By-Product",
@@ -268,27 +257,91 @@ export default function CorporateSupplyPage() {
             <div className="flex-1">
               <h2 className="text-xl font-bold text-[#0e2a47] mb-8">Kategori Pasokan untuk Korporasi</h2>
               
-              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-16">
                 {corporateCategories.map((cat) => (
-                  <div key={cat.id} className="bg-white rounded-2xl border border-border-subtle overflow-hidden flex flex-col hover:shadow-lg hover:border-[#166534]/30 transition-all duration-300 group">
-                    <div className="relative h-32 bg-surface overflow-hidden shrink-0">
-                      <img 
-                        src={`https://images.unsplash.com/photo-${cat.image}?auto=format&fit=crop&q=80&w=600`}
-                        alt={cat.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                      <div className="absolute top-4 left-4 w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center text-[#166534]">
-                        {cat.icon}
-                      </div>
+                  <div key={cat.id} className="bg-white rounded-2xl p-6 border border-border-subtle flex flex-col hover:shadow-lg hover:border-[#166534]/30 transition-all duration-300 group h-full">
+                    <div className="w-12 h-12 rounded-xl bg-[#166534]/10 flex items-center justify-center text-[#166534] shrink-0 mb-4">
+                      {cat.icon}
                     </div>
-                    <div className="p-5 flex flex-col flex-1">
-                      <h3 className="font-bold text-sm text-[#0e2a47] mb-1">{cat.title}</h3>
-                      <p className="text-[10px] text-text-secondary leading-relaxed">
+                    <div className="flex flex-col flex-1">
+                      <h3 className="font-bold text-sm text-[#0e2a47] mb-2">{cat.title}</h3>
+                      <p className="text-[10px] text-text-secondary leading-relaxed mb-6">
                         {cat.desc}
                       </p>
+                      <div className="mt-auto">
+                        <button className="w-full text-center border border-border-subtle rounded-xl py-2.5 text-[10px] font-bold text-[#0e2a47] hover:bg-[#166534] hover:text-white hover:border-[#166534] transition-colors">
+                          Hubungi Sales Corporate
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
+              </div>
+
+              {/* Steps Timeline (Moved here to fill space) */}
+              <div className="mt-16">
+                <h2 className="text-xl font-bold text-[#0e2a47] mb-8">Proses Pemesanan Mudah</h2>
+                
+                <div className="relative">
+                  <div className="hidden md:block absolute top-6 left-0 right-0 h-0.5 bg-border-subtle z-0"></div>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-5 gap-6 relative z-10">
+                    {/* Step 1 */}
+                    <div className="flex flex-col items-center text-center group">
+                      <div className="w-12 h-12 rounded-2xl bg-white border border-border-subtle flex items-center justify-center text-[#166534] shadow-sm group-hover:border-[#166534] transition-colors shrink-0 mb-4">
+                        <MessageCircle size={20} />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-xs text-[#0e2a47] mb-1">1. Konsultasi Kebutuhan</h4>
+                        <p className="text-[10px] text-text-secondary leading-relaxed">Sampaikan kebutuhan produk, volume, dan jadwal Anda.</p>
+                      </div>
+                    </div>
+                    
+                    {/* Step 2 */}
+                    <div className="flex flex-col items-center text-center group">
+                      <div className="w-12 h-12 rounded-2xl bg-white border border-border-subtle flex items-center justify-center text-[#166534] shadow-sm group-hover:border-[#166534] transition-colors shrink-0 mb-4">
+                        <FileText size={20} />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-xs text-[#0e2a47] mb-1">2. Penawaran Harga</h4>
+                        <p className="text-[10px] text-text-secondary leading-relaxed">Tim kami mengirimkan penawaran terbaik.</p>
+                      </div>
+                    </div>
+
+                    {/* Step 3 */}
+                    <div className="flex flex-col items-center text-center group">
+                      <div className="w-12 h-12 rounded-2xl bg-white border border-border-subtle flex items-center justify-center text-[#166534] shadow-sm group-hover:border-[#166534] transition-colors shrink-0 mb-4">
+                        <ClipboardCheck size={20} />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-xs text-[#0e2a47] mb-1">3. Konfirmasi & PO</h4>
+                        <p className="text-[10px] text-text-secondary leading-relaxed">Pemesanan dikonfirmasi sesuai kesepakatan.</p>
+                      </div>
+                    </div>
+
+                    {/* Step 4 */}
+                    <div className="flex flex-col items-center text-center group">
+                      <div className="w-12 h-12 rounded-2xl bg-white border border-border-subtle flex items-center justify-center text-[#166534] shadow-sm group-hover:border-[#166534] transition-colors shrink-0 mb-4">
+                        <Truck size={20} />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-xs text-[#0e2a47] mb-1">4. Produksi & Pengiriman</h4>
+                        <p className="text-[10px] text-text-secondary leading-relaxed">Proses pemenuhan dan pengiriman sesuai jadwal.</p>
+                      </div>
+                    </div>
+
+                    {/* Step 5 */}
+                    <div className="flex flex-col items-center text-center group">
+                      <div className="w-12 h-12 rounded-2xl bg-white border border-border-subtle flex items-center justify-center text-[#166534] shadow-sm group-hover:border-[#166534] transition-colors shrink-0 mb-4">
+                        <ShieldCheck size={20} />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-xs text-[#0e2a47] mb-1">5. Layanan Purna Jual</h4>
+                        <p className="text-[10px] text-text-secondary leading-relaxed">Evaluasi berkala untuk menjaga kepuasan dan kualitas.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -372,74 +425,6 @@ export default function CorporateSupplyPage() {
         </div>
       </section>
 
-      {/* Steps Timeline */}
-      <section className="py-16 border-t border-border-subtle bg-surface/30">
-        <div className="container mx-auto px-6 lg:px-10">
-          <h2 className="text-xl font-bold text-[#0e2a47] mb-12">Proses Pemesanan Mudah</h2>
-          
-          <div className="relative">
-            <div className="hidden md:block absolute top-6 left-0 right-0 h-0.5 bg-border-subtle z-0"></div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-8 relative z-10">
-              {/* Step 1 */}
-              <div className="flex flex-row md:flex-col items-center gap-6 md:gap-4 md:text-center group">
-                <div className="w-12 h-12 rounded-2xl bg-white border border-border-subtle flex items-center justify-center text-[#166534] shadow-sm group-hover:border-[#166534] transition-colors shrink-0">
-                  <MessageCircle size={20} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xs text-[#0e2a47] mb-1">1. Konsultasi Kebutuhan</h4>
-                  <p className="text-[10px] text-text-secondary leading-relaxed">Sampaikan kebutuhan produk, volume, dan jadwal Anda.</p>
-                </div>
-              </div>
-              
-              {/* Step 2 */}
-              <div className="flex flex-row md:flex-col items-center gap-6 md:gap-4 md:text-center group">
-                <div className="w-12 h-12 rounded-2xl bg-white border border-border-subtle flex items-center justify-center text-[#166534] shadow-sm group-hover:border-[#166534] transition-colors shrink-0">
-                  <FileText size={20} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xs text-[#0e2a47] mb-1">2. Penawaran Harga</h4>
-                  <p className="text-[10px] text-text-secondary leading-relaxed">Tim kami mengirimkan penawaran terbaik.</p>
-                </div>
-              </div>
-
-              {/* Step 3 */}
-              <div className="flex flex-row md:flex-col items-center gap-6 md:gap-4 md:text-center group">
-                <div className="w-12 h-12 rounded-2xl bg-white border border-border-subtle flex items-center justify-center text-[#166534] shadow-sm group-hover:border-[#166534] transition-colors shrink-0">
-                  <ClipboardCheck size={20} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xs text-[#0e2a47] mb-1">3. Konfirmasi & PO</h4>
-                  <p className="text-[10px] text-text-secondary leading-relaxed">Pemesanan dikonfirmasi sesuai kesepakatan.</p>
-                </div>
-              </div>
-
-              {/* Step 4 */}
-              <div className="flex flex-row md:flex-col items-center gap-6 md:gap-4 md:text-center group">
-                <div className="w-12 h-12 rounded-2xl bg-white border border-border-subtle flex items-center justify-center text-[#166534] shadow-sm group-hover:border-[#166534] transition-colors shrink-0">
-                  <Truck size={20} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xs text-[#0e2a47] mb-1">4. Produksi & Pengiriman</h4>
-                  <p className="text-[10px] text-text-secondary leading-relaxed">Proses pemenuhan dan pengiriman sesuai jadwal.</p>
-                </div>
-              </div>
-
-              {/* Step 5 */}
-              <div className="flex flex-row md:flex-col items-center gap-6 md:gap-4 md:text-center group">
-                <div className="w-12 h-12 rounded-2xl bg-white border border-border-subtle flex items-center justify-center text-[#166534] shadow-sm group-hover:border-[#166534] transition-colors shrink-0">
-                  <ShieldCheck size={20} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xs text-[#0e2a47] mb-1">5. Layanan Purna Jual</h4>
-                  <p className="text-[10px] text-text-secondary leading-relaxed">Evaluasi berkala untuk menjaga kepuasan dan kualitas.</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Clients Section */}
       <section className="py-12 border-t border-border-subtle bg-white">
