@@ -170,7 +170,7 @@ export default function RestoranLandingPage() {
     <main className="min-h-screen bg-white font-body flex flex-col selection:bg-primary selection:text-white relative overflow-x-hidden">
       
       {/* 1. Hero Section */}
-      <section className="relative w-full min-h-[90vh] md:min-h-screen flex flex-col justify-between overflow-hidden bg-[#0A0A0A]">
+      <section className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#0A0A0A]">
         {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -197,26 +197,28 @@ export default function RestoranLandingPage() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-12 max-w-7xl mx-auto w-full">
-          <div className="max-w-2xl mt-8 md:mt-0">
+        <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-12 max-w-7xl mx-auto w-full pt-16 md:pt-0">
+          <div className="max-w-2xl mt-8 sm:mt-12 md:mt-0">
             <h1 className="text-white font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-6">
               Dapur Anda<br/>
               Berhenti Masak<br/>
               Karena Kambing &<br/>
               Domba Telat Datang?
             </h1>
-            <p className="text-gray-300 text-base md:text-lg lg:text-xl leading-relaxed mb-10 max-w-xl">
+            <p className="text-gray-300 text-base md:text-lg lg:text-xl leading-relaxed mb-12 max-w-xl">
               Masalah pasokan bukan cuma soal telat.<br/>
               Tapi tentang kepercayaan, kualitas,<br/>
               dan kelangsungan bisnis Anda.
             </p>
-            <Link 
-              href="https://wa.me/6281234567890" 
-              className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-lg md:text-xl py-4 px-8 rounded-full transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-green-900/50"
-            >
-              <FaWhatsapp size={24} />
-              Konsultasi Sekarang
-            </Link>
+            <div className="mt-4 mb-8">
+              <Link 
+                href="https://wa.me/6281234567890" 
+                className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-lg md:text-xl py-4 px-8 rounded-full transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-green-900/50"
+              >
+                <FaWhatsapp size={24} />
+                Konsultasi Sekarang
+              </Link>
+            </div>
           </div>
         </div>
 
