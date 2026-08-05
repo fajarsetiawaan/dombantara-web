@@ -19,6 +19,7 @@ import {
   Tag,
   Award,
   Users,
+  Tractor,
   Calendar,
   MapPin,
   Check,
@@ -33,12 +34,52 @@ export default function RestoranLandingPage() {
   const [expandedProduct, setExpandedProduct] = useState<string | null>(null);
   const [activeProduct, setActiveProduct] = useState(0);
 
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEndProducts = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe) {
+      setActiveProduct((prev) => (prev + 1) % productsData.length);
+    }
+    if (isRightSwipe) {
+      setActiveProduct((prev) => (prev - 1 + productsData.length) % productsData.length);
+    }
+  };
+
+  const onTouchEndTesti = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe) {
+      setActiveTesti((prev) => (prev + 1) % testimonials.length);
+    }
+    if (isRightSwipe) {
+      setActiveTesti((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    }
+  };
+
   const [activeTesti, setActiveTesti] = useState(0);
   const productsData = [
     {
       id: 'domba',
       title: 'Domba',
-      image: 'https://images.unsplash.com/photo-1484069560501-87d72b0c3669?auto=format&fit=crop&q=80',
+      image: 'https://images.unsplash.com/photo-1511117833845-4089906d028b?q=80&w=1200&auto=format&fit=crop',
       description: 'Domba hidup berkualitas tinggi, dipelihara dengan pakan terbaik untuk menghasilkan daging empuk.',
       details: [
         { label: 'Domba Jantan', price: 'Rp 2.500.000 / ekor' },
@@ -50,7 +91,7 @@ export default function RestoranLandingPage() {
       id: 'kambing',
       recommended: true,
       title: 'Kambing',
-      image: 'https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&q=80',
+      image: 'https://images.unsplash.com/photo-1524024973431-2ad916746881?q=80&w=1200&auto=format&fit=crop',
       description: 'Kambing pilihan dengan rasio daging dan lemak yang ideal untuk berbagai menu andalan restoran.',
       details: [
         { label: 'Kambing Jantan', price: 'Rp 2.800.000 / ekor' },
@@ -61,7 +102,7 @@ export default function RestoranLandingPage() {
     {
       id: 'karkas',
       title: 'Karkas Siap Masak',
-      image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80',
+      image: 'https://images.unsplash.com/photo-1603048297172-c92544798d5e?q=80&w=1200&auto=format&fit=crop',
       description: 'Daging potong higienis dan terstandar, 100% halal, siap diolah tanpa repot membersihkan.',
       details: [
         { label: 'Karkas Domba (Utuh)', price: 'Rp 115.000 / kg' },
@@ -126,7 +167,7 @@ export default function RestoranLandingPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-white font-body flex flex-col selection:bg-primary selection:text-white relative">
+    <main className="min-h-screen bg-white font-body flex flex-col selection:bg-primary selection:text-white relative overflow-x-hidden">
       
       {/* 1. Hero Section */}
       <section className="relative w-full min-h-[90vh] md:min-h-screen flex flex-col justify-between overflow-hidden bg-[#0A0A0A]">
@@ -153,9 +194,6 @@ export default function RestoranLandingPage() {
               <div className="text-primary text-[10px] font-bold tracking-[0.2em] uppercase">Livestock</div>
             </div>
           </div>
-          <button className="text-white hover:text-primary transition-colors">
-            <Menu size={28} />
-          </button>
         </div>
 
         {/* Hero Content */}
@@ -190,13 +228,13 @@ export default function RestoranLandingPage() {
       </section>
 
       {/* Mitra Kolaborasi (Under Megatron) */}
-      <section className="py-8 bg-surface border-b border-border-subtle overflow-hidden">
+      <section className="py-16 md:py-20 bg-white border-b border-border-subtle overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative">
-          <p className="text-center text-sm font-bold text-text-muted uppercase tracking-widest mb-8">
+          <p className="text-center text-sm font-bold text-text-muted uppercase tracking-widest mb-12">
             Mitra Kolaborasi Kami
           </p>
           
-          <div className="relative flex flex-col gap-6">
+          <div className="relative flex flex-col gap-12 md:gap-16">
 
             {/* Marquee Row 1 */}
             <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
@@ -224,7 +262,7 @@ export default function RestoranLandingPage() {
       </section>
 
       {/* 2. Problems Section */}
-      <section className="py-20 md:py-32 px-6 bg-white relative">
+      <section className="py-20 md:py-28 px-6 bg-surface relative">
         <div className="max-w-6xl mx-auto">
           
           {/* Section Header */}
@@ -302,7 +340,7 @@ export default function RestoranLandingPage() {
       </section>
 
       {/* 3. Bridge Section */}
-      <section className="bg-[#051109] py-20 md:py-28 px-6 text-white overflow-hidden relative rounded-[40px] md:rounded-[80px] mx-2 md:mx-6">
+      <section className="bg-[#051109] py-20 md:py-24 px-6 text-white overflow-hidden relative rounded-[40px] md:rounded-[80px] mx-4 md:mx-8 my-12 md:my-20 shadow-2xl">
         {/* Glow effect */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-[300px] bg-primary/20 blur-[100px] pointer-events-none"></div>
 
@@ -321,7 +359,7 @@ export default function RestoranLandingPage() {
             
             {/* Box 1 */}
             <div className="flex flex-col items-center justify-center border-2 border-primary/40 rounded-2xl p-6 w-full md:w-56 bg-black/40 backdrop-blur-sm">
-              <User size={40} className="text-white mb-3" />
+              <Tractor size={40} className="text-white mb-3" />
               <div className="font-bold text-white text-center">Mitra<br/>Dombantara</div>
             </div>
 
@@ -363,7 +401,7 @@ export default function RestoranLandingPage() {
       </section>
 
       {/* 4. Solutions Section */}
-      <section className="py-20 md:py-32 px-6 bg-white">
+      <section className="py-20 md:py-28 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           
           {/* Section Header */}
@@ -439,53 +477,8 @@ export default function RestoranLandingPage() {
         </div>
       </section>
 
-      {/* 5. Stats Banner Section */}
-      <section className="px-2 md:px-6 mb-2 md:mb-6">
-        <div className="relative w-full overflow-hidden rounded-[24px] md:rounded-[40px] bg-black">
-          {/* Background image */}
-          <div className="absolute inset-0">
-            <img 
-              src="https://images.unsplash.com/photo-1516223594879-a78c18cb9c02?auto=format&fit=crop&q=80" 
-              alt="Peternakan Domba" 
-              className="w-full h-full object-cover object-center opacity-30 mix-blend-overlay"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80"></div>
-          </div>
-
-          <div className="relative z-10 max-w-6xl mx-auto py-12 px-6 md:py-20 lg:py-24">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-white/10">
-              
-              {/* Stat 1 */}
-              <div className="flex flex-col items-center text-center pt-0 md:pt-0">
-                <Users size={48} className="text-primary mb-4" strokeWidth={1.5} />
-                <div className="text-3xl md:text-4xl font-display font-bold text-white mb-2">500+</div>
-                <div className="text-lg font-bold text-white mb-1">Mitra Dombantara</div>
-                <div className="text-sm text-gray-400">Terseleksi & Terpercaya</div>
-              </div>
-
-              {/* Stat 2 */}
-              <div className="flex flex-col items-center text-center pt-10 md:pt-0">
-                <Calendar size={48} className="text-primary mb-4" strokeWidth={1.5} />
-                <div className="text-3xl md:text-4xl font-display font-bold text-white mb-2">Setiap Hari</div>
-                <div className="text-lg font-bold text-white mb-1">Pasokan Dikirim</div>
-                <div className="text-sm text-gray-400">Tanpa Putus</div>
-              </div>
-
-              {/* Stat 3 */}
-              <div className="flex flex-col items-center text-center pt-10 md:pt-0">
-                <MapPin size={48} className="text-primary mb-4" strokeWidth={1.5} />
-                <div className="text-3xl md:text-4xl font-display font-bold text-white mb-2">Jabodetabek</div>
-                <div className="text-lg font-bold text-white mb-1">Jangkauan Luas</div>
-                <div className="text-sm text-gray-400">Kirim ke seluruh area</div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Produk & Layanan Baru */}
-      <section className="py-20 bg-surface border-b border-border-subtle relative">
+      <section className="py-20 md:py-28 bg-surface relative">
         <div className="container mx-auto px-6 lg:px-10">
           <div className="text-center mb-12 md:mb-20">
             <h3 className="text-primary text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-4">
@@ -494,13 +487,16 @@ export default function RestoranLandingPage() {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-text-primary mb-6">
               Produk & Layanan
             </h2>
-            <p className="text-text-muted text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-              Pilih produk sesuai kebutuhan operasional: hewan hidup, jasa potong, atau karkas siap masak dengan pasokan terjadwal dan kualitas terstandar.
-            </p>
+
           </div>
 
           <div className="relative w-full max-w-5xl mx-auto px-4 pb-8 pt-4">
-            <div className={`flex justify-center items-center relative transition-all duration-500 ease-in-out ${expandedProduct ? 'h-[750px] sm:h-[650px]' : 'h-[500px] sm:h-[450px]'}`}>
+            <div 
+              className={`flex justify-center items-center relative transition-all duration-500 ease-in-out ${expandedProduct ? 'h-[750px] sm:h-[650px]' : 'h-[500px] sm:h-[450px]'}`}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEndProducts}
+            >
               {productsData.map((prod, i) => {
                 const isActive = i === activeProduct;
                 const isLeft = i === (activeProduct - 1 + productsData.length) % productsData.length;
@@ -582,10 +578,15 @@ export default function RestoranLandingPage() {
                               ))}
                             </ul>
                             
-                            <button className="bg-primary hover:bg-primary-dark text-white font-bold py-4 px-6 rounded-2xl w-full text-center transition-all flex justify-center items-center gap-2 shadow-md hover:shadow-lg">
-                              Pesan Sekarang 
-                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            </button>
+                            <div className="flex flex-col gap-3 w-full">
+                              <button className="bg-primary hover:bg-primary-dark text-white font-bold py-4 px-6 rounded-2xl w-full text-center transition-all flex justify-center items-center gap-2 shadow-md hover:shadow-lg">
+                                Pesan Sekarang 
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                              </button>
+                              <button className="bg-white border-2 border-primary text-primary hover:bg-primary/5 font-bold py-3.5 px-6 rounded-2xl w-full text-center transition-all flex justify-center items-center shadow-sm">
+                                Minta Harga Percobaan
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -593,52 +594,65 @@ export default function RestoranLandingPage() {
                   </div>
                 );
               })}
-            </div>
-            
-            {/* Controls */}
-            <div className="flex justify-center items-center gap-6 mt-8">
-              <button 
-                onClick={() => { setActiveProduct((prev) => (prev - 1 + productsData.length) % productsData.length); setExpandedProduct(null); }}
-                className="w-12 h-12 rounded-full bg-white border border-border-subtle flex items-center justify-center hover:bg-surface hover:text-primary transition-colors shadow-sm"
-                aria-label="Previous Product"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-              </button>
-              <div className="flex gap-3">
-                {productsData.map((_, i) => (
-                   <button 
-                     key={i}
-                     onClick={() => { setActiveProduct(i); setExpandedProduct(null); }}
-                     className={`w-3 h-3 rounded-full transition-all ${i === activeProduct ? 'bg-primary w-8' : 'bg-border-strong hover:bg-text-muted'}`}
-                     aria-label={`Go to product ${i + 1}`}
-                   />
-                ))}
-              </div>
-              <button 
-                onClick={() => { setActiveProduct((prev) => (prev + 1) % productsData.length); setExpandedProduct(null); }} 
-                className="w-12 h-12 rounded-full bg-white border border-border-subtle flex items-center justify-center hover:bg-surface hover:text-primary transition-colors shadow-sm"
-                aria-label="Next Product"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-              </button>
-            </div>
-          </div>
+            </div></div>
           
-        </div>
-        {/* Down Arrow */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-10">
-          <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary border border-border-subtle shadow-md cursor-pointer hover:bg-surface transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-          </div>
         </div>
       </section>
 
       
 
-<section className="py-24 bg-surface border-b border-border-subtle"><div className="container mx-auto px-6 lg:px-10">
-{/* Section 2: Testimoni Carousel */}
-          <div className="relative overflow-hidden">
-            <div className="text-center mb-16">
+
+
+
+      {/* 5. Stats Banner Section */}
+      <section className="py-16 md:py-24 px-4 md:px-8 bg-white">
+        <div className="relative w-full overflow-hidden rounded-[24px] md:rounded-[40px] bg-black">
+          {/* Background image */}
+          <div className="absolute inset-0">
+            <img 
+              src="https://images.unsplash.com/photo-1516223594879-a78c18cb9c02?auto=format&fit=crop&q=80" 
+              alt="Peternakan Domba" 
+              className="w-full h-full object-cover object-center opacity-30 mix-blend-overlay"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80"></div>
+          </div>
+
+          <div className="relative z-10 max-w-6xl mx-auto py-12 px-6 md:py-20 lg:py-24">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-white/10">
+              
+              {/* Stat 1 */}
+              <div className="flex flex-col items-center text-center pt-0 md:pt-0">
+                <Tractor size={48} className="text-primary mb-4" strokeWidth={1.5} />
+                <div className="text-3xl md:text-4xl font-display font-bold text-white mb-2">500+</div>
+                <div className="text-lg font-bold text-white mb-1">Mitra Dombantara</div>
+                <div className="text-sm text-gray-400">Terseleksi & Terpercaya</div>
+              </div>
+
+              {/* Stat 2 */}
+              <div className="flex flex-col items-center text-center pt-10 md:pt-0">
+                <Calendar size={48} className="text-primary mb-4" strokeWidth={1.5} />
+                <div className="text-3xl md:text-4xl font-display font-bold text-white mb-2">Setiap Hari</div>
+                <div className="text-lg font-bold text-white mb-1">Pasokan Dikirim</div>
+                <div className="text-sm text-gray-400">Tanpa Putus</div>
+              </div>
+
+              {/* Stat 3 */}
+              <div className="flex flex-col items-center text-center pt-10 md:pt-0">
+                <MapPin size={48} className="text-primary mb-4" strokeWidth={1.5} />
+                <div className="text-3xl md:text-4xl font-display font-bold text-white mb-2">Jabodetabek</div>
+                <div className="text-lg font-bold text-white mb-1">Jangkauan Luas</div>
+                <div className="text-sm text-gray-400">Kirim ke seluruh area</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 2: Testimoni Carousel */}
+      <section className="py-20 md:py-24 bg-surface">
+        <div className="relative overflow-hidden">
+            <div className="text-center mb-8">
               <div className="inline-block px-3 py-1 rounded-full bg-accent-primary/10 text-accent-primary text-xs font-bold uppercase tracking-widest mb-4">
                 Testimoni
               </div>
@@ -648,7 +662,12 @@ export default function RestoranLandingPage() {
             </div>
             
             <div className="relative w-full max-w-5xl mx-auto px-4 py-8">
-              <div className="flex justify-center items-center h-[320px] md:h-[280px] relative">
+              <div 
+                className="flex justify-center items-center h-[320px] md:h-[280px] relative"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEndTesti}
+              >
                 {testimonials.map((testi, i) => {
                   const isActive = i === activeTesti;
                   const isLeft = i === (activeTesti - 1 + testimonials.length) % testimonials.length;
@@ -700,43 +719,14 @@ export default function RestoranLandingPage() {
                   )
                 })}
               </div>
-              
-              {/* Controls */}
-              <div className="flex justify-center items-center gap-6 mt-8">
-                <button 
-                  onClick={() => setActiveTesti((prev) => (prev - 1 + testimonials.length) % testimonials.length)} 
-                  className="w-12 h-12 rounded-full bg-white border border-border-subtle flex items-center justify-center hover:bg-surface hover:text-primary transition-colors shadow-sm"
-                  aria-label="Previous Testimonial"
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-                </button>
-                <div className="flex gap-3">
-                  {testimonials.map((_, i) => (
-                     <button 
-                       key={i} 
-                       onClick={() => setActiveTesti(i)}
-                       className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === activeTesti ? 'bg-primary w-8' : 'bg-border-strong hover:bg-primary/50'}`} 
-                       aria-label={`Go to testimonial ${i + 1}`}
-                     />
-                  ))}
-                </div>
-                <button 
-                  onClick={() => setActiveTesti((prev) => (prev + 1) % testimonials.length)} 
-                  className="w-12 h-12 rounded-full bg-white border border-border-subtle flex items-center justify-center hover:bg-surface hover:text-primary transition-colors shadow-sm"
-                  aria-label="Next Testimonial"
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-                </button>
-              </div>
             </div>
           </div>
-
-        </div>
       </section>
 
-<section className="py-24 bg-white relative z-20"><div className="container mx-auto px-6 lg:px-10 max-w-5xl">
-{/* FAQ */}
-          <div className="mb-32">
+      {/* FAQ */}
+      <section className="py-20 md:py-28 bg-white relative z-20">
+        <div className="container mx-auto px-6 lg:px-10 max-w-5xl">
+          <div>
             <h2 className="text-3xl font-display font-bold text-text-primary mb-8 text-center">Tanya Jawab Seputar Pasokan</h2>
             <div className="bg-surface rounded-[24px] border border-border-subtle shadow-sm overflow-hidden p-2">
               {[
@@ -755,6 +745,14 @@ export default function RestoranLandingPage() {
                 {
                   q: "Bagaimana sistem pembayaran untuk mitra korporat?",
                   a: "Pembayaran dapat dilakukan melalui transfer bank atau virtual account (InsForge Invoice). Skema term of payment (TOP) seperti Net 14 atau Net 30 tersedia khusus bagi mitra korporat terverifikasi yang telah menandatangani kontrak."
+                },
+                {
+                  q: "Apakah disediakan jasa potong bersertifikat halal?",
+                  a: "Tentu. Semua proses penyembelihan kami dilakukan di RPH (Rumah Potong Hewan) bersertifikat halal dan mengikuti standar kesejahteraan hewan (animal welfare) secara ketat."
+                },
+                {
+                  q: "Bagaimana jika ada komplain atau ketidaksesuaian pesanan?",
+                  a: "Dombantara memberikan garansi penggantian (replacement) 100% jika kualitas daging tidak sesuai spesifikasi atau rusak selama perjalanan. Anda bisa langsung menghubungi account manager Anda."
                 }
               ].map((item, idx, arr) => (
                 <div 
@@ -790,26 +788,31 @@ export default function RestoranLandingPage() {
 </div></section>
 
 {/* 6. Final CTA Section */}
-      <section className="px-2 md:px-6 pb-2 md:pb-6">
+      <section className="px-4 md:px-8 py-10 md:py-20 bg-white">
         <div className="bg-[#0A0A0A] rounded-[24px] md:rounded-[40px] py-16 px-6 md:py-24 lg:py-32 flex flex-col items-center justify-center text-center relative overflow-hidden">
           {/* Subtle glow */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[50%] bg-primary/10 blur-[120px] pointer-events-none"></div>
 
           <div className="relative z-10 max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-[1.2] mb-6">
-              Jangan Biarkan <span className="text-[#34D399]">Dapur Anda</span><br/>
-              Berhenti Karena Supplier.
+              Coba Dulu, <span className="text-[#34D399]">Buktikan Sendiri</span><br/>
+              Bedanya.
             </h2>
-            <p className="text-gray-400 text-base md:text-xl mb-12">
-              Kini saatnya beralih ke sistem pasokan yang bisa diandalkan.
-            </p>
+            <div className="text-gray-300 text-base md:text-lg mb-12 space-y-6 max-w-3xl mx-auto leading-relaxed">
+              <p>
+                Order pertama Anda kami beri harga percobaan. Kalau ternyata tidak lebih baik dari suplier Anda sekarang, tidak ada kewajiban lanjut — tapi begitu coba sekali, dapur Anda kemungkinan besar tidak mau kembali ke cara lama.
+              </p>
+              <p>
+                Jumlah mitra baru per kawasan kami batasi agar jadwal kirim harian tetap tepat waktu untuk semua pelanggan — amankan slot untuk usaha Anda sebelum kuota kawasan penuh.
+              </p>
+            </div>
             
             <Link 
               href="https://wa.me/6281234567890" 
               className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-lg md:text-xl py-5 px-8 md:px-12 rounded-full transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-green-900/30 w-full sm:w-auto"
             >
               <FaWhatsapp size={28} />
-              Coba Order Pertama Sekarang
+              Coba Order Pertama
             </Link>
 
             <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 mt-10">
@@ -850,6 +853,50 @@ export default function RestoranLandingPage() {
         </div>
       </div>
 
+
+      {/* 7. Footer */}
+      <footer className="bg-[#051109] pt-20 pb-10 px-6 text-white border-t border-white/5 relative z-10 overflow-hidden">
+        {/* Glow effect */}
+        <div className="absolute top-0 left-1/4 w-[50%] h-[200px] bg-primary/10 blur-[120px] pointer-events-none"></div>
+             <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12 mb-16 relative z-10">
+          
+          {/* Brand */}
+          <div className="max-w-md">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-[#051109] font-display font-bold text-xl shadow-lg">
+                D
+              </div>
+              <div>
+                <div className="font-display font-bold text-xl tracking-wider leading-none mb-1">DOMBANTARA</div>
+                <div className="text-primary text-[10px] font-bold tracking-[0.2em] uppercase">Domba Nusantara</div>
+              </div>
+            </div>
+            <p className="text-gray-400 text-sm leading-relaxed mb-8">
+              Membangun ekosistem peternakan domba yang terintegrasi, transparan, dan berkelanjutan untuk Indonesia yang lebih baik.
+            </p>
+            <div className="flex items-center gap-3">
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-primary hover:text-white border border-white/10 flex items-center justify-center transition-all duration-300 text-gray-400">
+                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-primary hover:text-white border border-white/10 flex items-center justify-center transition-all duration-300 text-gray-400">
+                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-primary hover:text-white border border-white/10 flex items-center justify-center transition-all duration-300 text-gray-400">
+                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-primary hover:text-white border border-white/10 flex items-center justify-center transition-all duration-300 text-gray-400 font-bold">
+                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="max-w-7xl mx-auto border-t border-white/10 pt-8 flex justify-center items-center relative z-10">
+          <p className="text-gray-500 text-sm">© {new Date().getFullYear()} Dombantara. Hak cipta dilindungi.</p>
+        </div>
+      </footer>
     </main>
   );
 }
+
