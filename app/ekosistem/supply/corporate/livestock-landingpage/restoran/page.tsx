@@ -236,28 +236,34 @@ export default function RestoranLandingPage() {
             Mitra Kolaborasi Kami
           </p>
           
-          <div className="relative flex flex-col gap-12 md:gap-16">
+          <div className="relative flex flex-col gap-4 md:gap-6 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4">
 
             {/* Marquee Row 1 */}
-            <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
-              <div className="flex gap-12 md:gap-24 px-6 md:px-12 opacity-50 grayscale">
-                {["Resto Sultan", "Sate Khas", "Hotel Bintang", "Aqiqah Plus", "Catering Co.", "Resto Sultan", "Sate Khas", "Hotel Bintang", "Aqiqah Plus", "Catering Co."].map((name, i) => (
-                  <div key={i} className="font-display font-bold text-xl md:text-2xl text-text-primary whitespace-nowrap">
-                    {name}
-                  </div>
-                ))}
-              </div>
+            <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-4 md:gap-6">
+              {[...Array(2)].map((_, i) => (
+                <div key={i} className="flex gap-4 md:gap-6 shrink-0">
+                  {["Resto Sultan", "Sate Khas", "Hotel Bintang", "Aqiqah Plus", "Catering Co.", "Resto Sultan", "Sate Khas"].map((name, j) => (
+                    <div key={j} className="flex items-center gap-3 px-6 md:px-8 py-3.5 md:py-4 rounded-full border border-border-subtle bg-surface shadow-sm transition-transform hover:scale-105 cursor-pointer group">
+                      <div className="w-2 h-2 rounded-full bg-primary/40 group-hover:bg-primary transition-colors"></div>
+                      <span className="font-display font-bold text-base md:text-lg text-text-primary opacity-70 group-hover:opacity-100 transition-opacity whitespace-nowrap">{name}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
 
             {/* Marquee Row 2 (Reverse) */}
-            <div className="flex w-max animate-marquee hover:[animation-play-state:paused]" style={{ animationDirection: 'reverse' }}>
-              <div className="flex gap-12 md:gap-24 px-6 md:px-12 opacity-50 grayscale">
-                {["Warung Nusantara", "Steak House", "RM Padang Prima", "Wedding Organizer", "Kebab Boss", "Warung Nusantara", "Steak House", "RM Padang Prima", "Wedding Organizer", "Kebab Boss"].map((name, i) => (
-                  <div key={i} className="font-display font-bold text-xl md:text-2xl text-text-primary whitespace-nowrap">
-                    {name}
-                  </div>
-                ))}
-              </div>
+            <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-4 md:gap-6" style={{ animationDirection: 'reverse' }}>
+              {[...Array(2)].map((_, i) => (
+                <div key={i} className="flex gap-4 md:gap-6 shrink-0">
+                  {["Warung Nusantara", "Steak House", "RM Padang Prima", "Wedding Organizer", "Kebab Boss", "Warung Nusantara", "Steak House"].map((name, j) => (
+                    <div key={j} className="flex items-center gap-3 px-6 md:px-8 py-3.5 md:py-4 rounded-full border border-border-subtle bg-surface shadow-sm transition-transform hover:scale-105 cursor-pointer group">
+                      <div className="w-2 h-2 rounded-full bg-secondary/40 group-hover:bg-secondary transition-colors"></div>
+                      <span className="font-display font-bold text-base md:text-lg text-text-primary opacity-70 group-hover:opacity-100 transition-opacity whitespace-nowrap">{name}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -733,28 +739,28 @@ export default function RestoranLandingPage() {
             <div className="bg-surface rounded-[24px] border border-border-subtle shadow-sm overflow-hidden p-2">
               {[
                 {
-                  q: "Berapa minimal order untuk harga B2B?",
-                  a: "Minimal order untuk mendapatkan harga khusus B2B (korporat) bervariasi tergantung kesepakatan, namun umumnya dimulai dari 5 ekor per pengiriman atau kontrak senilai tertentu per bulannya."
+                  q: "Berapa minimal pesanan untuk mendapatkan harga khusus restoran?",
+                  a: "Untuk mendapatkan harga langganan khusus rumah makan atau warung sate, minimal pemesanannya sangat fleksibel. Biasanya mulai dari 2-3 ekor (atau karkas) per pengiriman, tergantung kesepakatan jadwal kirim ke dapur Anda."
                 },
                 {
-                  q: "Apakah bisa membuat kontrak pasokan bulanan?",
-                  a: "Sangat bisa. Kami sangat menyarankan sistem kontrak bulanan atau kuartalan agar kami dapat menjamin ketersediaan stok, mengunci harga agar tidak fluktuatif, dan menjadwalkan pengiriman sesuai timeline operasional Anda."
+                  q: "Apakah Dombantara bisa menjamin pasokan stabil setiap hari?",
+                  a: "Tentu. Sistem langganan kami dirancang khusus agar operasional dapur Anda tidak pernah berhenti. Kami akan mengunci harga dan menjadwalkan pengiriman rutin sesuai kebutuhan harian atau mingguan Anda tanpa takut kehabisan stok."
                 },
                 {
-                  q: "Area pengiriman mencakup wilayah mana saja?",
-                  a: "Saat ini jangkauan pengiriman B2B kami berfokus di area Jabodetabek. Namun, untuk volume besar (bulk order), kami siap mendiskusikan rute pengiriman ke wilayah lain di Pulau Jawa."
+                  q: "Apakah daging bisa langsung dipotong sesuai kebutuhan menu sate/gulai?",
+                  a: "Sangat bisa! Kami menyediakan layanan karkas utuh maupun pemotongan spesifik (potongan dadu untuk sate, tulang untuk gulai, dll) yang semuanya diproses di Rumah Potong Hewan (RPH) bersertifikat halal."
                 },
                 {
-                  q: "Bagaimana sistem pembayaran untuk mitra korporat?",
-                  a: "Pembayaran dapat dilakukan melalui transfer bank atau virtual account (InsForge Invoice). Skema term of payment (TOP) seperti Net 14 atau Net 30 tersedia khusus bagi mitra korporat terverifikasi yang telah menandatangani kontrak."
+                  q: "Bagaimana sistem pembayarannya untuk langganan restoran?",
+                  a: "Pembayaran sangat mudah. Kami menyediakan sistem invoice untuk kemudahan pembayaran mingguan atau bulanan (Term of Payment) khusus bagi mitra warung makan dan restoran yang sudah berlangganan tetap."
                 },
                 {
-                  q: "Apakah disediakan jasa potong bersertifikat halal?",
-                  a: "Tentu. Semua proses penyembelihan kami dilakukan di RPH (Rumah Potong Hewan) bersertifikat halal dan mengikuti standar kesejahteraan hewan (animal welfare) secara ketat."
+                  q: "Apakah pesanan diantar langsung ke dapur restoran?",
+                  a: "Betul. Armada pengiriman kami (cold-chain untuk karkas) siap mengantar pesanan langsung ke pintu dapur restoran atau warung Anda di seluruh wilayah Jabodetabek agar kesegaran daging selalu terjaga."
                 },
                 {
-                  q: "Bagaimana jika ada komplain atau ketidaksesuaian pesanan?",
-                  a: "Dombantara memberikan garansi penggantian (replacement) 100% jika kualitas daging tidak sesuai spesifikasi atau rusak selama perjalanan. Anda bisa langsung menghubungi account manager Anda."
+                  q: "Bagaimana jika kualitas daging yang datang kurang bagus?",
+                  a: "Kami memberikan Garansi Penggantian 100%. Jika daging atau karkas yang tiba di dapur Anda tidak sesuai dengan standar kesepakatan, kami akan menggantinya agar pelayanan restoran Anda ke pelanggan tidak terganggu."
                 }
               ].map((item, idx, arr) => (
                 <div 
