@@ -676,10 +676,10 @@ export default function RestoranLandingPage() {
               ].map((question, idx, arr) => (
                 <div 
                   key={idx} 
-                  className={`flex items-center justify-between p-4 sm:p-6 ${idx !== arr.length - 1 ? 'border-b border-border-subtle' : ''} cursor-pointer hover:bg-white rounded-2xl transition-colors`}
+                  className={`flex items-center justify-between p-4 sm:p-6 ${idx !== arr.length - 1 ? 'border-b border-border-subtle' : ''} cursor-pointer hover:bg-white rounded-2xl transition-colors group`}
                 >
-                  <span className="font-bold text-text-primary text-sm sm:text-base md:text-lg">{question}</span>
-                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-border-subtle text-text-muted">
+                  <span className="font-bold text-black text-sm sm:text-base md:text-lg">{question}</span>
+                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-border-subtle text-black group-hover:text-primary transition-colors shadow-sm">
                     <ChevronDown size={20} />
                   </div>
                 </div>
