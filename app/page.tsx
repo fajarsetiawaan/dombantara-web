@@ -36,7 +36,7 @@ export default function MarketingPage() {
         >
           <div className="absolute inset-0 bg-black/50 z-10"></div>
           <img 
-            src="https://images.unsplash.com/photo-1484557985045-edf25e08da73?auto=format&fit=crop&q=80&w=2000" 
+            src="/images/lp-sheep-image.png" 
             alt="Peternakan Domba" 
             className="w-full h-full object-cover"
           />
