@@ -1,177 +1,484 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { 
-  ChevronRight, 
-  Store,
-  Beef,
-  Flame,
+  ChevronDown,
+  Menu,
+  ArrowDown,
   Truck,
-  CheckCircle,
-  Scale,
-  Settings,
-  ArrowRight,
+  TrendingUp,
+  Beef,
+  Handshake,
   AlertTriangle,
   XCircle,
-  Clock,
-  ShieldCheck,
-  ChevronDown,
-  Wallet,
-  FileText
+  CheckCircle,
+  User,
+  ArrowRight,
+  Store,
+  Tag,
+  Award,
+  Users,
+  Calendar,
+  MapPin,
+  Check,
+  ClipboardCheck
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function RestoranLandingPage() {
-  const [activeTesti, setActiveTesti] = useState(1);
+  const [notifIndex, setNotifIndex] = useState(0);
+  const [showNotif, setShowNotif] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [expandedProduct, setExpandedProduct] = useState<string | null>(null);
+  const [activeProduct, setActiveProduct] = useState(0);
 
-  const testimonials = [
+  const [activeTesti, setActiveTesti] = useState(0);
+  const productsData = [
     {
-      id: 0,
-      name: "Siska Saraswati",
-      role: "Manajer Katering, Bandung",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80",
-      text: "Daging selalu fresh dan potongannya rapi sesuai request. Sangat membantu efisiensi waktu tim dapur kami saat melayani ribuan porsi."
+      id: 'domba',
+      title: 'Domba',
+      image: 'https://images.unsplash.com/photo-1484069560501-87d72b0c3669?auto=format&fit=crop&q=80',
+      description: 'Domba hidup berkualitas tinggi, dipelihara dengan pakan terbaik untuk menghasilkan daging empuk.',
+      details: [
+        { label: 'Domba Jantan', price: 'Rp 2.500.000 / ekor' },
+        { label: 'Domba Betina', price: 'Rp 2.000.000 / ekor' },
+        { label: 'Harga per kilo (Hidup)', price: 'Rp 90.000 / kg' }
+      ]
     },
     {
-      id: 1,
-      name: "Budi Santoso",
-      role: "Owner Restoran Sate, Jakarta",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
-      text: "Sebelumnya kami sering mengalami masalah stok dan kualitas. Setelah bekerja sama dengan Dombantara, pasokan menjadi jauh lebih stabil."
+      id: 'kambing',
+      recommended: true,
+      title: 'Kambing',
+      image: 'https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&q=80',
+      description: 'Kambing pilihan dengan rasio daging dan lemak yang ideal untuk berbagai menu andalan restoran.',
+      details: [
+        { label: 'Kambing Jantan', price: 'Rp 2.800.000 / ekor' },
+        { label: 'Kambing Betina', price: 'Rp 2.200.000 / ekor' },
+        { label: 'Harga per kilo (Hidup)', price: 'Rp 100.000 / kg' }
+      ]
     },
     {
-      id: 2,
-      name: "Ahmad Rizky",
-      role: "Chef Executive, Hotel Bintang 4",
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=150&q=80",
-      text: "Kualitas karkasnya konsisten, persentase dagingnya tinggi, dan bersih. Sangat direkomendasikan untuk kebutuhan hotel atau banquet."
+      id: 'karkas',
+      title: 'Karkas Siap Masak',
+      image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80',
+      description: 'Daging potong higienis dan terstandar, 100% halal, siap diolah tanpa repot membersihkan.',
+      details: [
+        { label: 'Karkas Domba (Utuh)', price: 'Rp 115.000 / kg' },
+        { label: 'Karkas Kambing (Utuh)', price: 'Rp 125.000 / kg' },
+        { label: 'Daging Potongan Khusus', price: 'Mulai Rp 135.000 / kg' }
+      ]
     }
   ];
 
-  return (
-    <main className="min-h-screen bg-white flex flex-col">
-      {/* Hero Section */}
-      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-surface overflow-hidden border-b border-border-subtle">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none"></div>
-        <div className="container mx-auto px-6 lg:px-10 relative z-20">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            {/* Left Content */}
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-6">
-                <span className="w-2 h-2 rounded-full bg-primary"></span>
-                B2B Pasokan Restoran & Hotel
-              </div>
-              
-              <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 leading-tight">
-                Pasokan daging domba yang <span className="text-primary">dapat diandalkan</span>
-              </h1>
-              
-              <p className="text-text-muted text-lg mb-10 max-w-xl leading-relaxed">
-                Amankan operasional dapur Anda dengan pasokan stabil, kualitas konsisten, dan pengiriman terjadwal dari jaringan peternak terverifikasi.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <button className="bg-primary hover:bg-secondary text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg hover:shadow-xl text-center flex items-center justify-center gap-2">
-                  Konsultasi Pasokan <ArrowRight size={18} />
-                </button>
-                <button className="bg-white border border-border-strong hover:border-primary hover:text-primary text-text-primary font-bold py-4 px-8 rounded-xl transition-all text-center">
-                  Lihat Spesifikasi
-                </button>
-              </div>
+  const testimonials = [
+    {
+      id: 1,
+      name: "Budi Santoso",
+      role: "Owner Sate Khas Senayan",
+      text: "Sejak beralih ke Dombantara, kualitas dan ukuran daging selalu konsisten. Sangat membantu menjaga standar HPP kami.",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200&h=200"
+    },
+    {
+      id: 2,
+      name: "Chef Ario",
+      role: "Executive Chef Hotel Bintang 5",
+      text: "Potongan karkas presisi dan pengiriman selalu on-time. Tidak pernah ada masalah stok kosong selama 6 bulan terakhir.",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&q=80&w=200&h=200"
+    },
+    {
+      id: 3,
+      name: "Hj. Aminah",
+      role: "Pengusaha Aqiqah Nusantara",
+      text: "Bisa pesan hewan hidup sesuai syariat dengan surat sehat. Proses potong juga terjamin kehalalannya.",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200"
+    }
+  ];
 
-              <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-8 border-t border-border-subtle">
-                <div>
-                  <div className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-text-primary mb-1">500+</div>
-                  <div className="text-xs sm:text-sm text-text-muted">Peternak mitra</div>
-                </div>
-                <div>
-                  <div className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-text-primary mb-1">98%</div>
-                  <div className="text-xs sm:text-sm text-text-muted">Ketepatan waktu</div>
-                </div>
-                <div>
-                  <div className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-text-primary mb-1">24h</div>
-                  <div className="text-xs sm:text-sm text-text-muted">Dukungan B2B</div>
-                </div>
+
+  const notifications = [
+    { name: "RM Padang Prima", action: "memesan 15 ekor domba", time: "2 jam lalu" },
+    { name: "Sate Khas", action: "mulai berlangganan pasokan harian", time: "5 jam lalu" },
+    { name: "Hotel Bintang", action: "memesan 20 ekor domba", time: "1 hari lalu" },
+    { name: "Resto Sultan", action: "baru saja bergabung menjadi Mitra", time: "Baru saja" },
+    { name: "Aqiqah Plus", action: "menyelesaikan pesanan 50 ekor", time: "2 hari lalu" }
+  ];
+
+  useEffect(() => {
+    // Start showing notifications after 3 seconds
+    const initialTimeout = setTimeout(() => {
+      setShowNotif(true);
+      setTimeout(() => setShowNotif(false), 5000);
+    }, 3000);
+
+    const interval = setInterval(() => {
+      setNotifIndex((prev) => (prev + 1) % notifications.length);
+      setShowNotif(true);
+      
+      // Hide after 5 seconds
+      setTimeout(() => setShowNotif(false), 5000);
+    }, 15000); // show a new one every 15 seconds
+
+    return () => {
+      clearTimeout(initialTimeout);
+      clearInterval(interval);
+    };
+  }, []);
+
+  return (
+    <main className="min-h-screen bg-white font-body flex flex-col selection:bg-primary selection:text-white relative">
+      
+      {/* 1. Hero Section */}
+      <section className="relative w-full min-h-[90vh] md:min-h-screen flex flex-col justify-between overflow-hidden bg-[#0A0A0A]">
+        {/* Background Image & Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/images/lp-sheep-image.png" 
+            alt="Domba Premium" 
+            className="w-full h-full object-cover object-center opacity-40 md:opacity-50"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/40"></div>
+        </div>
+
+        {/* Top Navbar */}
+        <div className="relative z-10 w-full px-6 py-6 md:px-12 md:py-8 flex justify-between items-center max-w-7xl mx-auto">
+          <div className="flex items-center gap-2">
+            {/* Simple logo placeholder to match screenshot */}
+            <div className="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center">
+              <div className="w-3 h-3 rounded-full bg-white"></div>
+            </div>
+            <div>
+              <div className="text-white font-bold text-lg leading-none tracking-wide font-display">DOMBANTARA</div>
+              <div className="text-primary text-[10px] font-bold tracking-[0.2em] uppercase">Livestock</div>
+            </div>
+          </div>
+          <button className="text-white hover:text-primary transition-colors">
+            <Menu size={28} />
+          </button>
+        </div>
+
+        {/* Hero Content */}
+        <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-12 max-w-7xl mx-auto w-full">
+          <div className="max-w-2xl mt-8 md:mt-0">
+            <h1 className="text-white font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-6">
+              Dapur Anda<br/>
+              Berhenti Masak<br/>
+              Karena Kambing &<br/>
+              Domba Telat Datang?
+            </h1>
+            <p className="text-gray-300 text-base md:text-lg lg:text-xl leading-relaxed mb-10 max-w-xl">
+              Masalah pasokan bukan cuma soal telat.<br/>
+              Tapi tentang kepercayaan, kualitas,<br/>
+              dan kelangsungan bisnis Anda.
+            </p>
+            <Link 
+              href="https://wa.me/6281234567890" 
+              className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-lg md:text-xl py-4 px-8 rounded-full transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-green-900/50"
+            >
+              <FaWhatsapp size={24} />
+              Konsultasi Sekarang
+            </Link>
+          </div>
+        </div>
+
+        {/* Scroll Down Indicator */}
+        <div className="relative z-10 w-full pb-8 flex flex-col items-center justify-center opacity-70 animate-bounce mt-12">
+          <ArrowDown size={20} className="text-white mb-2" />
+          <span className="text-white text-xs tracking-wider">Scroll untuk lihat solusinya</span>
+        </div>
+      </section>
+
+      {/* Mitra Kolaborasi (Under Megatron) */}
+      <section className="py-8 bg-surface border-b border-border-subtle overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 relative">
+          <p className="text-center text-sm font-bold text-text-muted uppercase tracking-widest mb-8">
+            Mitra Kolaborasi Kami
+          </p>
+          
+          <div className="relative flex flex-col gap-6">
+
+            {/* Marquee Row 1 */}
+            <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+              <div className="flex gap-12 md:gap-24 px-6 md:px-12 opacity-50 grayscale">
+                {["Resto Sultan", "Sate Khas", "Hotel Bintang", "Aqiqah Plus", "Catering Co.", "Resto Sultan", "Sate Khas", "Hotel Bintang", "Aqiqah Plus", "Catering Co."].map((name, i) => (
+                  <div key={i} className="font-display font-bold text-xl md:text-2xl text-text-primary whitespace-nowrap">
+                    {name}
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Right Content / Image Collage */}
-            <div className="relative flex justify-center lg:justify-end h-full min-h-[400px] lg:min-h-[500px]">
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 rounded-full blur-3xl -z-10"></div>
-              
-              <div className="relative w-full max-w-[500px] h-[400px] lg:h-[500px]">
-                {/* Main Image */}
-                <div className="absolute inset-0 rounded-[32px] overflow-hidden shadow-2xl border-4 border-white">
-                  <img 
-                    src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&q=80" 
-                    alt="Professional Chef" 
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 right-4 sm:bottom-8 sm:left-8 sm:right-8">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/20 backdrop-blur-md text-white text-sm font-bold mb-3 border border-white/30">
-                      <ShieldCheck size={16} /> Quality Control Ketat
-                    </div>
-                    <p className="text-white/90 text-sm leading-relaxed">
-                      Setiap potongan daging melewati proses seleksi, penimbangan, dan verifikasi kualitas sebelum dikirim.
-                    </p>
+            {/* Marquee Row 2 (Reverse) */}
+            <div className="flex w-max animate-marquee hover:[animation-play-state:paused]" style={{ animationDirection: 'reverse' }}>
+              <div className="flex gap-12 md:gap-24 px-6 md:px-12 opacity-50 grayscale">
+                {["Warung Nusantara", "Steak House", "RM Padang Prima", "Wedding Organizer", "Kebab Boss", "Warung Nusantara", "Steak House", "RM Padang Prima", "Wedding Organizer", "Kebab Boss"].map((name, i) => (
+                  <div key={i} className="font-display font-bold text-xl md:text-2xl text-text-primary whitespace-nowrap">
+                    {name}
                   </div>
-                </div>
-
-                {/* Floating Badge */}
-                <div className="hidden md:flex absolute -left-8 top-16 bg-white p-4 rounded-2xl shadow-xl border border-border-subtle items-center gap-4 animate-float">
-                  <div className="w-12 h-12 rounded-full bg-status-success/10 flex items-center justify-center text-status-success">
-                    <CheckCircle size={24} />
-                  </div>
-                  <div>
-                    <div className="text-xs text-text-muted font-bold uppercase mb-1">Status Pasokan</div>
-                    <div className="font-bold text-text-primary">Tersedia Harian</div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
-        
       </section>
 
-      {/* MITRA KOLABORASI */}
-      <section className="pt-20 pb-16 bg-surface overflow-hidden relative border-none">
-        <div className="container mx-auto px-6 lg:px-10 mb-8">
-            <h2 className="text-lg md:text-xl font-display font-bold text-text-primary text-left">
-              Dipercaya oleh mitra kuliner & institusi
+      {/* 2. Problems Section */}
+      <section className="py-20 md:py-32 px-6 bg-white relative">
+        <div className="max-w-6xl mx-auto">
+          
+          {/* Section Header */}
+          <div className="text-center mb-16 md:mb-20">
+            <h3 className="text-status-error text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-4">
+              Masalah Yang Sering Anda Hadapi
+            </h3>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-neutral-900">
+              Masalahnya Bukan Sekadar Supplier.
             </h2>
-        </div>
-        
-        <div className="container mx-auto px-6 lg:px-10">
-          <div className="relative w-full flex overflow-hidden">
-            {/* Gradient masking for smooth fade on edges */}
-            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none"></div>
+          </div>
+
+          {/* Problem Cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-16">
             
-            <div className="flex w-max animate-scroll items-center gap-20 pr-20 py-4">
-              {[...Array(2)].map((_, setIdx) => (
-                <div key={setIdx} className="flex gap-20 items-center">
-                  {[
-                    "https://upload.wikimedia.org/wikipedia/en/e/e0/IPB_logo_with_namestyle.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/8/8a/Logo_Kementerian_Pertanian_Republik_Indonesia.svg",
-                    "https://upload.wikimedia.org/wikipedia/commons/b/b4/Indofood_logo-en.svg",
-                    "https://upload.wikimedia.org/wikipedia/commons/1/17/Logo_Telkom_Indonesia_2013.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg",
-                    "https://upload.wikimedia.org/wikipedia/commons/2/20/Logo_PLN.svg",
-                    "https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg",
-                    "https://upload.wikimedia.org/wikipedia/commons/6/69/Logo_Baru_Pelindo_%282021%29.png"
-                  ].map((logoUrl, idx) => (
-                    <div key={idx} className="flex items-center justify-center opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer h-12 w-32">
-                      <img 
-                        src={logoUrl} 
-                        alt="Partner Logo" 
-                        className="max-h-full max-w-full object-contain"
-                      />
-                    </div>
-                  ))}
+            {/* Card 1 */}
+            <div className="relative bg-white border-2 border-red-50 rounded-2xl p-6 pt-10 flex flex-col items-center text-center shadow-sm">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white rounded-full">
+                <XCircle className="text-status-error fill-white" size={32} />
+              </div>
+              <Truck size={48} className="text-status-error mb-4" strokeWidth={1.5} />
+              <h4 className="font-bold text-neutral-900 text-lg mb-2"><span className="text-status-error">Kiriman</span> Telat</h4>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Pelanggan menunggu, reputasi Anda taruhannya.
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="relative bg-white border-2 border-red-50 rounded-2xl p-6 pt-10 flex flex-col items-center text-center shadow-sm">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white rounded-full">
+                <XCircle className="text-status-error fill-white" size={32} />
+              </div>
+              <TrendingUp size={48} className="text-status-error mb-4" strokeWidth={1.5} />
+              <h4 className="font-bold text-neutral-900 text-lg mb-2">Harga <span className="text-status-error">Naik Turun</span></h4>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Margin keuntungan jadi tidak menentu.
+              </p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="relative bg-white border-2 border-red-50 rounded-2xl p-6 pt-10 flex flex-col items-center text-center shadow-sm">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white rounded-full">
+                <XCircle className="text-status-error fill-white" size={32} />
+              </div>
+              <Beef size={48} className="text-status-error mb-4" strokeWidth={1.5} />
+              <h4 className="font-bold text-neutral-900 text-lg mb-2">Kualitas <span className="text-status-error">Tidak Konsisten</span></h4>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Ukuran, berat, dan kondisi berbeda setiap kiriman.
+              </p>
+            </div>
+
+            {/* Card 4 */}
+            <div className="relative bg-white border-2 border-red-50 rounded-2xl p-6 pt-10 flex flex-col items-center text-center shadow-sm">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white rounded-full">
+                <XCircle className="text-status-error fill-white" size={32} />
+              </div>
+              <Handshake size={48} className="text-status-error mb-4" strokeWidth={1.5} />
+              <h4 className="font-bold text-neutral-900 text-lg mb-2"><span className="text-status-error">Nego</span> Terus</h4>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Setiap order harus nego ulang. Buang waktu dan tenaga.
+              </p>
+            </div>
+
+          </div>
+
+          {/* Warning Banner */}
+          <div className="bg-red-50/50 border border-status-error/30 rounded-xl p-4 md:p-6 flex flex-col md:flex-row items-center justify-center gap-4 text-center md:text-left max-w-4xl mx-auto">
+            <AlertTriangle className="text-status-error shrink-0" size={32} />
+            <p className="text-sm md:text-base text-neutral-800">
+              Kalau Anda mengalami salah satu masalah di atas, Anda tidak butuh supplier baru. <strong className="text-status-error">Anda butuh sistem pasokan.</strong>
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. Bridge Section */}
+      <section className="bg-[#051109] py-20 md:py-28 px-6 text-white overflow-hidden relative rounded-[40px] md:rounded-[80px] mx-2 md:mx-6">
+        {/* Glow effect */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-[300px] bg-primary/20 blur-[100px] pointer-events-none"></div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <h3 className="text-primary text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-4">
+              Karena Itu
+            </h3>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white">
+              Dombantara Dibangun.
+            </h2>
+          </div>
+
+          {/* Flowchart */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-4 lg:gap-8 mb-16">
+            
+            {/* Box 1 */}
+            <div className="flex flex-col items-center justify-center border-2 border-primary/40 rounded-2xl p-6 w-full md:w-56 bg-black/40 backdrop-blur-sm">
+              <User size={40} className="text-white mb-3" />
+              <div className="font-bold text-white text-center">Mitra<br/>Dombantara</div>
+            </div>
+
+            {/* Arrow 1 */}
+            <ArrowRight size={32} className="text-primary hidden md:block shrink-0" />
+            <ArrowDown size={32} className="text-primary block md:hidden shrink-0" />
+
+            {/* Box 2 (Center) */}
+            <div className="flex flex-col items-center justify-center border-2 border-primary rounded-3xl p-8 w-full md:w-72 bg-primary/10 backdrop-blur-md shadow-[0_0_30px_rgba(20,92,51,0.2)]">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center">
+                  <div className="w-3 h-3 rounded-full bg-white"></div>
                 </div>
-              ))}
+                <div>
+                  <div className="text-white font-bold text-lg leading-none tracking-wide font-display">DOMBANTARA</div>
+                  <div className="text-primary text-[10px] font-bold tracking-[0.2em] uppercase">Livestock</div>
+                </div>
+              </div>
+              <div className="text-sm text-gray-300 text-center font-medium">Sistem Terintegrasi & Terjamin</div>
+            </div>
+
+            {/* Arrow 2 */}
+            <ArrowRight size={32} className="text-primary hidden md:block shrink-0" />
+            <ArrowDown size={32} className="text-primary block md:hidden shrink-0" />
+
+            {/* Box 3 */}
+            <div className="flex flex-col items-center justify-center border-2 border-primary/40 rounded-2xl p-6 w-full md:w-56 bg-black/40 backdrop-blur-sm">
+              <Store size={40} className="text-white mb-3" />
+              <div className="font-bold text-white text-center">Restoran, Hotel,<br/>Catering & Instansi</div>
+            </div>
+
+          </div>
+
+          <p className="text-center text-gray-300 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+            Menjembatani peternak dan pelaku usaha<br className="hidden md:block" />
+            melalui sistem pasokan yang transparan, stabil, dan terpercaya.
+          </p>
+        </div>
+      </section>
+
+      {/* 4. Solutions Section */}
+      <section className="py-20 md:py-32 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          
+          {/* Section Header */}
+          <div className="text-center mb-16 md:mb-24">
+            <h3 className="text-primary text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-4">
+              Solusi Dari Dombantara
+            </h3>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-neutral-900">
+              Pasokan Stabil, Bisnis Tenang.
+            </h2>
+          </div>
+
+          {/* Solution Cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10 sm:gap-6 lg:gap-8 mt-4">
+            
+            {/* Card 1 */}
+            <div className="relative bg-[#F7FAF8] rounded-2xl p-6 pt-14 flex flex-col items-center text-center h-full">
+              <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary rounded-full p-3 shadow-lg shadow-primary/20 border-4 border-white">
+                <Truck size={32} className="text-white" />
+                <div className="absolute -bottom-1 -right-1 bg-white rounded-full">
+                   <CheckCircle className="text-primary fill-white" size={16} />
+                </div>
+              </div>
+              <h4 className="font-bold text-neutral-900 text-base sm:text-lg mb-2"><span className="text-primary">Kirim</span> Tepat Waktu</h4>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Pengiriman harian, tepat waktu, sesuai jadwal yang disepakati.
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="relative bg-[#F7FAF8] rounded-2xl p-6 pt-14 flex flex-col items-center text-center h-full">
+              <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary rounded-full p-3 shadow-lg shadow-primary/20 border-4 border-white">
+                <Tag size={32} className="text-white" />
+                <div className="absolute -bottom-1 -right-1 bg-white rounded-full">
+                   <CheckCircle className="text-primary fill-white" size={16} />
+                </div>
+              </div>
+              <h4 className="font-bold text-neutral-900 text-base sm:text-lg mb-2">Harga <span className="text-primary">Tetap</span></h4>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Harga transparan dan stabil, tanpa kejutan.
+              </p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="relative bg-[#F7FAF8] rounded-2xl p-6 pt-14 flex flex-col items-center text-center h-full">
+              <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary rounded-full p-3 shadow-lg shadow-primary/20 border-4 border-white">
+                <Award size={32} className="text-white" />
+                <div className="absolute -bottom-1 -right-1 bg-white rounded-full">
+                   <CheckCircle className="text-primary fill-white" size={16} />
+                </div>
+              </div>
+              <h4 className="font-bold text-neutral-900 text-base sm:text-lg mb-2">Kualitas <span className="text-primary">Konsisten</span></h4>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Domba & kambing sehat, standar terjaga setiap saat.
+              </p>
+            </div>
+
+            {/* Card 4 */}
+            <div className="relative bg-[#F7FAF8] rounded-2xl p-6 pt-14 flex flex-col items-center text-center h-full">
+              <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary rounded-full p-3 shadow-lg shadow-primary/20 border-4 border-white">
+                <ClipboardCheck size={32} className="text-white" />
+                <div className="absolute -bottom-1 -right-1 bg-white rounded-full">
+                   <CheckCircle className="text-primary fill-white" size={16} />
+                </div>
+              </div>
+              <h4 className="font-bold text-neutral-900 text-base sm:text-lg mb-2">Proses <span className="text-primary">Mudah</span></h4>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                Order, konfirmasi, hingga pengiriman. Praktis dan tanpa ribet.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Stats Banner Section */}
+      <section className="px-2 md:px-6 mb-2 md:mb-6">
+        <div className="relative w-full overflow-hidden rounded-[24px] md:rounded-[40px] bg-black">
+          {/* Background image */}
+          <div className="absolute inset-0">
+            <img 
+              src="https://images.unsplash.com/photo-1516223594879-a78c18cb9c02?auto=format&fit=crop&q=80" 
+              alt="Peternakan Domba" 
+              className="w-full h-full object-cover object-center opacity-30 mix-blend-overlay"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80"></div>
+          </div>
+
+          <div className="relative z-10 max-w-6xl mx-auto py-12 px-6 md:py-20 lg:py-24">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-white/10">
+              
+              {/* Stat 1 */}
+              <div className="flex flex-col items-center text-center pt-0 md:pt-0">
+                <Users size={48} className="text-primary mb-4" strokeWidth={1.5} />
+                <div className="text-3xl md:text-4xl font-display font-bold text-white mb-2">500+</div>
+                <div className="text-lg font-bold text-white mb-1">Mitra Dombantara</div>
+                <div className="text-sm text-gray-400">Terseleksi & Terpercaya</div>
+              </div>
+
+              {/* Stat 2 */}
+              <div className="flex flex-col items-center text-center pt-10 md:pt-0">
+                <Calendar size={48} className="text-primary mb-4" strokeWidth={1.5} />
+                <div className="text-3xl md:text-4xl font-display font-bold text-white mb-2">Setiap Hari</div>
+                <div className="text-lg font-bold text-white mb-1">Pasokan Dikirim</div>
+                <div className="text-sm text-gray-400">Tanpa Putus</div>
+              </div>
+
+              {/* Stat 3 */}
+              <div className="flex flex-col items-center text-center pt-10 md:pt-0">
+                <MapPin size={48} className="text-primary mb-4" strokeWidth={1.5} />
+                <div className="text-3xl md:text-4xl font-display font-bold text-white mb-2">Jabodetabek</div>
+                <div className="text-lg font-bold text-white mb-1">Jangkauan Luas</div>
+                <div className="text-sm text-gray-400">Kirim ke seluruh area</div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -180,244 +487,144 @@ export default function RestoranLandingPage() {
       {/* Produk & Layanan Baru */}
       <section className="py-20 bg-surface border-b border-border-subtle relative">
         <div className="container mx-auto px-6 lg:px-10">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-text-primary mb-4 max-w-3xl">
-            Satu supplier untuk semua kebutuhan kambing dan domba bisnis kuliner Anda
-          </h2>
-          <p className="text-text-muted text-base md:text-lg mb-12 max-w-3xl leading-relaxed">
-            Pilih produk sesuai kebutuhan operasional: hewan hidup, jasa potong, atau karkas siap masak dengan pasokan terjadwal dan kualitas terstandar.
-          </p>
+          <div className="text-center mb-12 md:mb-20">
+            <h3 className="text-primary text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-4">
+              Papan Harga
+            </h3>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-text-primary mb-6">
+              Produk & Layanan
+            </h2>
+            <p className="text-text-muted text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+              Pilih produk sesuai kebutuhan operasional: hewan hidup, jasa potong, atau karkas siap masak dengan pasokan terjadwal dan kualitas terstandar.
+            </p>
+          </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Card 1 */}
-            <div className="bg-white rounded-[32px] border border-border-subtle overflow-hidden shadow-sm flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-500 group">
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1484069560501-87d72b0c3669?auto=format&fit=crop&q=80" 
-                  alt="Domba / kambing hidup" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-              </div>
-              <div className="p-8 flex flex-col flex-1">
-                <h3 className="text-2xl font-display font-bold text-text-primary mb-3">Domba / kambing hidup</h3>
-                <p className="text-text-muted leading-relaxed mb-6">
-                  Cocok untuk aqiqah, qurban, peternakan, dan kebutuhan distribusi hewan hidup.
-                </p>
-                <div className="flex-1 mb-8">
-                  <ul className="space-y-3 text-sm text-text-primary">
-                    <li className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                      <span><strong>Berat:</strong> 20-25 kg</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                      <span><strong>Umur:</strong> &gt; 1 tahun (Cukup Umur)</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                      <span><strong>Kesehatan:</strong> Tersertifikasi (SKKH)</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mt-auto pt-6 border-t border-border-subtle">
-                  <div className="mb-5">
-                    <div className="text-xs text-text-muted font-bold uppercase tracking-wider mb-1">Estimasi Harga B2B</div>
-                    <div className="text-2xl font-display font-bold text-primary">
-                      Rp 2.500.000 <span className="text-sm text-text-muted font-normal">/ ekor</span>
+          <div className="relative w-full max-w-5xl mx-auto px-4 pb-8 pt-4">
+            <div className={`flex justify-center items-center relative transition-all duration-500 ease-in-out ${expandedProduct ? 'h-[750px] sm:h-[650px]' : 'h-[500px] sm:h-[450px]'}`}>
+              {productsData.map((prod, i) => {
+                const isActive = i === activeProduct;
+                const isLeft = i === (activeProduct - 1 + productsData.length) % productsData.length;
+                const isRight = i === (activeProduct + 1) % productsData.length;
+                
+                let transform = "translateX(0) scale(0)";
+                let opacity = 0;
+                let zIndex = 0;
+                let blur = "blur-0";
+
+                if (isActive) {
+                  transform = "translateX(0) scale(1)";
+                  opacity = 1;
+                  zIndex = 20;
+                } else if (isLeft) {
+                  transform = "translateX(-40%) scale(0.85)";
+                  opacity = 0.6;
+                  zIndex = 10;
+                  blur = "blur-[4px]";
+                } else if (isRight) {
+                  transform = "translateX(40%) scale(0.85)";
+                  opacity = 0.6;
+                  zIndex = 10;
+                  blur = "blur-[4px]";
+                }
+
+                return (
+                  <div 
+                    key={prod.id}
+                    className={`absolute w-full max-w-[85vw] sm:max-w-[380px] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${blur} ${!isActive && 'cursor-pointer hover:opacity-100'}`}
+                    style={{ transform, opacity, zIndex }}
+                    onClick={() => !isActive && setActiveProduct(i)}
+                  >
+                    <div className="bg-white rounded-[32px] border border-border-subtle overflow-hidden shadow-xl flex flex-col group h-full">
+                      <div className="relative h-56 sm:h-64 overflow-hidden shrink-0">
+                        <img 
+                          src={prod.image} 
+                          alt={prod.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                        {/* {prod.recommended && ( */}
+                        {prod.id === 'kambing' && (
+                          <div className="absolute top-4 right-4 bg-accent-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md uppercase tracking-wider">
+                            Recommended
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="p-6 flex flex-col flex-1 bg-white">
+                        <h3 className="text-2xl font-display font-bold text-text-primary mb-3">
+                          {prod.title}
+                        </h3>
+                        <p className="text-text-muted leading-relaxed mb-6 flex-1 text-sm sm:text-base">
+                          {prod.description}
+                        </p>
+                        
+                        <div className="mt-auto">
+                          {/* Expand Button */}
+                          <button 
+                            onClick={(e) => { e.stopPropagation(); setExpandedProduct(expandedProduct === prod.id ? null : prod.id); }}
+                            className="w-full py-4 px-5 mb-2 rounded-2xl bg-surface border border-border-subtle text-text-primary font-bold text-sm sm:text-base flex items-center justify-between hover:bg-primary/5 hover:border-primary/30 transition-colors"
+                          >
+                            Lihat Detail Harga
+                            <div className={`transition-transform duration-300 w-8 h-8 rounded-full bg-white flex items-center justify-center border border-border-subtle ${expandedProduct === prod.id ? 'rotate-180 bg-primary border-primary text-white' : 'text-text-primary'}`}>
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                          </button>
+                          
+                          {/* Expanded Details */}
+                          <div 
+                            className={`overflow-hidden transition-all duration-500 ease-in-out ${expandedProduct === prod.id ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}
+                          >
+                            <ul className="space-y-0 mb-6 bg-white border border-border-subtle rounded-2xl overflow-hidden shadow-sm">
+                              {prod.details.map((detail, dIdx) => (
+                                <li key={dIdx} className="flex justify-between items-center text-xs sm:text-sm p-4 border-b border-border-subtle last:border-0 hover:bg-surface transition-colors">
+                                  <span className="text-text-muted">{detail.label}</span>
+                                  <span className="font-bold text-primary">{detail.price}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            
+                            <button className="bg-primary hover:bg-primary-dark text-white font-bold py-4 px-6 rounded-2xl w-full text-center transition-all flex justify-center items-center gap-2 shadow-md hover:shadow-lg">
+                              Pesan Sekarang 
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <button className="bg-surface hover:bg-primary hover:text-white text-text-primary font-bold py-4 px-6 rounded-2xl w-full text-center transition-all flex justify-center items-center gap-2">
-                    Pesan Sekarang <ArrowRight size={18} />
-                  </button>
-                </div>
-              </div>
+                );
+              })}
             </div>
-
-            {/* Card 2 */}
-            <div className="bg-white rounded-[32px] border border-border-subtle overflow-hidden shadow-sm flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-500 group relative">
-              <div className="absolute top-4 right-4 z-10 bg-accent-primary text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg">
-                Paling Diminati
+            
+            {/* Controls */}
+            <div className="flex justify-center items-center gap-6 mt-8">
+              <button 
+                onClick={() => { setActiveProduct((prev) => (prev - 1 + productsData.length) % productsData.length); setExpandedProduct(null); }}
+                className="w-12 h-12 rounded-full bg-white border border-border-subtle flex items-center justify-center hover:bg-surface hover:text-primary transition-colors shadow-sm"
+                aria-label="Previous Product"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <div className="flex gap-3">
+                {productsData.map((_, i) => (
+                   <button 
+                     key={i}
+                     onClick={() => { setActiveProduct(i); setExpandedProduct(null); }}
+                     className={`w-3 h-3 rounded-full transition-all ${i === activeProduct ? 'bg-primary w-8' : 'bg-border-strong hover:bg-text-muted'}`}
+                     aria-label={`Go to product ${i + 1}`}
+                   />
+                ))}
               </div>
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&q=80" 
-                  alt="Hewan + jasa potong" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-              </div>
-              <div className="p-8 flex flex-col flex-1">
-                <h3 className="text-2xl font-display font-bold text-text-primary mb-3">Hewan + jasa potong</h3>
-                <p className="text-text-muted leading-relaxed mb-6">
-                  Kami siapkan hewan, proses penyembelihan halal, penanganan, dan pengemasan.
-                </p>
-                <div className="flex-1 mb-8">
-                  <ul className="space-y-3 text-sm text-text-primary">
-                    <li className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                      <span><strong>Berat Hidup:</strong> 25-30 kg</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                      <span><strong>Hasil Bersih:</strong> ± 12 kg (Karkas, Jeroan, Kepala)</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                      <span><strong>Metode:</strong> 100% Halal Tersertifikasi</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mt-auto pt-6 border-t border-border-subtle">
-                  <div className="mb-5">
-                    <div className="text-xs text-text-muted font-bold uppercase tracking-wider mb-1">Estimasi Harga B2B</div>
-                    <div className="text-2xl font-display font-bold text-primary">
-                      Rp 2.750.000 <span className="text-sm text-text-muted font-normal">/ ekor</span>
-                    </div>
-                  </div>
-                  <button className="bg-surface hover:bg-primary hover:text-white text-text-primary font-bold py-4 px-6 rounded-2xl w-full text-center transition-all flex justify-center items-center gap-2">
-                    Pesan Sekarang <ArrowRight size={18} />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-white rounded-[32px] border border-border-subtle overflow-hidden shadow-sm flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-500 group">
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80" 
-                  alt="Karkas siap masak" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-              </div>
-              <div className="p-8 flex flex-col flex-1">
-                <h3 className="text-2xl font-display font-bold text-text-primary mb-3">Karkas siap masak</h3>
-                <p className="text-text-muted leading-relaxed mb-6">
-                  Siap olah untuk dapur profesional dengan standar kualitas dan berat yang konsisten.
-                </p>
-                <div className="flex-1 mb-8">
-                  <ul className="space-y-3 text-sm text-text-primary">
-                    <li className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                      <span><strong>Berat Karkas:</strong> 10-12 kg</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                      <span><strong>Potongan:</strong> Utuh / Belah 2 / Belah 4</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                      <span><strong>Suhu Kirim:</strong> Chilled / Frozen (-18°C)</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mt-auto pt-6 border-t border-border-subtle">
-                  <div className="mb-5">
-                    <div className="text-xs text-text-muted font-bold uppercase tracking-wider mb-1">Estimasi Harga B2B</div>
-                    <div className="text-2xl font-display font-bold text-primary">
-                      Rp 115.000 <span className="text-sm text-text-muted font-normal">/ kg</span>
-                    </div>
-                  </div>
-                  <button className="bg-surface hover:bg-primary hover:text-white text-text-primary font-bold py-4 px-6 rounded-2xl w-full text-center transition-all flex justify-center items-center gap-2">
-                    Pesan Sekarang <ArrowRight size={18} />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 4 */}
-            <div className="bg-white rounded-[32px] border border-border-subtle overflow-hidden shadow-sm flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-500 group">
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1607623814075-e51df1bd6693?auto=format&fit=crop&q=80" 
-                  alt="Daging potongan khusus" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-              </div>
-              <div className="p-8 flex flex-col flex-1">
-                <h3 className="text-2xl font-display font-bold text-text-primary mb-3">Daging potongan khusus</h3>
-                <p className="text-text-muted leading-relaxed mb-6">
-                  Pesan bagian spesifik (dadu sate, slice, iga, paha murni) yang siap olah tanpa repot memisahkan tulang sendiri.
-                </p>
-                <div className="flex-1 mb-8">
-                  <ul className="space-y-3 text-sm text-text-primary">
-                    <li className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                      <span><strong>Pilihan Bagian:</strong> Dadu Sate / Slice / Iga / Paha</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                      <span><strong>Kemasan:</strong> Vacuum pack 1 kg - 5 kg</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                      <span><strong>Kondisi:</strong> Frozen / Chilled</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mt-auto pt-6 border-t border-border-subtle">
-                  <div className="mb-5">
-                    <div className="text-xs text-text-muted font-bold uppercase tracking-wider mb-1">Estimasi Harga B2B</div>
-                    <div className="text-2xl font-display font-bold text-primary">
-                      Rp 135.000 <span className="text-sm text-text-muted font-normal">/ kg</span>
-                    </div>
-                  </div>
-                  <button className="bg-surface hover:bg-primary hover:text-white text-text-primary font-bold py-4 px-6 rounded-2xl w-full text-center transition-all flex justify-center items-center gap-2">
-                    Pesan Sekarang <ArrowRight size={18} />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 5 */}
-            <div className="bg-white rounded-[32px] border border-border-subtle overflow-hidden shadow-sm flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-500 group">
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&q=80" 
-                  alt="Jeroan, kepala & tulang" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-              </div>
-              <div className="p-8 flex flex-col flex-1">
-                <h3 className="text-2xl font-display font-bold text-text-primary mb-3">Jeroan, kepala & tulang</h3>
-                <p className="text-text-muted leading-relaxed mb-6">
-                  Bahan baku spesifik yang krusial untuk menu masakan Nusantara otentik seperti sop kaki, tengkleng, dan gulai.
-                </p>
-                <div className="flex-1 mb-8">
-                  <ul className="space-y-3 text-sm text-text-primary">
-                    <li className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                      <span><strong>Jenis:</strong> Kepala, Kaki, Tulang Iga, Jeroan</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                      <span><strong>Kondisi:</strong> Sudah direbus / Mentah bersih</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></div>
-                      <span><strong>Kemasan:</strong> Plastik PE standar F&B</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mt-auto pt-6 border-t border-border-subtle">
-                  <div className="mb-5">
-                    <div className="text-xs text-text-muted font-bold uppercase tracking-wider mb-1">Estimasi Harga B2B</div>
-                    <div className="text-2xl font-display font-bold text-primary">
-                      Rp 45.000 <span className="text-sm text-text-muted font-normal">/ kg</span>
-                    </div>
-                  </div>
-                  <button className="bg-surface hover:bg-primary hover:text-white text-text-primary font-bold py-4 px-6 rounded-2xl w-full text-center transition-all flex justify-center items-center gap-2">
-                    Pesan Sekarang <ArrowRight size={18} />
-                  </button>
-                </div>
-              </div>
+              <button 
+                onClick={() => { setActiveProduct((prev) => (prev + 1) % productsData.length); setExpandedProduct(null); }} 
+                className="w-12 h-12 rounded-full bg-white border border-border-subtle flex items-center justify-center hover:bg-surface hover:text-primary transition-colors shadow-sm"
+                aria-label="Next Product"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
             </div>
           </div>
+          
         </div>
-        
         {/* Down Arrow */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-10">
           <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary border border-border-subtle shadow-md cursor-pointer hover:bg-surface transition-colors">
@@ -426,144 +633,11 @@ export default function RestoranLandingPage() {
         </div>
       </section>
 
-      {/* Tantangan & Solusi */}
-      <section className="py-24 bg-white border-b border-border-subtle">
-        <div className="container mx-auto px-6 lg:px-10">
-          
-          <div className="mb-24">
-            <div className="inline-block px-3 py-1 rounded-full bg-status-error/10 text-status-error text-xs font-bold uppercase tracking-widest mb-4">
-              Masalah Bisnis
-            </div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-text-primary mb-12 max-w-3xl leading-tight">
-              Gangguan pasokan bisa langsung memukul operasional bisnis kuliner
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-              <div className="bg-surface p-6 lg:p-8 rounded-[24px] border border-border-subtle flex flex-col items-start transition-shadow hover:shadow-md">
-                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center border border-border-subtle mb-6 shadow-sm">
-                  <AlertTriangle className="text-status-warning" size={24} />
-                </div>
-                <h3 className="font-bold text-text-primary mb-3">Pasokan tidak konsisten</h3>
-                <p className="text-sm text-text-muted leading-relaxed">
-                  Stok kosong membuat menu tidak tersedia dan pelanggan kecewa.
-                </p>
-              </div>
-              
-              <div className="bg-surface p-6 lg:p-8 rounded-[24px] border border-border-subtle flex flex-col items-start transition-shadow hover:shadow-md">
-                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center border border-border-subtle mb-6 shadow-sm">
-                  <XCircle className="text-status-error" size={24} />
-                </div>
-                <h3 className="font-bold text-text-primary mb-3">Kualitas berubah-ubah</h3>
-                <p className="text-sm text-text-muted leading-relaxed">
-                  Ukuran dan kualitas yang tidak seragam menekan margin bisnis.
-                </p>
-              </div>
-              
-              <div className="bg-surface p-6 lg:p-8 rounded-[24px] border border-border-subtle flex flex-col items-start transition-shadow hover:shadow-md">
-                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center border border-border-subtle mb-6 shadow-sm">
-                  <Clock className="text-status-warning" size={24} />
-                </div>
-                <h3 className="font-bold text-text-primary mb-3">Pengiriman terlambat</h3>
-                <p className="text-sm text-text-muted leading-relaxed">
-                  Keterlambatan mengganggu operasional dapur dan jadwal produksi.
-                </p>
-              </div>
+      
 
-              <div className="bg-surface p-6 lg:p-8 rounded-[24px] border border-border-subtle flex flex-col items-start transition-shadow hover:shadow-md">
-                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center border border-border-subtle mb-6 shadow-sm">
-                  <Wallet className="text-status-error" size={24} />
-                </div>
-                <h3 className="font-bold text-text-primary mb-3">Harga fluktuatif</h3>
-                <p className="text-sm text-text-muted leading-relaxed">
-                  Harga daging yang naik-turun mendadak membuat HPP sulit dikontrol.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4">
-              Solusi Dombantara
-            </div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-text-primary mb-12 max-w-3xl leading-tight">
-              Satu sistem pasokan yang lebih stabil, terukur, dan mudah dikelola
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-              <div className="bg-white p-6 lg:p-8 rounded-[24px] border border-border-subtle flex flex-col items-start transition-shadow hover:shadow-lg shadow-sm">
-                <div className="w-12 h-12 rounded-full bg-accent-background flex items-center justify-center text-primary mb-6 border border-primary/10">
-                  <CheckCircle size={24} />
-                </div>
-                <h3 className="font-bold text-text-primary mb-3 text-lg">Jaringan peternak terverifikasi</h3>
-                <p className="text-sm text-text-muted leading-relaxed">
-                  Sumber pasokan lebih stabil dan dapat ditingkatkan sesuai kebutuhan.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 lg:p-8 rounded-[24px] border border-border-subtle flex flex-col items-start transition-shadow hover:shadow-lg shadow-sm">
-                <div className="w-12 h-12 rounded-full bg-accent-background flex items-center justify-center text-primary mb-6 border border-primary/10">
-                  <ShieldCheck size={24} />
-                </div>
-                <h3 className="font-bold text-text-primary mb-3 text-lg">Quality control berlapis</h3>
-                <p className="text-sm text-text-muted leading-relaxed">
-                  Standar kualitas dan penimbangan yang lebih konsisten.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 lg:p-8 rounded-[24px] border border-border-subtle flex flex-col items-start transition-shadow hover:shadow-lg shadow-sm">
-                <div className="w-12 h-12 rounded-full bg-accent-background flex items-center justify-center text-primary mb-6 border border-primary/10">
-                  <Truck size={24} />
-                </div>
-                <h3 className="font-bold text-text-primary mb-3 text-lg">Distribusi terjadwal</h3>
-                <p className="text-sm text-text-muted leading-relaxed">
-                  Pengiriman sesuai jadwal operasional bisnis Anda.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 lg:p-8 rounded-[24px] border border-border-subtle flex flex-col items-start transition-shadow hover:shadow-lg shadow-sm">
-                <div className="w-12 h-12 rounded-full bg-accent-background flex items-center justify-center text-primary mb-6 border border-primary/10">
-                  <FileText size={24} />
-                </div>
-                <h3 className="font-bold text-text-primary mb-3 text-lg">Kontrak harga B2B</h3>
-                <p className="text-sm text-text-muted leading-relaxed">
-                  Kepastian harga untuk periode tertentu guna mengamankan margin profit.
-                </p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-      {/* Proses, Bukti, Testimoni */}
-      <section className="py-24 bg-surface border-b border-border-subtle">
-        <div className="container mx-auto px-6 lg:px-10">
-          
-          {/* Section 1: Proses */}
-          <div className="mb-24">
-            <h2 className="text-2xl md:text-3xl font-display font-bold text-text-primary mb-12">
-              Proses sederhana, transparan, dan cepat
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { step: "1", title: "Konsultasi Kebutuhan", text: "Volume, frekuensi, spesifikasi, dan area pengiriman." },
-                { step: "2", title: "Simulasi Harga", text: "Estimasi biaya dan rekomendasi skema pasokan." },
-                { step: "3", title: "Quality Control", text: "Seleksi, penimbangan, dan verifikasi sebelum kirim." },
-                { step: "4", title: "Pengiriman Rutin", text: "Distribusi sesuai jadwal yang telah disepakati." }
-              ].map((item, idx) => (
-                <div key={idx} className="bg-white p-6 lg:p-8 rounded-[24px] border border-border-subtle shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 p-6 text-border-subtle group-hover:text-primary/10 transition-colors">
-                    <span className="font-display text-8xl font-bold opacity-30 -mr-4 -mt-8 block">{item.step}</span>
-                  </div>
-                  <div className="relative z-10">
-                    <div className="text-primary font-bold mb-2">Langkah 0{item.step}</div>
-                    <h3 className="font-bold text-text-primary text-xl mb-3">{item.title}</h3>
-                    <p className="text-sm text-text-muted leading-relaxed">{item.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Section 2: Testimoni Carousel */}
-          <div className="border-t border-border-subtle pt-24 relative overflow-hidden">
+<section className="py-24 bg-surface border-b border-border-subtle"><div className="container mx-auto px-6 lg:px-10">
+{/* Section 2: Testimoni Carousel */}
+          <div className="relative overflow-hidden">
             <div className="text-center mb-16">
               <div className="inline-block px-3 py-1 rounded-full bg-accent-primary/10 text-accent-primary text-xs font-bold uppercase tracking-widest mb-4">
                 Testimoni
@@ -660,85 +734,122 @@ export default function RestoranLandingPage() {
         </div>
       </section>
 
-
-      {/* FAQ & CTA Section */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6 lg:px-10 max-w-5xl">
-          {/* FAQ */}
+<section className="py-24 bg-white relative z-20"><div className="container mx-auto px-6 lg:px-10 max-w-5xl">
+{/* FAQ */}
           <div className="mb-32">
             <h2 className="text-3xl font-display font-bold text-text-primary mb-8 text-center">Tanya Jawab Seputar Pasokan</h2>
             <div className="bg-surface rounded-[24px] border border-border-subtle shadow-sm overflow-hidden p-2">
               {[
-                "Berapa minimal order untuk harga B2B?",
-                "Apakah bisa membuat kontrak pasokan bulanan?",
-                "Area pengiriman mencakup wilayah mana saja?",
-                "Bagaimana sistem pembayaran untuk mitra korporat?"
-              ].map((question, idx, arr) => (
+                {
+                  q: "Berapa minimal order untuk harga B2B?",
+                  a: "Minimal order untuk mendapatkan harga khusus B2B (korporat) bervariasi tergantung kesepakatan, namun umumnya dimulai dari 5 ekor per pengiriman atau kontrak senilai tertentu per bulannya."
+                },
+                {
+                  q: "Apakah bisa membuat kontrak pasokan bulanan?",
+                  a: "Sangat bisa. Kami sangat menyarankan sistem kontrak bulanan atau kuartalan agar kami dapat menjamin ketersediaan stok, mengunci harga agar tidak fluktuatif, dan menjadwalkan pengiriman sesuai timeline operasional Anda."
+                },
+                {
+                  q: "Area pengiriman mencakup wilayah mana saja?",
+                  a: "Saat ini jangkauan pengiriman B2B kami berfokus di area Jabodetabek. Namun, untuk volume besar (bulk order), kami siap mendiskusikan rute pengiriman ke wilayah lain di Pulau Jawa."
+                },
+                {
+                  q: "Bagaimana sistem pembayaran untuk mitra korporat?",
+                  a: "Pembayaran dapat dilakukan melalui transfer bank atau virtual account (InsForge Invoice). Skema term of payment (TOP) seperti Net 14 atau Net 30 tersedia khusus bagi mitra korporat terverifikasi yang telah menandatangani kontrak."
+                }
+              ].map((item, idx, arr) => (
                 <div 
                   key={idx} 
-                  className={`flex items-center justify-between p-4 sm:p-6 ${idx !== arr.length - 1 ? 'border-b border-border-subtle' : ''} cursor-pointer hover:bg-white rounded-2xl transition-colors group`}
+                  className={`p-4 sm:p-6 ${idx !== arr.length - 1 ? 'border-b border-border-subtle' : ''} transition-colors group relative z-30`}
                 >
-                  <span className="font-bold text-black text-sm sm:text-base md:text-lg">{question}</span>
-                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-border-subtle text-black group-hover:text-primary transition-colors shadow-sm">
-                    <ChevronDown size={20} />
+                  <div 
+                    className="flex items-center justify-between cursor-pointer"
+                    onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                  >
+                    <span className={`font-bold text-sm sm:text-base md:text-lg ${openFaq === idx ? 'text-primary' : 'text-text-primary group-hover:text-primary transition-colors'}`}>
+                      {item.q}
+                    </span>
+                    <div className={`w-10 h-10 rounded-full bg-white flex items-center justify-center border border-border-subtle transition-all duration-300 shadow-sm shrink-0 ml-4 ${openFaq === idx ? 'text-white bg-primary border-primary rotate-180' : 'text-text-primary group-hover:text-primary'}`}>
+                      <ChevronDown size={20} />
+                    </div>
+                  </div>
+                  
+                  {/* Accordion Content */}
+                  <div 
+                    className={`overflow-hidden transition-all duration-500 ease-in-out ${openFaq === idx ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}
+                  >
+                    <p className="text-text-muted text-sm sm:text-base leading-relaxed pr-14">
+                      {item.a}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* CTA Box */}
-          <div className="bg-primary rounded-[40px] px-6 py-10 sm:p-10 md:p-16 shadow-2xl relative overflow-hidden text-center flex flex-col items-center">
-            {/* Background elements */}
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/10 to-transparent pointer-events-none"></div>
-            <div className="absolute -top-[50%] -right-[20%] w-[80%] h-[150%] bg-secondary/30 rounded-full blur-[100px] pointer-events-none"></div>
+          
+</div></section>
+
+{/* 6. Final CTA Section */}
+      <section className="px-2 md:px-6 pb-2 md:pb-6">
+        <div className="bg-[#0A0A0A] rounded-[24px] md:rounded-[40px] py-16 px-6 md:py-24 lg:py-32 flex flex-col items-center justify-center text-center relative overflow-hidden">
+          {/* Subtle glow */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[50%] bg-primary/10 blur-[120px] pointer-events-none"></div>
+
+          <div className="relative z-10 max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-[1.2] mb-6">
+              Jangan Biarkan <span className="text-[#34D399]">Dapur Anda</span><br/>
+              Berhenti Karena Supplier.
+            </h2>
+            <p className="text-gray-400 text-base md:text-xl mb-12">
+              Kini saatnya beralih ke sistem pasokan yang bisa diandalkan.
+            </p>
             
-            <div className="relative z-10 w-full max-w-3xl">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-xs font-bold mb-8 uppercase tracking-widest">
+            <Link 
+              href="https://wa.me/6281234567890" 
+              className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-lg md:text-xl py-5 px-8 md:px-12 rounded-full transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-green-900/30 w-full sm:w-auto"
+            >
+              <FaWhatsapp size={28} />
+              Coba Order Pertama Sekarang
+            </Link>
+
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 mt-10">
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <Check size={16} className="text-primary" strokeWidth={3} />
                 Konsultasi Gratis
               </div>
-              <h2 className="text-white font-display font-bold text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">
-                Amankan pasokan daging untuk operasional bisnis Anda
-              </h2>
-              <p className="text-white/80 text-base md:text-xl leading-relaxed mb-12 max-w-2xl mx-auto">
-                Dapatkan simulasi kebutuhan pasokan, estimasi harga, dan rekomendasi jadwal pengiriman yang disesuaikan dengan kapasitas restoran Anda.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-white text-primary font-bold py-4 px-6 sm:px-10 w-full sm:w-auto rounded-2xl text-base md:text-lg transition-colors hover:bg-surface shadow-xl flex items-center justify-center gap-2">
-                  Jadwalkan Konsultasi <ArrowRight size={20} />
-                </button>
-                <button className="bg-primary border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/60 font-bold py-4 px-6 sm:px-10 w-full sm:w-auto rounded-2xl text-base md:text-lg transition-all shadow-lg flex items-center justify-center">
-                  Chat via WhatsApp
-                </button>
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <Check size={16} className="text-primary" strokeWidth={3} />
+                Respons Cepat
               </div>
-              <div className="text-white/60 text-sm mt-8 flex items-center justify-center gap-2">
-                <Clock size={16} /> Respon cepat dalam 24 jam • Tim khusus sales B2B
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <Check size={16} className="text-primary" strokeWidth={3} />
+                Tanpa Komitmen
               </div>
             </div>
           </div>
         </div>
       </section>
-      {/* Simple Footer */}
-      <footer className="bg-white py-12 border-t border-border-subtle mt-16">
-        <div className="container mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <h3 className="font-display font-bold text-2xl text-primary mb-2">Dombantara</h3>
-            <p className="text-sm text-text-muted max-w-sm">
-              Domba Nusantara - Peternakan domba terintegrasi Indonesia yang lebih baik.
-            </p>
-          </div>
-          <div className="flex flex-col items-center md:items-end gap-4">
-            <div className="flex gap-3 text-text-muted">
-              <a href="#" className="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors font-bold text-xs">IG</a>
-              <a href="#" className="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors font-bold text-xs">FB</a>
-              <a href="#" className="w-10 h-10 rounded-full bg-surface flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-colors font-bold text-xs">IN</a>
-            </div>
-            <p className="text-xs text-text-muted">
-              &copy; 2026 Dombantara. Hak Cipta Dilindungi.
-            </p>
-          </div>
+
+      {/* Social Proof Popup */}
+      <div 
+        className={`fixed top-6 left-4 md:top-8 md:left-8 z-50 bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] border border-border-subtle p-4 pr-6 max-w-[320px] flex gap-4 items-center transition-all duration-700 transform ${
+          showNotif ? 'translate-y-0 opacity-100' : '-translate-y-8 opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="bg-primary/10 p-3 rounded-full text-primary shrink-0 relative">
+          <div className="absolute top-0 right-0 w-3 h-3 bg-primary rounded-full animate-ping"></div>
+          <div className="absolute top-0 right-0 w-3 h-3 bg-primary rounded-full border-2 border-white"></div>
+          <MapPin size={24} />
         </div>
-      </footer>
+        <div>
+          <p className="text-sm font-bold text-neutral-900 mb-0.5">{notifications[notifIndex].name}</p>
+          <p className="text-xs text-neutral-600 leading-snug">
+            {notifications[notifIndex].action}{' '}
+            <span className="font-semibold text-primary">{notifications[notifIndex].time}</span>
+          </p>
+        </div>
+      </div>
+
     </main>
   );
 }
