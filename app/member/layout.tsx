@@ -37,9 +37,9 @@ export default function MemberLayout({
       <aside className={`fixed md:relative top-0 left-0 h-full w-64 bg-primary text-white z-40 transform transition-transform duration-300 flex flex-col ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
         <div className="h-20 flex items-center px-6 border-b border-white/10 mt-16 md:mt-0">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary font-bold font-display text-xl">D</div>
+            <img src="/images/logo-dombantara/dombatara logo-besar.png" alt="Dombantara" className="w-12 h-12 object-contain" />
             <div>
-              <h1 className="font-display font-bold text-white leading-none tracking-wide text-lg">DOMBANTARA</h1>
+              <h1 className="font-display font-bold text-white leading-none tracking-wide text-xl">DOMBANTARA</h1>
               <p className="text-[10px] text-accent-primary font-bold tracking-widest uppercase mt-0.5">Mitra Peternak</p>
             </div>
           </Link>

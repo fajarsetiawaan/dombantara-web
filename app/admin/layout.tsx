@@ -24,9 +24,9 @@ export default function DashboardLayout({
       <aside className="w-64 bg-white border-r border-border-subtle hidden md:flex flex-col">
         <div className="h-20 flex items-center px-6 border-b border-border-subtle">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold font-display text-lg">D</div>
+            <img src="/images/logo-dombantara/dombatara logo/4-cropped.png" alt="Dombantara" className="w-12 h-12 object-contain" />
             <div>
-              <h1 className="font-display font-bold text-primary leading-none tracking-wide text-lg">DOMBANTARA</h1>
+              <h1 className="font-display font-bold text-primary leading-none tracking-wide text-xl">DOMBANTARA</h1>
               <p className="text-[10px] text-text-muted font-bold tracking-widest uppercase mt-0.5">Internal Ops</p>
             </div>
           </Link>

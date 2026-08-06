@@ -33,11 +33,13 @@ export default function Header({ theme = "dark" }: { theme?: "light" | "dark" })
     >
       <div className="container mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <div className={`w-8 h-8 rounded flex items-center justify-center font-bold font-display ${isScrolled || theme === "light" ? 'bg-primary text-white' : 'bg-white text-primary'}`}>
-            D
-          </div>
+          <img 
+            src={isScrolled || theme === "light" ? "/images/logo-dombantara/dombatara logo/4-cropped.png" : "/images/logo-dombantara/dombatara logo-besar.png"} 
+            alt="Dombantara" 
+            className="w-12 h-12 object-contain" 
+          />
           <div>
-            <h1 className="font-display font-bold leading-none text-lg">DOMBANTARA</h1>
+            <h1 className="font-display font-bold leading-none text-xl">DOMBANTARA</h1>
             <p className={`text-[10px] font-bold tracking-widest uppercase mt-0.5 ${isScrolled || theme === "light" ? 'text-primary' : 'text-white/80'}`}>Domba Nusantara</p>
           </div>
         </Link>

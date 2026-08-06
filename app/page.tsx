@@ -47,44 +47,39 @@ export default function MarketingPage() {
           <div className="max-w-3xl">
             <Reveal index={0}>
               <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-                Peternakan Domba <br/> Terintegrasi <span className="text-status-success">Indonesia</span>
+                Selamat Datang di <br/> <span className="text-status-success">Dombantara</span>
               </h1>
             </Reveal>
             <Reveal index={1}>
               <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl leading-relaxed">
-                Dombantara menghadirkan domba premium, layanan sesuai syariat, dan teknologi modern untuk Indonesia yang lebih baik.
+                Ekosistem peternakan domba terintegrasi dari hulu ke hilir. Menyediakan pasokan daging premium, bibit unggul, hingga kemitraan peternak berbasis teknologi modern.
               </p>
             </Reveal>
             <Reveal index={2}>
               <div className="flex flex-wrap items-center gap-4">
-                <motion.button 
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-bold flex items-center gap-2 transition-all shadow-lg"
-                >
-                  Pesan Sekarang <ArrowRight size={18} />
-                </motion.button>
-                <motion.button 
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white hover:text-primary px-8 py-4 rounded-lg font-bold transition-all"
-                >
-                  Lihat Peternakan
-                </motion.button>
+                <Link href="/market">
+                  <motion.button 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-bold flex items-center gap-2 transition-all shadow-lg"
+                  >
+                    Mulai Belanja <ArrowRight size={18} />
+                  </motion.button>
+                </Link>
+                <Link href="/ekosistem">
+                  <motion.button 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white hover:text-primary px-8 py-4 rounded-lg font-bold transition-all"
+                  >
+                    Jelajahi Ekosistem
+                  </motion.button>
+                </Link>
               </div>
             </Reveal>
           </div>
           
-          {/* Play Video Button - Floating Right */}
-          <Reveal index={3} className="absolute right-6 lg:right-10 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-3 cursor-pointer group">
-            <motion.div 
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.2)" }}
-              className="w-16 h-16 rounded-full border-2 border-white/50 backdrop-blur-md flex items-center justify-center text-white transition-colors"
-            >
-              <Play size={24} className="ml-1" />
-            </motion.div>
-            <span className="text-white text-sm font-bold tracking-wider uppercase">Video Profil</span>
-          </Reveal>
+
         </div>
       </section>
 

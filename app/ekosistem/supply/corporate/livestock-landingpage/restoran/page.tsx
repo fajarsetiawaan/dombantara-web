@@ -186,11 +186,9 @@ export default function RestoranLandingPage() {
         <div className="relative z-10 w-full px-6 py-6 md:px-12 md:py-8 flex justify-between items-center max-w-7xl mx-auto">
           <div className="flex items-center gap-2">
             {/* Simple logo placeholder to match screenshot */}
-            <div className="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center">
-              <div className="w-3 h-3 rounded-full bg-white"></div>
-            </div>
+            <img src="/images/logo-dombantara/dombatara logo-besar.png" alt="Dombantara" className="w-16 h-16 object-contain" />
             <div>
-              <div className="text-white font-bold text-lg leading-none tracking-wide font-display">DOMBANTARA</div>
+              <div className="text-white font-bold text-xl leading-none tracking-wide font-display">DOMBANTARA</div>
               <div className="text-primary text-[10px] font-bold tracking-[0.2em] uppercase">Livestock</div>
             </div>
           </div>
@@ -382,7 +380,7 @@ export default function RestoranLandingPage() {
                   <div className="w-3 h-3 rounded-full bg-white"></div>
                 </div>
                 <div>
-                  <div className="text-white font-bold text-lg leading-none tracking-wide font-display">DOMBANTARA</div>
+                  <div className="text-white font-bold text-xl leading-none tracking-wide font-display">DOMBANTARA</div>
                   <div className="text-primary text-[10px] font-bold tracking-[0.2em] uppercase">Livestock</div>
                 </div>
               </div>
@@ -871,11 +869,9 @@ export default function RestoranLandingPage() {
           {/* Brand */}
           <div className="max-w-md">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-[#051109] font-display font-bold text-xl shadow-lg">
-                D
-              </div>
+              <img src="/images/logo-dombantara/dombatara logo-besar.png" alt="Dombantara" className="w-16 h-16 object-contain" />
               <div>
-                <div className="font-display font-bold text-xl tracking-wider leading-none mb-1">DOMBANTARA</div>
+                <div className="font-display font-bold text-3xl tracking-wider leading-none mb-1">DOMBANTARA</div>
                 <div className="text-primary text-[10px] font-bold tracking-[0.2em] uppercase">Domba Nusantara</div>
               </div>
             </div>

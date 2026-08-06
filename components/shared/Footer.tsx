@@ -12,11 +12,13 @@ export default function Footer() {
           {/* Logo Column */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-6 group">
-              <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-primary font-bold font-display text-2xl group-hover:scale-105 transition-transform">
-                D
-              </div>
+              <img 
+                src="/images/logo-dombantara/dombatara logo-besar.png" 
+                alt="Dombantara" 
+                className="w-16 h-16 object-contain group-hover:scale-105 transition-transform" 
+              />
               <div>
-                <h1 className="font-display font-bold leading-none text-2xl tracking-wide">DOMBANTARA</h1>
+                <h1 className="font-display font-bold leading-none text-3xl tracking-wide">DOMBANTARA</h1>
                 <p className="text-xs font-bold tracking-widest uppercase mt-1 text-accent-primary">Domba Nusantara</p>
               </div>
             </Link>
