@@ -1,0 +1,16 @@
+
+> temp-next@0.1.0 dev
+> next dev -p 3011
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3011
+
+ ✓ Starting...
+ ✓ Ready in 1306ms
+(node:7945) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ○ Compiling /ekosistem/supply/corporate/livestock-landingpage/restoran ...
+ ✓ Compiled /ekosistem/supply/corporate/livestock-landingpage/restoran in 3.1s (612 modules)
+ GET /ekosistem/supply/corporate/livestock-landingpage/restoran 200 in 3340ms
+ ✓ Compiled in 244ms (296 modules)
+ ✓ Compiled in 459ms (296 modules)

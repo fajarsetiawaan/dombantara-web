@@ -730,10 +730,10 @@ export default function RestoranLandingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 md:py-28 bg-white relative z-20">
+      <section className="py-20 md:py-28 bg-white relative z-20" style={{ color: '#111827' }}>
         <div className="container mx-auto px-6 lg:px-10 max-w-5xl">
           <div>
-            <h2 className="text-3xl font-display font-bold text-text-primary mb-8 text-center">Tanya Jawab Seputar Pasokan</h2>
+            <h2 className="text-3xl font-display font-bold mb-8 text-center" style={{ color: '#111827' }}>Tanya Jawab Seputar Pasokan</h2>
             <div className="bg-surface rounded-[24px] border border-border-subtle shadow-sm overflow-hidden p-2">
               {[
                 {
@@ -769,10 +769,10 @@ export default function RestoranLandingPage() {
                     className="flex items-center justify-between cursor-pointer"
                     onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                   >
-                    <span className={`font-bold text-sm sm:text-base md:text-lg ${openFaq === idx ? 'text-primary' : 'text-text-primary group-hover:text-primary transition-colors'}`}>
+                    <span className={`font-bold text-sm sm:text-base md:text-lg transition-colors`} style={{ color: openFaq === idx ? '#145C33' : '#111827' }}>
                       {item.q}
                     </span>
-                    <div className={`w-10 h-10 rounded-full bg-white flex items-center justify-center border border-border-subtle transition-all duration-300 shadow-sm shrink-0 ml-4 ${openFaq === idx ? 'text-white bg-primary border-primary rotate-180' : 'text-text-primary group-hover:text-primary'}`}>
+                    <div className={`w-10 h-10 rounded-full bg-white flex items-center justify-center border border-border-subtle transition-all duration-300 shadow-sm shrink-0 ml-4`} style={{ color: openFaq === idx ? '#FFFFFF' : '#111827', backgroundColor: openFaq === idx ? '#145C33' : '#FFFFFF', borderColor: openFaq === idx ? '#145C33' : undefined, transform: openFaq === idx ? 'rotate(180deg)' : 'none' }}>
                       <ChevronDown size={20} />
                     </div>
                   </div>
@@ -781,7 +781,7 @@ export default function RestoranLandingPage() {
                   <div 
                     className={`overflow-hidden transition-all duration-500 ease-in-out ${openFaq === idx ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}
                   >
-                    <p className="text-text-muted text-sm sm:text-base leading-relaxed pr-14">
+                    <p className="text-sm sm:text-base leading-relaxed pr-14" style={{ color: '#4B5563' }}>
                       {item.a}
                     </p>
                   </div>
