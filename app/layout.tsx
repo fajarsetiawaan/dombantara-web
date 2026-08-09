@@ -11,6 +11,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Dombantara",
   description: "Ekosistem protein halal domba & kambing premium",
+  icons: {
+    icon: "/images/logo-dombantara/dombatara logo/4-cropped.png",
+  }
 };
 
 export default function RootLayout({

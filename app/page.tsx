@@ -43,34 +43,34 @@ export default function MarketingPage() {
         </motion.div>
 
         {/* Hero Content */}
-        <div className="container relative z-20 mx-auto px-6 lg:px-10 flex flex-col justify-center h-full pb-24">
-          <div className="max-w-3xl">
+        <div className="container relative z-20 mx-auto px-4 sm:px-6 lg:px-10 flex flex-col justify-center h-full pb-20 md:pb-24">
+          <div className="max-w-3xl mt-12 md:mt-0">
             <Reveal index={0}>
-              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-                Selamat Datang di <br/> <span className="text-status-success">Dombantara</span>
+              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4 md:mb-6">
+                Selamat Datang di <br className="hidden sm:block"/> <span className="text-status-success">Dombantara</span>
               </h1>
             </Reveal>
             <Reveal index={1}>
-              <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 md:mb-10 max-w-2xl leading-relaxed">
                 Ekosistem peternakan domba terintegrasi dari hulu ke hilir. Menyediakan pasokan daging premium, bibit unggul, hingga kemitraan peternak berbasis teknologi modern.
               </p>
             </Reveal>
             <Reveal index={2}>
-              <div className="flex flex-wrap items-center gap-4">
-                <Link href="/market">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 md:gap-4">
+                <Link href="/market" className="w-full sm:w-auto">
                   <motion.button 
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-bold flex items-center gap-2 transition-all shadow-lg"
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="w-full sm:w-auto justify-center bg-primary hover:bg-primary/90 text-white px-6 md:px-8 py-3.5 md:py-4 rounded-lg font-bold flex items-center gap-2 transition-all shadow-lg"
                   >
                     Mulai Belanja <ArrowRight size={18} />
                   </motion.button>
                 </Link>
-                <Link href="/ekosistem">
+                <Link href="/ekosistem" className="w-full sm:w-auto">
                   <motion.button 
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white hover:text-primary px-8 py-4 rounded-lg font-bold transition-all"
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="w-full sm:w-auto justify-center bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white hover:text-primary px-6 md:px-8 py-3.5 md:py-4 rounded-lg font-bold transition-all"
                   >
                     Jelajahi Ekosistem
                   </motion.button>
@@ -84,8 +84,8 @@ export default function MarketingPage() {
       </section>
 
       {/* 2. TENTANG KAMI */}
-      <section className="pt-32 pb-20 container mx-auto px-6 lg:px-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section className="pt-20 md:pt-32 pb-16 md:pb-20 container mx-auto px-4 md:px-6 lg:px-10">
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Video Thumbnail */}
           <Reveal index={0}>
             <motion.div 
@@ -113,10 +113,10 @@ export default function MarketingPage() {
           {/* Copywriting */}
           <div>
             <Reveal index={1}>
-              <div className="text-primary font-bold tracking-widest text-sm uppercase mb-4 flex items-center gap-2">
-                <span className="w-8 h-px bg-primary"></span> Tentang Kami
+              <div className="text-primary font-bold tracking-widest text-[10px] md:text-sm uppercase mb-3 md:mb-4 flex items-center gap-2">
+                <span className="w-6 md:w-8 h-px bg-primary"></span> Tentang Kami
               </div>
-              <h2 className="font-display text-4xl md:text-5xl font-bold text-text-primary leading-tight mb-6">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary leading-tight mb-4 md:mb-6">
                 Lebih dari Sekadar Peternakan. Kami Membangun Masa Depan.
               </h2>
             </Reveal>

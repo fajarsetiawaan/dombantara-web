@@ -25,14 +25,16 @@ import {
   Wrench,
   Wheat,
   Pill,
-  Stethoscope
+  Stethoscope,
+  Filter,
+  X
 } from "lucide-react";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 
 import { marketProducts } from "@/lib/mock-data/marketProducts";
 import { ProductCard } from "@/components/market/ProductCard";
-
+import { AnimatePresence, motion } from "framer-motion";
 export default function MarketPage() {
   const [activeTab, setActiveTab] = useState("foryou");
   const [activeMainCategory, setActiveMainCategory] = useState("semua");
@@ -44,6 +46,7 @@ export default function MarketPage() {
     lokasi: false
   });
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
   const toggleFilter = (key: keyof typeof openFilters) => {
     setOpenFilters(prev => ({ ...prev, [key]: !prev[key] }));
@@ -130,8 +133,6 @@ export default function MarketPage() {
           {/* 3. MAIN LAYOUT (Filter - Grid - Right Sidebar) */}
           <div className="flex flex-col lg:flex-row gap-8">
             
-            {/* LEFT SIDEBAR DELETED - FILTER MOVED TO RIGHT */}
-
             {/* MIDDLE: PRODUCT GRID */}
             <div className="flex-1 min-w-0">
               
@@ -313,18 +314,24 @@ export default function MarketPage() {
               </div>
 
               {/* Toolbar */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
-                <p className="text-sm font-bold text-text-primary">Menampilkan 342 produk</p>
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="text-text-muted">Urutkan:</span>
-                  <button className="flex items-center gap-2 font-bold text-text-primary">
+              <div className="flex items-center justify-between mb-6 gap-4">
+                <p className="text-sm font-bold text-text-primary hidden sm:block">Menampilkan 342 produk</p>
+                <button 
+                  onClick={() => setIsMobileFilterOpen(true)}
+                  className="lg:hidden flex items-center justify-center gap-2 px-4 py-2 bg-white border border-border-subtle rounded-lg text-sm font-bold text-text-primary shadow-sm flex-1 sm:flex-none hover:bg-surface"
+                >
+                  <Filter size={16} /> Filter
+                </button>
+                <div className="flex items-center gap-2 text-sm ml-auto">
+                  <span className="text-text-muted hidden sm:inline">Urutkan:</span>
+                  <button className="flex items-center gap-2 font-bold text-text-primary px-3 py-2 bg-white border border-border-subtle sm:border-transparent rounded-lg sm:bg-transparent">
                     Terbaru <ChevronDown size={14} />
                   </button>
                 </div>
               </div>
 
               {/* Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-10">
                 {marketProducts.map((prod) => (
                   <div key={prod.id} className="h-auto">
                     <ProductCard prod={prod} />
@@ -561,6 +568,94 @@ export default function MarketPage() {
       </section>
 
       <Footer />
+
+      {/* MOBILE FILTER DRAWER */}
+      <AnimatePresence>
+        {isMobileFilterOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileFilterOpen(false)}
+              className="fixed inset-0 bg-black/60 z-[60] lg:hidden backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed bottom-0 left-0 right-0 max-h-[85vh] bg-white z-[70] lg:hidden rounded-t-3xl shadow-2xl flex flex-col"
+            >
+              <div className="flex items-center justify-between p-5 border-b border-border-subtle sticky top-0 bg-white rounded-t-3xl z-10">
+                <h3 className="font-display font-bold text-lg text-text-primary">Filter Produk</h3>
+                <button 
+                  onClick={() => setIsMobileFilterOpen(false)}
+                  className="p-2 bg-surface rounded-full text-text-secondary hover:text-[#166534] hover:bg-[#166534]/10 transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              <div className="flex-1 overflow-y-auto p-5">
+                <div className="space-y-6">
+                  {/* Kategori */}
+                  <div className="border-b border-border-subtle/50 pb-5">
+                    <h4 className="font-bold text-sm text-text-primary mb-4">Kategori</h4>
+                    <div className="space-y-3">
+                      {[
+                        { label: "Domba", count: 124, checked: false },
+                        { label: "Kambing", count: 98, checked: false },
+                        { label: "Sapi", count: 26, checked: false },
+                        { label: "Qurban", count: 78, checked: true },
+                        { label: "Aqiqah", count: 45, checked: false }
+                      ].map((item, i) => (
+                        <label key={i} className="flex items-center gap-3 cursor-pointer group">
+                          <div className={`w-5 h-5 rounded-md border flex items-center justify-center ${item.checked ? 'bg-[#166534] border-[#166534]' : 'border-border-strong group-hover:border-[#166534]'}`}>
+                            {item.checked && <CheckCircle2 size={14} className="text-white" />}
+                          </div>
+                          <span className="text-sm text-text-secondary flex-1">{item.label}</span>
+                          <span className="text-xs text-text-muted">({item.count})</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Jenis */}
+                  <div className="pb-5">
+                    <h4 className="font-bold text-sm text-text-primary mb-4">Jenis</h4>
+                    <div className="space-y-3">
+                      {[
+                        { label: "Bibit", checked: false },
+                        { label: "Penggemukan", checked: true },
+                        { label: "Indukan", checked: false }
+                      ].map((item, i) => (
+                        <label key={i} className="flex items-center gap-3 cursor-pointer group">
+                          <div className={`w-5 h-5 rounded-md border flex items-center justify-center ${item.checked ? 'bg-[#166534] border-[#166534]' : 'border-border-strong group-hover:border-[#166534]'}`}>
+                            {item.checked && <CheckCircle2 size={14} className="text-white" />}
+                          </div>
+                          <span className="text-sm text-text-secondary">{item.label}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="p-5 border-t border-border-subtle bg-white sticky bottom-0">
+                <div className="flex gap-3">
+                  <button className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-surface text-text-secondary hover:bg-surface/80">
+                    Reset
+                  </button>
+                  <button 
+                    onClick={() => setIsMobileFilterOpen(false)}
+                    className="flex-[2] py-3.5 rounded-xl font-bold text-sm bg-[#166534] text-white shadow-lg shadow-[#166534]/20"
+                  >
+                    Terapkan Filter
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
