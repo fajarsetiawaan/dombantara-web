@@ -13,8 +13,6 @@ import {
   Plus, 
   ShoppingCart,
   ShieldCheck,
-  Truck,
-  MapPin,
   X,
   CreditCard,
   MessageCircle,
@@ -458,8 +456,8 @@ export default function ProductDetailPage() {
                     </button>
                     <button className="w-full flex items-center justify-between p-3 border border-border-subtle rounded-xl hover:border-[#0e2a47] hover:bg-slate-50 transition-colors text-left group">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-6 bg-[#0B5599] rounded flex items-center justify-center text-white text-[10px] font-bold">Livin'</div>
-                        <span className="font-medium text-sm">Livin' by Mandiri</span>
+                        <div className="w-10 h-6 bg-[#0B5599] rounded flex items-center justify-center text-white text-[10px] font-bold">Livin&apos;</div>
+                        <span className="font-medium text-sm">Livin&apos; by Mandiri</span>
                       </div>
                       <ChevronRight size={16} className="text-text-muted group-hover:text-[#0e2a47]" />
                     </button>

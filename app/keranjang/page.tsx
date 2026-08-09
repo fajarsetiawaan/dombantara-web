@@ -22,7 +22,6 @@ import {
   Tag,
   MapPin,
   User,
-  Phone,
   Edit2,
   ChevronUp,
   ChevronDown
@@ -521,7 +520,7 @@ export default function KeranjangPage() {
                           </div>
                         </label>
                         <div className="px-14 pb-4">
-                          <p className="text-xs text-text-secondary bg-white p-3 border border-border-subtle rounded-lg">Setelah klik "Bayar Sekarang", Anda akan mendapatkan nomor Virtual Account untuk melakukan pembayaran.</p>
+                          <p className="text-xs text-text-secondary bg-white p-3 border border-border-subtle rounded-lg">Setelah klik &quot;Bayar Sekarang&quot;, Anda akan mendapatkan nomor Virtual Account untuk melakukan pembayaran.</p>
                         </div>
                       </div>
 

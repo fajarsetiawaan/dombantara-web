@@ -29,7 +29,7 @@ export const getKategoriArtikel = async (): Promise<KategoriArtikel[]> => {
 export const getArtikelPopuler = async (): Promise<Artikel[]> => {
   if (USE_MOCK) {
     // Return top 5 articles sorted by views
-    return [...mockArtikel].sort((a: any, b: any) => b.views - a.views).slice(0, 5) as Artikel[];
+    return (mockArtikel as Artikel[]).sort((a: Artikel, b: Artikel) => (b.views || 0) - (a.views || 0)).slice(0, 5);
   }
   return [];
 };
