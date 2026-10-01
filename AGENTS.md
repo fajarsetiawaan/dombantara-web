@@ -1,66 +1,137 @@
-# Aturan Kerja (Governance) Dombantara
+---
+description: Instructions building apps with MCP
+globs: *
+alwaysApply: true
+---
 
-Dokumen ini mendokumentasikan aturan-aturan yang wajib dipatuhi oleh agen AI dan pengembang (developer) saat bekerja pada repositori `dombantara.id`.
+# InsForge SDK Documentation - Overview
 
-## 1. Frontend-First Principle
-- **Tidak ada query backend nyata di awal**. Seluruh data produk, mitra, dan order harus menggunakan *dummy data* (mock data) hingga antarmuka pengguna (UI/UX) disetujui.
-- **Jangan menulis query InsForge** sebelum ada instruksi eksplisit untuk menghubungkan ke backend nyata.
+## What is InsForge?
 
-## 2. Abstraksi Data (Satu Lapisan Abstraksi)
-- **Komponen UI TIDAK PERNAH mengimpor `lib/mock-data/` secara langsung.**
-- Semua akses data (baik dari UI, Server Component, maupun Client Component) harus melewati fungsi-fungsi di dalam `lib/data-access/` (contoh: `mitra.service.ts`, `produk.service.ts`, `order.service.ts`).
-- Fungsi di `lib/data-access/` adalah satu-satunya tempat yang membaca mock-data (untuk saat ini) atau memanggil InsForge (di masa depan).
+Backend-as-a-service (BaaS) platform providing:
 
-## 3. Lokasi Data Mock & Tipe
-- **Tipe Data**: Harus didefinisikan secara strict di dalam `lib/types/` dan dirancang 1:1 mengikuti kemungkinan skema InsForge di masa depan.
-- **Mock Data**: Disimpan di `src/mocks/[nama-fitur].json` atau `lib/mock-data/` (lihat catatan di bawah). Mengikuti Global Standards (mock data di `src/mocks/` disesuaikan untuk Next.js App Router).
-- **Toggle Ready**: Gunakan `const USE_MOCK = true` di layer service, agar memudahkan migrasi.
+- **Database**: PostgreSQL with PostgREST API
+- **Authentication**: Email/password + OAuth (Google, GitHub)
+- **Storage**: File upload/download
+- **AI**: OpenRouter key provisioning and model catalog for direct OpenAI-compatible integrations
+- **Functions**: Serverless function deployment
+- **Realtime**: WebSocket pub/sub (database + client events)
 
-## 4. Source of Truth
-Selalu rujuk ke dokumen berikut untuk mengambil keputusan (berdasarkan prioritas):
-1. `@context7` untuk logika bisnis dan batasan teknis (prioritas tertinggi sesuai Global Standards).
-2. `PRD-dombantara.md` untuk scope, fungsionalitas, dan aturan fase saat ini.
-3. `arsitektur-dombantara.md` untuk struktur folder dan alur data.
-4. `user-flow.md` untuk alur masing-masing persona.
-5. `desain.md` untuk token desain, tipografi, dan komponen visual.
+## Installation
 
-## 5. Struktur Route Groups
-- Ikuti struktur folder normal:
-  - `app/page.tsx`: Untuk landing page dan publik (Fase 1).
-  - `app/admin`: Untuk internal ops (Fase 2).
-  - `app/member`: Untuk mitra (Fase 3).
-- **Jangan mengubah struktur folder per-fase**. Fitur baru ditambahkan ke folder yang sudah disiapkan tanpa tambahan tanda kurung (route groups).
+The following is a step-by-step guide to installing and using the InsForge TypeScript SDK for Web applications. If you are building other types of applications, please refer to:
+- [Swift SDK documentation](/sdks/swift/overview) for iOS, macOS, tvOS, and watchOS applications.
+- [Kotlin SDK documentation](/sdks/kotlin/overview) for Android applications.
+- [REST API documentation](/sdks/rest/overview) for direct HTTP API access.
 
-## 6. Desain System (Dark Luxury Aesthetic)
-- **Token Desain**: Seluruh token (warna, font scale, spacing) diatur di `styles/tokens.ts` dan dihubungkan ke `tailwind.config.ts`.
-- **Tidak ada styling *ad-hoc* / warna hardcode** di komponen UI. Semuanya mengonsumsi Tailwind utility classes yang merujuk ke token desain.
-- **Tipografi**: Gunakan **Bebas Neue** untuk heading/display, dan **Inter** (atau sans-serif netral lainnya) untuk body text.
+### 🚨 CRITICAL: Follow these steps in order
 
-## 7. Handoff ke Backend
-- **Audit Wajib**: Sebelum menulis skema InsForge, lakukan pencocokkan ulang: pastikan setiap *field* yang dipakai di komponen UI sudah tercermin sepenuhnya di `lib/types/` dan `lib/mock-data/`.
+### Step 1: Download Template
 
-## 8. Global Standards & Context
-- **Primary Source of Truth**: Selalu jadikan `@context7` sebagai referensi utama.
-- **Validation**: Verifikasi solusi kode agar sinkron dengan arsitektur di `@context7`.
-- **Formatting**: Gunakan Clean Code, pastikan setiap fungsi memiliki type-hinting (TypeScript).
+Use the `download-template` MCP tool to create a new project with your backend URL and anon key pre-configured.
 
-<!-- INSFORGE:START -->
-## InsForge backend
+### Step 2: Install SDK
 
-This project uses [InsForge](https://insforge.dev): an all-in-one, open-source Postgres-based backend (BaaS) that gives this app a database, authentication, file storage, edge functions, realtime, an AI model gateway, and payments through one platform.
+```bash
+npm install @insforge/sdk@latest
+```
 
-- **Project:** **dombantara.id** (API base `https://4v9qshp2.us-east.insforge.app`)
-- **Skills:** these InsForge skills are installed for supported coding agents. Reach for them before implementing any InsForge feature instead of guessing the API:
-  - `insforge`: app code with the `@insforge/sdk` client (database CRUD, auth, storage, edge functions, realtime, AI, email, and Stripe payments).
-  - `insforge-cli`: backend and infrastructure via the `insforge` CLI (projects, SQL, migrations, RLS policies, storage buckets, functions, secrets, payment setup, schedules, deploys).
-  - `insforge-debug`: diagnosing failures (SDK/HTTP errors, RLS denials, auth and OAuth issues) and running security or performance audits.
-  - `insforge-integrations`: wiring external auth providers (Clerk, Auth0, WorkOS, Better Auth, etc.) for JWT-based RLS, or the OKX x402 payment facilitator.
-  - `find-skills`: discovering additional skills on demand.
-- **Credentials:** app code reads keys from `.env.local`; the CLI reads `.insforge/project.json`. Never hardcode or commit keys.
+### Step 3: Create SDK Client
 
-Key patterns:
+You must create a client instance using `createClient()` with your base URL and anon key:
 
-- Database inserts take an array: `insert([{ ... }])`.
-- Reference users with `auth.users(id)`; use `auth.uid()` in RLS policies.
-- For storage uploads, persist both the returned `url` and `key`.
-<!-- INSFORGE:END -->
+```javascript
+import { createClient } from '@insforge/sdk';
+
+const client = createClient({
+  baseUrl: 'https://your-app.region.insforge.app',  // Your InsForge backend URL
+  anonKey: 'your-anon-key-here'       // Get this from backend metadata
+});
+
+```
+
+**API BASE URL**: Your API base URL is `https://your-app.region.insforge.app`.
+
+## Getting Detailed Documentation
+
+### 🚨 CRITICAL: Always Fetch Documentation Before Writing Code
+
+InsForge provides official SDKs and REST APIs, use them to interact with InsForge services from your application code.
+
+- [TypeScript SDK](/sdks/typescript/overview) - JavaScript/TypeScript
+- [Swift SDK](/sdks/swift/overview) - iOS, macOS, tvOS, and watchOS
+- [Kotlin SDK](/sdks/kotlin/overview) - Android and Kotlin Multiplatform
+- [REST API](/sdks/rest/overview) - Direct HTTP API access
+
+Before writing or editing any InsForge integration code, you **MUST** call the `fetch-docs` or `fetch-sdk-docs` MCP tool to get the latest SDK documentation. This ensures you have accurate, up-to-date implementation patterns.
+
+### Use the InsForge `fetch-docs` MCP tool to get specific SDK documentation:
+
+Available documentation types:
+
+- `"instructions"` - Essential backend setup (START HERE)
+- `"real-time"` - Real-time pub/sub (database + client events) via WebSockets
+- `"db-sdk-typescript"` - Database operations with TypeScript SDK
+- **Authentication** - Choose based on implementation:
+  - `"auth-sdk-typescript"` - TypeScript SDK methods for custom auth flows
+  - `"auth-components-react"` - Pre-built auth UI for React+Vite (single-page app)
+  - `"auth-components-react-router"` - Pre-built auth UI for React(Vite+React Router) (multi-page app)
+  - `"auth-components-nextjs"` - Pre-built auth UI for Next.js (SSR app)
+- `"storage-sdk"` - File storage operations
+- `"functions-sdk"` - Serverless functions invocation
+- `"ai-integration-sdk"` - AI integration with the provisioned OpenRouter key and OpenAI SDK
+- `"deployment"` - Deploy frontend applications via MCP tool
+- `"payments"` - Stripe Checkout, Billing Portal, webhook projections, and fulfillment patterns
+
+These docs are mostly for the TypeScript SDK. For other languages, you can also use the `fetch-sdk-docs` MCP tool to get specific documentation.
+
+### Use the InsForge `fetch-sdk-docs` MCP tool to get specific SDK documentation
+
+You can fetch SDK documentation using the `fetch-sdk-docs` MCP tool with a specific feature type and language.
+
+Available feature types:
+- `db` - Database operations
+- `storage` - File storage operations
+- `functions` - Serverless functions invocation
+- `auth` - User authentication
+- `ai` - AI integration with the provisioned OpenRouter key and OpenAI SDK
+- `realtime` - Real-time pub/sub (database + client events) via WebSockets
+- `payments` - Stripe Checkout and Billing Portal with webhook-based fulfillment
+
+Available languages:
+- `typescript` - JavaScript/TypeScript SDK
+- `swift` - Swift SDK (for iOS, macOS, tvOS, and watchOS)
+- `kotlin` - Kotlin SDK (for Android and JVM applications)
+- `rest-api` - REST API
+
+Payments currently has TypeScript SDK docs only. Use the Payments API reference for non-TypeScript clients.
+
+## When to Use SDK vs MCP Tools
+
+### Always SDK for Application Logic:
+
+- Authentication (register, login, logout, profiles)
+- Database CRUD (select, insert, update, delete)
+- Storage operations (upload, download files)
+- AI integration via the provisioned OpenRouter key with the OpenAI SDK or OpenRouter HTTP API
+- Serverless function invocation
+- Payments checkout and customer portal session creation
+
+### Use MCP Tools for Infrastructure:
+
+- Project scaffolding (`download-template`) - Download starter templates with InsForge integration
+- Backend setup and metadata (`get-backend-metadata`)
+- Database schema management (`run-raw-sql`, `get-table-schema`)
+- Storage bucket creation (`create-bucket`, `list-buckets`, `delete-bucket`)
+- Serverless function deployment (`create-function`, `update-function`, `delete-function`)
+- Frontend deployment (`create-deployment`) - Deploy frontend apps to InsForge hosting
+
+## Important Notes
+
+- For auth: use `auth-sdk` for custom UI, or framework-specific components for pre-built UI
+- SDK returns `{data, error}` structure for all operations
+- Database inserts require array format: `[{...}]`
+- Serverless functions have one endpoint and do not support nested route paths
+- Storage: Upload files to buckets, store URLs in database
+- AI integrations should call OpenRouter directly with `baseURL: "https://openrouter.ai/api/v1"` and a server-side `OPENROUTER_API_KEY`
+- **EXTRA IMPORTANT**: Use Tailwind CSS 3.4 (do not upgrade to v4). Lock these dependencies in `package.json`
