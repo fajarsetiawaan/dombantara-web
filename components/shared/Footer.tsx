@@ -26,16 +26,40 @@ export default function Footer() {
               Peternakan domba terintegrasi berbasis teknologi untuk Indonesia yang lebih baik.
             </p>
             <div className="flex gap-4">
-              <a href="#" aria-label="Instagram" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-primary hover:-translate-y-1 transition-all text-white">
+              <a 
+                href="https://www.instagram.com/dombantara/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Instagram" 
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-primary hover:-translate-y-1 transition-all text-white"
+              >
                 <FaInstagram size={18} />
               </a>
-              <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-primary hover:-translate-y-1 transition-all text-white">
+              <a 
+                href="https://www.facebook.com/profile.php?id=61592675289833" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Facebook" 
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-primary hover:-translate-y-1 transition-all text-white"
+              >
                 <FaFacebookF size={18} />
               </a>
-              <a href="#" aria-label="YouTube" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-primary hover:-translate-y-1 transition-all text-white">
+              <a 
+                href="https://www.youtube.com/@Dombantara" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="YouTube" 
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-primary hover:-translate-y-1 transition-all text-white"
+              >
                 <FaYoutube size={18} />
               </a>
-              <a href="#" aria-label="TikTok" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-primary hover:-translate-y-1 transition-all text-white">
+              <a 
+                href="https://www.tiktok.com/@dombantara" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="TikTok" 
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-primary hover:-translate-y-1 transition-all text-white"
+              >
                 <FaTiktok size={16} />
               </a>
             </div>
@@ -80,7 +104,14 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} className="shrink-0" />
-                <span>0811-1234-5678</span>
+                <a 
+                  href="https://wa.me/6282299199143" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:text-accent-primary transition-colors"
+                >
+                  +62 822-9919-9143
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="shrink-0" />

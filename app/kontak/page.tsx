@@ -85,9 +85,14 @@ export default async function KontakPage() {
                 <p className="text-text-muted text-sm mb-8 leading-relaxed">
                   Chat langsung dengan tim kami melalui WhatsApp untuk mendapatkan respon tercepat.
                 </p>
-                <button className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md">
+                <a 
+                  href="https://wa.me/6282299199143" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md"
+                >
                   Chat via WhatsApp <ArrowRight size={18} />
-                </button>
+                </a>
               </div>
             </Reveal>
 
@@ -103,7 +108,12 @@ export default async function KontakPage() {
           <div className="space-y-4">
             <h2 className="font-display font-bold text-2xl mb-6 text-text-primary">Hubungi Kami</h2>
             
-            <a href="#" className="flex items-center justify-between bg-white p-5 rounded-2xl border border-primary/20 shadow-sm hover:shadow-md transition-all group">
+            <a 
+              href="https://wa.me/6282299199143" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center justify-between bg-white p-5 rounded-2xl border border-primary/20 shadow-sm hover:shadow-md transition-all group"
+            >
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
                   <MessageCircle size={22} />
@@ -111,7 +121,7 @@ export default async function KontakPage() {
                 <div>
                   <div className="font-bold text-text-primary text-sm">WhatsApp</div>
                   <div className="text-xs text-text-muted">Respon paling cepat</div>
-                  <div className="font-bold text-primary text-sm mt-0.5">0811-1234-5678</div>
+                  <div className="font-bold text-primary text-sm mt-0.5">+62 822-9919-9143</div>
                 </div>
               </div>
               <ArrowRight size={18} className="text-text-muted group-hover:text-primary transition-colors" />
@@ -144,7 +154,12 @@ export default async function KontakPage() {
               </div>
             </div>
 
-            <a href="#" className="flex items-center justify-between bg-white p-5 rounded-2xl border border-border-subtle hover:border-primary/20 shadow-sm hover:shadow-md transition-all group">
+            <a 
+              href="https://www.instagram.com/dombantara/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center justify-between bg-white p-5 rounded-2xl border border-border-subtle hover:border-primary/20 shadow-sm hover:shadow-md transition-all group"
+            >
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-surface text-text-primary flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/10 group-hover:text-primary transition-all">
                   <Camera size={22} />
@@ -152,7 +167,7 @@ export default async function KontakPage() {
                 <div>
                   <div className="font-bold text-text-primary text-sm">Instagram</div>
                   <div className="text-xs text-text-muted">Lihat aktivitas kami</div>
-                  <div className="font-bold text-text-primary text-sm mt-0.5">@dombantara.id</div>
+                  <div className="font-bold text-text-primary text-sm mt-0.5">@dombantara</div>
                 </div>
               </div>
               <ArrowRight size={18} className="text-text-muted group-hover:text-primary transition-colors" />
@@ -294,9 +309,14 @@ export default async function KontakPage() {
                     <p className="text-xs text-text-muted leading-relaxed">{tim.description}</p>
                   </div>
                 </div>
-                <button className="mt-auto w-full border border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+                <a 
+                  href="https://wa.me/6282299199143" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="mt-auto w-full border border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors"
+                >
                   <MessageCircle size={14} /> Chat via WhatsApp
-                </button>
+                </a>
               </div>
             </Reveal>
           ))}
@@ -356,9 +376,14 @@ export default async function KontakPage() {
             </div>
             
             <div className="relative z-20 shrink-0">
-              <button className="bg-white text-primary hover:bg-surface px-8 py-4 rounded-2xl font-bold text-lg flex items-center gap-3 shadow-xl transition-transform hover:scale-105 active:scale-95">
+              <a 
+                href="https://wa.me/6282299199143" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="bg-white text-primary hover:bg-surface px-8 py-4 rounded-2xl font-bold text-lg flex items-center gap-3 shadow-xl transition-transform hover:scale-105 active:scale-95"
+              >
                 <MessageCircle size={24} /> Chat via WhatsApp
-              </button>
+              </a>
             </div>
           </div>
         </Reveal>

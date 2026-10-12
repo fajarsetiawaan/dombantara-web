@@ -379,13 +379,16 @@ export default function MarketingPage() {
                   Percayakan ibadah qurban Anda kepada kami. Amanah, sesuai syariat, dan penuh keberkahan.
                 </p>
               </div>
-              <motion.button 
+              <motion.a 
+                href="https://wa.me/6282299199143"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-white text-primary hover:bg-surface px-8 py-5 rounded-2xl font-bold text-lg flex items-center gap-3 shadow-xl shrink-0"
               >
                 Hubungi Kami via WhatsApp
-              </motion.button>
+              </motion.a>
             </div>
           </div>
         </Reveal>

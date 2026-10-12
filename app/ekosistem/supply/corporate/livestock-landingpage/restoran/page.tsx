@@ -210,7 +210,9 @@ export default function RestoranLandingPage() {
             </p>
             <div className="mt-4 mb-8">
               <Link 
-                href="https://wa.me/6281234567890" 
+                href="https://wa.me/6282299199143" 
+                target="_blank" 
+                rel="noopener noreferrer" 
                 className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-lg md:text-xl py-4 px-8 rounded-full transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-green-900/50"
               >
                 <FaWhatsapp size={24} />
@@ -814,7 +816,9 @@ export default function RestoranLandingPage() {
             </div>
             
             <Link 
-              href="https://wa.me/6281234567890" 
+              href="https://wa.me/6282299199143" 
+              target="_blank" 
+              rel="noopener noreferrer" 
               className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-lg md:text-xl py-5 px-8 md:px-12 rounded-full transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-green-900/30 w-full sm:w-auto"
             >
               <FaWhatsapp size={28} />

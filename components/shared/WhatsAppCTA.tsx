@@ -10,7 +10,7 @@ interface WhatsAppCTAProps extends Omit<ButtonProps, "asChild"> {
 
 export function WhatsAppCTA({
   message = "Halo Dombantara, saya tertarik untuk...",
-  phoneNumber = "6281234567890", // dummy default phone
+  phoneNumber = "6282299199143",
   iconOnly = false,
   className,
   children,

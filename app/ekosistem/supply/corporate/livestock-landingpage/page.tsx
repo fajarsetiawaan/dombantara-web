@@ -430,12 +430,12 @@ export default function LivestockLandingPage() {
                 <p className="text-[10px] text-text-secondary mb-6">Tim kami siap membantu kebutuhan bisnis Anda.</p>
                 
                 <div className="space-y-4">
-                  <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer" className="flex items-center gap-4 group">
+                  <a href="https://wa.me/6282299199143" target="_blank" rel="noreferrer" className="flex items-center gap-4 group">
                     <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                       <Phone size={18} />
                     </div>
                     <div>
-                      <div className="font-bold text-text-primary text-sm group-hover:text-primary transition-colors">0812-3456-7890</div>
+                      <div className="font-bold text-text-primary text-sm group-hover:text-primary transition-colors">+62 822-9919-9143</div>
                       <div className="text-[10px] text-text-secondary">WhatsApp / Telepon</div>
                     </div>
                   </a>

@@ -461,7 +461,14 @@ export default function AqiqahDetailPage() {
                   </Link>
                   <div className="text-center md:text-right">
                     <div className="text-[10px] text-text-muted mb-1">Atau hubungi kami di</div>
-                    <div className="font-bold text-sm text-text-primary">0811-1234-5678</div>
+                    <a 
+                      href="https://wa.me/6282299199143" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="font-bold text-sm text-text-primary hover:text-primary transition-colors"
+                    >
+                      +62 822-9919-9143
+                    </a>
                   </div>
                 </div>
               </div>
